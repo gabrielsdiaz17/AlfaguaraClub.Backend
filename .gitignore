@@ -1,0 +1,15 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/AlfaguaraClub
+/AlfaguaraClub.Backend.Api/obj
+/AlfaguaraClub.Backend.Application/obj
+/AlfaguaraClub.Backend.Domain/obj
+/AlfaguaraClub.Backend.Infraestructure/obj
+/AlfaguaraClub.Backend.Persistence/obj
+/AlfaguaraClub.Backend.Api/bin/Debug/net8.0
+/AlfaguaraClub.Backend.Application/bin/Debug/net8.0
+/AlfaguaraClub.Backend.Domain/bin/Debug/net8.0
+/AlfaguaraClub.Backend.Infraestructure/bin/Debug/net8.0
+/AlfaguaraClub.Backend.Persistence/bin/Debug/net8.0
