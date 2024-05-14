@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace AlfaguaraClub.Backend.Persistence.Models
+{
+    public class Story: AuditableEntity
+    {
+        [Key]
+        public long StoryId { get; set; }
+        public string Title { get; set; }
+        public int PriorityRating { get; set; }
+        public string Summary { get; set; }
+        public string Description { get; set; }
+
+        [ForeignKey("Category")]
+        public int? CategoryId { get; set; }
+        public Category Category { get; set; }
+
+        [ForeignKey("SpaceActivity")]
+        public int? SpaceActivityId { get; set; }
+        public SpaceActivity Activity { get; set; }
+        public ICollection<Picture> Pictures { get; set; }
+
+    }
+}

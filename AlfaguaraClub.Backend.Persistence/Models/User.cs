@@ -12,8 +12,10 @@ namespace AlfaguaraClub.Backend.Persistence.Models
     public class User: AuditableEntity
     {
         [Key]
-
         public long UserId { get; set; }
+        [ForeignKey("IdentificationType")]
+        public int IdentificationTypeId { get; set; }
+        public IdentificationType IdentificationType { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -30,5 +32,8 @@ namespace AlfaguaraClub.Backend.Persistence.Models
         public TypeUser? TypeUser { get; set; }
         public bool AcceptProtectionData { get; set; }
         public string Photograph { get; set; }
+        public ICollection<Session> Sessions { get; set; }
+        public ICollection<Booking> Bookings { get; set; }
+        public ICollection<Billing> Billings { get; set; }
     }
 }

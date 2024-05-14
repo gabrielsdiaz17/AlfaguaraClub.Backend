@@ -17,4 +17,16 @@ namespace AlfaguaraClub.Backend.Persistence.Enums
         Principal = 1,
         Associated = 2
     }
+    public enum BillingStatus
+    {
+        Unknown = 0,
+        Pending = 1,
+        Confirmed = 2,
+        Rejected = 3
+    }
+    public enum PictureType
+    {
+        Space =1,
+        Story = 2,
+    }
 }
