@@ -13,6 +13,8 @@ namespace AlfaguaraClub.Backend.Persistence.Models
         public long CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string CompanyIdentifier { get; set; }
+        public int IdentificationTypeId { get; set; }
+        public IdentificationType IdentificationType { get; set; }
         public string CompanyLogo { get; set; }
         public ICollection<Site> Sites { get; set; }
     }

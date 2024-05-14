@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Persistence.Models
 {
-    public class Space
+    public class Space: AuditableEntity
     {
         [Key]
         public long SpaceId { get; set; }
@@ -19,6 +20,7 @@ namespace AlfaguaraClub.Backend.Persistence.Models
         public long CostCenterId { get; set; }
         public CostCenter CostCenter { get; set; }
         public string? VideoLink { get; set; }
-
+        public ICollection<Picture> Pictures { get; set; }
+        public ICollection<SpaceActivity> Activities { get; set; }
     }
 }
