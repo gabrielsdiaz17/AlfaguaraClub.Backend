@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace AlfaguaraClub.Backend.Persistence.Models
     {
         [Key]
         public long PictureId { get; set; }
+        [Column(TypeName = "text")]
         public string PictureData { get; set; }
         public PictureType PictureType { get; set; }
         public long? StoryId { get; set; }

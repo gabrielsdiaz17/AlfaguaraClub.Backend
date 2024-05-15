@@ -12,8 +12,11 @@ namespace AlfaguaraClub.Backend.Persistence.Models
     {
         [Key]
         public long SiteId { get; set; }
+        [MaxLength(200)]
         public string SiteName { get; set; }
+        [MaxLength(500)]
         public string SiteAddress { get; set; }
+        [Column(TypeName = "text")]
         public string? SiteLocationMap { get; set; }
 
         [ForeignKey("Company")]

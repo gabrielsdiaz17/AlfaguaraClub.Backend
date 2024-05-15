@@ -13,12 +13,15 @@ namespace AlfaguaraClub.Backend.Persistence.Models
     {
         [Key]
         public long SpaceId { get; set; }
+        [MaxLength(200)]
         public string SpaceName { get; set; }
+        [Column(TypeName = "text")]
         public string SpaceDescription { get; set; }
 
         [ForeignKey("CostCenter")]
         public long CostCenterId { get; set; }
         public CostCenter CostCenter { get; set; }
+        [Column(TypeName = "text")]
         public string? VideoLink { get; set; }
         public ICollection<Picture> Pictures { get; set; }
         public ICollection<SpaceActivity> Activities { get; set; }
