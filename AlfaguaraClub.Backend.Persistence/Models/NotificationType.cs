@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Persistence.Models
 {
-    public class Category
+    public class NotificationType: AuditableEntity
     {
-
-        [Key]
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
-        public ICollection<Story> Stories { get; set; }
-
+        public int NotificationTypeId { get; set; }
+        [MaxLength(500)]
+        public string NotificationTypeDescription { get; set; }
     }
 }

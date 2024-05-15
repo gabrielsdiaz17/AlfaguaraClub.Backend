@@ -12,7 +12,9 @@ namespace AlfaguaraClub.Backend.Persistence.Models
     {
         [Key]
         public long CostCenterId { get; set; }
+        [MaxLength(20)]
         public string CostCenterCode { get; set; }
+        [MaxLength(200)]
         public string CostCenterName { get; set; }
         [ForeignKey("Site")]
         public long SiteId { get; set; }

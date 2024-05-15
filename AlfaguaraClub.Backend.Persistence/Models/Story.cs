@@ -13,9 +13,12 @@ namespace AlfaguaraClub.Backend.Persistence.Models
     {
         [Key]
         public long StoryId { get; set; }
+        [MaxLength(500)]
         public string Title { get; set; }
         public int PriorityRating { get; set; }
+        [MaxLength(500)]
         public string Summary { get; set; }
+        [Column(TypeName = "text")]
         public string Description { get; set; }
 
         [ForeignKey("Category")]
@@ -23,7 +26,7 @@ namespace AlfaguaraClub.Backend.Persistence.Models
         public Category Category { get; set; }
 
         [ForeignKey("SpaceActivity")]
-        public int? SpaceActivityId { get; set; }
+        public long? SpaceActivityId { get; set; }
         public SpaceActivity Activity { get; set; }
         public ICollection<Picture> Pictures { get; set; }
 

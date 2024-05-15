@@ -26,6 +26,7 @@ namespace AlfaguaraClub.Backend.Persistence.Models
         public long? MembershipId { get; set; }
         public Membership Membership { get; set; }
 
+        [ForeignKey("StatusBooking")]
         public int StatusBookingId { get; set; }
         public StatusBooking StatusBooking { get; set; }
 

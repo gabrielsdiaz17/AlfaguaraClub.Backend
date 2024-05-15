@@ -10,8 +10,8 @@ namespace AlfaguaraClub.Backend.Persistence.Models
     public class Role: AuditableEntity
     {
         [Key]
-
-        public long RoleId { get; set; }
+        public int RoleId { get; set; }
+        [MaxLength(200)]
         public string RoleName { get; set; }
         public ICollection<User> Users { get; set; }
     }

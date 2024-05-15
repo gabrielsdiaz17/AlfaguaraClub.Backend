@@ -11,6 +11,7 @@ namespace AlfaguaraClub.Backend.Persistence.Models
     {
         [Key]
         public long MembershipId { get; set; }
+        [MaxLength(50)]
         public string UniqueIdentifier { get; set; }
         public ICollection<User> Users { get; set; }
     }
