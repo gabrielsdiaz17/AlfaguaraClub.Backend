@@ -11,10 +11,10 @@ namespace AlfaguaraClub.Backend.Persistence.Models
     public class Session: AuditableEntity
     {
         [Key]
-        public int SessionId { get; set; }
+        public long SessionId { get; set; }
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public long UserId { get; set; }
         public User User { get; set; }
         [Column(TypeName = "text")]
         public string Token { get; set; }

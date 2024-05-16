@@ -28,6 +28,8 @@ namespace AlfaguaraClub.Backend.Persistence.Models
         [Column(TypeName = "text")]
         public string Address { get; set; }
         [MaxLength(200)]
+        public string CityAddress { get; set; }
+        [MaxLength(30)]
         public string PhoneNumber { get; set; }
         public Genre Genre { get; set; }
         [ForeignKey("Role")]

@@ -24,6 +24,6 @@ namespace AlfaguaraClub.Backend.Persistence.Models
         [Column(TypeName = "text")]
         public string? VideoLink { get; set; }
         public ICollection<Picture> Pictures { get; set; }
-        public ICollection<SpaceActivity> Activities { get; set; }
+        public ICollection<SpaceActivity> SpaceActivities { get; set; }
     }
 }
