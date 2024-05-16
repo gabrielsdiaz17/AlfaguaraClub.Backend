@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Persistence.Repository
 {
-    class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly AppDbContext _dbContext;
 

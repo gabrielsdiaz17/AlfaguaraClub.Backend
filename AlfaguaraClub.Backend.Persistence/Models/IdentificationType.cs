@@ -9,6 +9,7 @@ namespace AlfaguaraClub.Backend.Persistence.Models
 {
     public class IdentificationType: AuditableEntity
     {
+        [Key]
         public int IdendificationTypeId { get; set; }
         public int IdentificationTypeCode { get; set; }
         [MaxLength(20)]

@@ -18,9 +18,9 @@ namespace AlfaguaraClub.Backend.Persistence.Models
         public long UserId { get; set; }
         public User User { get; set; }
 
-        [ForeignKey("Activity")]
-        public long ActivityId { get; set; }
-        public Activity Activity { get; set; }
+        [ForeignKey("SpaceActivity")]
+        public long SpaceActivityId { get; set; }
+        public SpaceActivity SpaceActivity { get; set; }
 
         [ForeignKey("Membership")]
         public long? MembershipId { get; set; }
