@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AlfaguaraClub.Backend.Application\AlfaguaraClub.Backend.Application.csproj" />
     <ProjectReference Include="..\AlfaguaraClub.Backend.Infraestructure\AlfaguaraClub.Backend.Infraestructure.csproj" />
     <ProjectReference Include="..\AlfaguaraClub.Backend.Persistence\AlfaguaraClub.Backend.Persistence.csproj" />
   </ItemGroup>

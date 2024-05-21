@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlfaguaraClub.Backend.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240516010557_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20240521213252_FirstMigrationDatabase")]
+    partial class FirstMigrationDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Billing", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Billing", b =>
                 {
                     b.Property<long>("BillingId")
                         .ValueGeneratedOnAdd()
@@ -82,7 +82,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Billing");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Booking", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Booking", b =>
                 {
                     b.Property<long>("BookingId")
                         .ValueGeneratedOnAdd()
@@ -130,7 +130,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Booking");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Category", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -142,12 +142,27 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<long>("CreatedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<long>("UpdatedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("UpdatedDate")
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("CategoryId");
 
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Company", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Company", b =>
                 {
                     b.Property<long>("CompanyId")
                         .ValueGeneratedOnAdd()
@@ -194,7 +209,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Company");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.CostCenter", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.CostCenter", b =>
                 {
                     b.Property<long>("CostCenterId")
                         .ValueGeneratedOnAdd()
@@ -237,7 +252,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("CostCenter");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.IdentificationType", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.IdentificationType", b =>
                 {
                     b.Property<int>("IdendificationTypeId")
                         .ValueGeneratedOnAdd()
@@ -278,7 +293,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("IdentificationType");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Membership", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Membership", b =>
                 {
                     b.Property<long>("MembershipId")
                         .ValueGeneratedOnAdd()
@@ -311,7 +326,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Membership");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Notification", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Notification", b =>
                 {
                     b.Property<long>("NotificationId")
                         .ValueGeneratedOnAdd()
@@ -364,7 +379,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Notification");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.NotificationType", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.NotificationType", b =>
                 {
                     b.Property<int>("NotificationTypeId")
                         .ValueGeneratedOnAdd()
@@ -397,7 +412,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("NotificationType");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Parameter", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Parameter", b =>
                 {
                     b.Property<long>("ParameterId")
                         .ValueGeneratedOnAdd()
@@ -434,7 +449,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Parameter");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Picture", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Picture", b =>
                 {
                     b.Property<long>("PictureId")
                         .ValueGeneratedOnAdd()
@@ -479,7 +494,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Picture");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Role", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Role", b =>
                 {
                     b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
@@ -512,47 +527,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Session", b =>
-                {
-                    b.Property<long>("SessionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("SessionId"));
-
-                    b.Property<long>("CreatedById")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("ExpiryTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("UpdatedById")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("UpdatedDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("SessionId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Session");
-                });
-
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Site", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Site", b =>
                 {
                     b.Property<long>("SiteId")
                         .ValueGeneratedOnAdd()
@@ -598,7 +573,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Site");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Space", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Space", b =>
                 {
                     b.Property<long>("SpaceId")
                         .ValueGeneratedOnAdd()
@@ -643,7 +618,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Space");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.SpaceActivity", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.SpaceActivity", b =>
                 {
                     b.Property<long>("SpaceActivityId")
                         .ValueGeneratedOnAdd()
@@ -699,7 +674,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("SpaceActivity");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.StatusBooking", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.StatusBooking", b =>
                 {
                     b.Property<int>("StatusBookingId")
                         .ValueGeneratedOnAdd()
@@ -732,7 +707,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("StatusBooking");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Story", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Story", b =>
                 {
                     b.Property<long>("StoryId")
                         .ValueGeneratedOnAdd()
@@ -787,7 +762,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("Story");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.TypeActivity", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.TypeActivity", b =>
                 {
                     b.Property<int>("TypeActivityId")
                         .ValueGeneratedOnAdd()
@@ -820,7 +795,7 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("TypeActivity");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.User", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.User", b =>
                 {
                     b.Property<long>("UserId")
                         .ValueGeneratedOnAdd()
@@ -909,13 +884,13 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Billing", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Billing", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.Booking", "Booking")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Booking", "Booking")
                         .WithMany()
                         .HasForeignKey("BookingId");
 
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.User", "User")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.User", "User")
                         .WithMany("Billings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -926,25 +901,25 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Booking", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Booking", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.Membership", "Membership")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Membership", "Membership")
                         .WithMany()
                         .HasForeignKey("MembershipId");
 
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.SpaceActivity", "SpaceActivity")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.SpaceActivity", "SpaceActivity")
                         .WithMany("Bookings")
                         .HasForeignKey("SpaceActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.StatusBooking", "StatusBooking")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.StatusBooking", "StatusBooking")
                         .WithMany()
                         .HasForeignKey("StatusBookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.User", "User")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.User", "User")
                         .WithMany("Bookings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -959,9 +934,9 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Company", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Company", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.IdentificationType", "IdentificationType")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.IdentificationType", "IdentificationType")
                         .WithMany()
                         .HasForeignKey("IdentificationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -970,9 +945,9 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("IdentificationType");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.CostCenter", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.CostCenter", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.Site", "Site")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Site", "Site")
                         .WithMany("CostCenters")
                         .HasForeignKey("SiteId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -981,15 +956,15 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("Site");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Notification", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Notification", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.NotificationType", "NotificationType")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.NotificationType", "NotificationType")
                         .WithMany()
                         .HasForeignKey("NotificationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.User", "User")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.User", "User")
                         .WithMany("Notifications")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1000,13 +975,13 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Picture", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Picture", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.Space", "Space")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Space", "Space")
                         .WithMany("Pictures")
                         .HasForeignKey("SpaceId");
 
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.Story", "Story")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Story", "Story")
                         .WithMany("Pictures")
                         .HasForeignKey("StoryId");
 
@@ -1015,20 +990,9 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("Story");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Session", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Site", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.User", "User")
-                        .WithMany("Sessions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Site", b =>
-                {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.Company", "Company")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Company", "Company")
                         .WithMany("Sites")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1037,9 +1001,9 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Space", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Space", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.CostCenter", "CostCenter")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.CostCenter", "CostCenter")
                         .WithMany("Spaces")
                         .HasForeignKey("CostCenterId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1048,15 +1012,15 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("CostCenter");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.SpaceActivity", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.SpaceActivity", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.Space", "Space")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Space", "Space")
                         .WithMany("SpaceActivities")
                         .HasForeignKey("SpaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.TypeActivity", "TypeActivity")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.TypeActivity", "TypeActivity")
                         .WithMany()
                         .HasForeignKey("TypeActivityId");
 
@@ -1065,13 +1029,13 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("TypeActivity");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Story", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Story", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.Category", "Category")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Category", "Category")
                         .WithMany("Stories")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.SpaceActivity", "Activity")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.SpaceActivity", "Activity")
                         .WithMany()
                         .HasForeignKey("SpaceActivityId");
 
@@ -1080,19 +1044,19 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.User", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.User", b =>
                 {
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.IdentificationType", "IdentificationType")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.IdentificationType", "IdentificationType")
                         .WithMany()
                         .HasForeignKey("IdentificationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.Membership", "Membership")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Membership", "Membership")
                         .WithMany("Users")
                         .HasForeignKey("MembershipId");
 
-                    b.HasOne("AlfaguaraClub.Backend.Persistence.Models.Role", "Role")
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1105,62 +1069,60 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Category", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Stories");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Company", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Company", b =>
                 {
                     b.Navigation("Sites");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.CostCenter", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.CostCenter", b =>
                 {
                     b.Navigation("Spaces");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Membership", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Membership", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Role", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Role", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Site", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Site", b =>
                 {
                     b.Navigation("CostCenters");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Space", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Space", b =>
                 {
                     b.Navigation("Pictures");
 
                     b.Navigation("SpaceActivities");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.SpaceActivity", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.SpaceActivity", b =>
                 {
                     b.Navigation("Bookings");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.Story", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.Story", b =>
                 {
                     b.Navigation("Pictures");
                 });
 
-            modelBuilder.Entity("AlfaguaraClub.Backend.Persistence.Models.User", b =>
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.User", b =>
                 {
                     b.Navigation("Billings");
 
                     b.Navigation("Bookings");
 
                     b.Navigation("Notifications");
-
-                    b.Navigation("Sessions");
                 });
 #pragma warning restore 612, 618
         }

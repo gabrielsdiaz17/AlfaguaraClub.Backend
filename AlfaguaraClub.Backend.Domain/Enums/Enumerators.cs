@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlfaguaraClub.Backend.Persistence.Enums
+namespace AlfaguaraClub.Backend.Domain.Enums
 {
     public enum Genre
     {

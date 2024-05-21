@@ -1,4 +1,5 @@
-﻿using AlfaguaraClub.Backend.Persistence.Models;
+﻿using AlfaguaraClub.Backend;
+using AlfaguaraClub.Backend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,6 @@ namespace AlfaguaraClub.Backend.Persistence.Data
         public DbSet<Parameter> Parameter { get; set; }
         public DbSet<Picture> Picture { get; set; }
         public DbSet<Role> Role { get; set; }
-        public DbSet<Session> Session { get; set; }
         public DbSet<Site> Site { get; set; }
         public DbSet<Space> Space { get; set; }
         public DbSet<SpaceActivity> SpaceActivity { get; set; }
