@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlfaguaraClub.Backend.Persistence.Repository
+namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface IRepository<T> where T : class
     {

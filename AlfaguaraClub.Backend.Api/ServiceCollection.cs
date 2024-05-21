@@ -1,4 +1,5 @@
-﻿using AlfaguaraClub.Backend.Persistence.Data;
+﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Persistence.Data;
 using AlfaguaraClub.Backend.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
