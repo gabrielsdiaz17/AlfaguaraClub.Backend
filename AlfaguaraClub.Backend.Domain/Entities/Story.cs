@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace AlfaguaraClub.Backend.Persistence.Models
+namespace AlfaguaraClub.Backend.Domain.Entities
 {
     public class Story: AuditableEntity
     {

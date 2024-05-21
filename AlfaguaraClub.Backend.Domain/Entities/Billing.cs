@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AlfaguaraClub.Backend.Persistence.Enums;
+using AlfaguaraClub.Backend.Domain.Enums;
+using AlfaguaraClub.Backend.Domain.Entities;
 
-namespace AlfaguaraClub.Backend.Persistence.Models
+namespace AlfaguaraClub.Backend.Domain.Entities
 {
     public class Billing: AuditableEntity
     {

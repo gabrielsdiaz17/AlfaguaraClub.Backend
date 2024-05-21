@@ -1,4 +1,5 @@
-﻿using AlfaguaraClub.Backend.Persistence.Enums;
+﻿using AlfaguaraClub.Backend.Domain.Entities;
+using AlfaguaraClub.Backend.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlfaguaraClub.Backend.Persistence.Models
+namespace AlfaguaraClub.Backend.Domain.Entities
 {
     public class User: AuditableEntity
     {
@@ -42,7 +43,6 @@ namespace AlfaguaraClub.Backend.Persistence.Models
         public bool AcceptProtectionData { get; set; }
         [Column(TypeName = "text")]
         public string Photograph { get; set; }
-        public ICollection<Session> Sessions { get; set; }
         public ICollection<Booking> Bookings { get; set; }
         public ICollection<Billing> Billings { get; set; }
         public ICollection<Notification> Notifications { get; set; }

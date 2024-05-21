@@ -6,8 +6,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AlfaguaraClub.Backend.Domain.Entities;
 
-namespace AlfaguaraClub.Backend.Persistence.Models
+namespace AlfaguaraClub.Backend.Domain.Entities
 {
     public class Booking: AuditableEntity
     {

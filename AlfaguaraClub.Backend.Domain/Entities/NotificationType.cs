@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlfaguaraClub.Backend.Persistence.Models
+namespace AlfaguaraClub.Backend.Domain.Entities
 {
     public class NotificationType: AuditableEntity
     {

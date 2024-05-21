@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AlfaguaraClub.Backend.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigration : Migration
+    public partial class FirstMigrationDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +22,12 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CategoryName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
+                    UpdatedDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    UpdatedById = table.Column<long>(type: "bigint", nullable: false),
+                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -325,34 +330,6 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Notification_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Session",
-                columns: table => new
-                {
-                    SessionId = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    Token = table.Column<string>(type: "text", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ExpiryTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    CreatedDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
-                    UpdatedDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
-                    UpdatedById = table.Column<long>(type: "bigint", nullable: false),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Session", x => x.SessionId);
-                    table.ForeignKey(
-                        name: "FK_Session_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "UserId",
@@ -672,11 +649,6 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                 column: "StoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Session_UserId",
-                table: "Session",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Site_CompanyId",
                 table: "Site",
                 column: "CompanyId");
@@ -736,9 +708,6 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Picture");
-
-            migrationBuilder.DropTable(
-                name: "Session");
 
             migrationBuilder.DropTable(
                 name: "Booking");
