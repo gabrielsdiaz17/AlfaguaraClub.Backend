@@ -1,4 +1,5 @@
-﻿using AlfaguaraClub.Backend.Persistence.Data;
+﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Persistence.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
