@@ -9,5 +9,6 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface ICostCenterRepository: IRepository<CostCenter>
     {
+        Task<List<CostCenter>> GetCostCenterWithSpaces();
     }
 }
