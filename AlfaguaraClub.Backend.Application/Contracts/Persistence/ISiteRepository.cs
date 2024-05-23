@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
-    internal interface ISiteRepository: IRepository<Site>
+    public interface ISiteRepository: IRepository<Site>
     {
+        Task <List<Site>> GetSiteWithCostCenter ();
     }
 }

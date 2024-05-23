@@ -21,6 +21,8 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         public async Task<IList<T>> GetAllAsync() => await _dbContext.Set<T>().AsNoTracking().ToListAsync();
 
         public async Task<T> GetByIdAsync(int id) => await _dbContext.FindAsync<T>(id);
+        public async Task<T> GetByIdAsync(long id) => await _dbContext.FindAsync<T>(id);
+
 
         public async Task<T> AddAsync(T entity)
         {

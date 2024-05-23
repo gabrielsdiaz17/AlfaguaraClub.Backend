@@ -9,6 +9,7 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
     public interface IRepository<T> where T : class
     {
         Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(long id);
 
         Task<IList<T>> GetAllAsync();
 
