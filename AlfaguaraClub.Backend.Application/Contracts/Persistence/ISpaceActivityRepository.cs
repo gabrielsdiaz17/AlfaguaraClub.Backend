@@ -9,5 +9,8 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface ISpaceActivityRepository: IRepository<SpaceActivity>
     {
+        Task<List<SpaceActivity>> GetSpaceActivitiesWithBooking();
+        Task<List<SpaceActivity>> GetSpaceActivityBySpace(long spaceId);
+        Task<SpaceActivity> GetSingleSpaceActivity(long spaceActivityId);
     }
 }
