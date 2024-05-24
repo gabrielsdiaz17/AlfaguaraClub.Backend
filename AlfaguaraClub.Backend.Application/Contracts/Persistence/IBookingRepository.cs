@@ -9,5 +9,9 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface IBookingRepository: IRepository<Booking>
     {
+        Task<Booking> GetBookingDetailByBookingId(long bookingId);
+        Task<List<Booking>> GetBookings();
+        Task<List<Booking>> GetBookingsByMembership(long membershipId);
+        Task<List<Booking>> GetBookingsBySpaceActivityId(long spaceActivityId);
     }
 }
