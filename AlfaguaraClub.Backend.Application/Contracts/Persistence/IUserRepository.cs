@@ -9,5 +9,9 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface IUserRepository : IRepository<User>
     {
+        Task<List<User>> GetAllUsersWithMembership();
+        Task<User> GetUserWithMembership(long userId);
+        Task<User> GetUserLogin(string email, string password);
+
     }
 }
