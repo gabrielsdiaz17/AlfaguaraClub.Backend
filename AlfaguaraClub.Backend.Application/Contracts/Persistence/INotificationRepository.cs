@@ -9,5 +9,10 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface INotificationRepository: IRepository<Notification>
     {
+
+        Task<List<Notification>> GetNotifications();
+        Task<List<Notification>> GetNotificationsByNotificationType(int typeNotification);
+        Task <Notification> GetNotificationById(long id);
+        Task<List<Notification>> GetNotificatipnByState(bool sent, DateTimeOffset dateNotification);
     }
 }
