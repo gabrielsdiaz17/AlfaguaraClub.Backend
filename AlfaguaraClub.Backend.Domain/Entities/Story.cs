@@ -24,6 +24,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("Category")]
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
+        public DateTimeOffset StoryPublishDate { get; set; }
 
         [ForeignKey("SpaceActivity")]
         public long? SpaceActivityId { get; set; }

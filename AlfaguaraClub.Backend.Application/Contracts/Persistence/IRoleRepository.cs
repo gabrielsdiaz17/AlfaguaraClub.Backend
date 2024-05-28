@@ -9,5 +9,7 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface IRoleRepository: IRepository<Role>
     {
+        Task<List<Role>> GetRolesWithUsers();
+        Task<List<Role>> GetUsersByRoleId(int roleId);
     }
 }

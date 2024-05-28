@@ -9,5 +9,6 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface ICategoryRepository: IRepository<Category>
     {
+        Task<List<Category>> GetAllCategories();
     }
 }
