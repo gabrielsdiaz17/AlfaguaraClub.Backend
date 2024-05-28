@@ -14,7 +14,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
         }
 
-        public async Task<Notification> GetNotificationById(int id)
+        public async Task<Notification> GetNotificationById(long id)
         {
             var notification = await QueryNoTracking().Where(notification => notification.NotificationId == id)
                                                       .Include(notification=> notification.NotificationType)
@@ -33,7 +33,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
             return notifications;
         }
 
-        public async Task<List<Notification>> GetNotificationsByNotificationType(long typeNotification)
+        public async Task<List<Notification>> GetNotificationsByNotificationType(int typeNotification)
         {
             var notificationByType = await QueryNoTracking().Where(notification => notification.IsActive && notification.NotificationTypeId == typeNotification)
                                                             .Include(notification => notification.NotificationType)
