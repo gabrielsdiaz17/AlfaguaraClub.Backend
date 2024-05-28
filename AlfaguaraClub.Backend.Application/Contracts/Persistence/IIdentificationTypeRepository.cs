@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
-    public interface IIdentificationTypeRepository : IRepository<NotificationType>
+    public interface IIdentificationTypeRepository : IRepository<IdentificationType>
     {
     }
 }
