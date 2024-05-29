@@ -9,5 +9,6 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface INotificationTypeRepository:IRepository<NotificationType>
     {
+        Task<List<NotificationType>> GetNotificationTypes();
     }
 }

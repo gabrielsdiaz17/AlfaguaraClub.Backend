@@ -9,5 +9,7 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface IParameterRepository: IRepository<Parameter>
     {
+        Task<List<Parameter>> GetParameters();
+        Task<Parameter> GetParameterById(long parameterId);
     }
 }
