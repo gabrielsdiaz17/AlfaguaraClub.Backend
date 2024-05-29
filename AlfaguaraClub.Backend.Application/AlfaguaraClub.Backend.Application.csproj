@@ -15,4 +15,9 @@
     <ProjectReference Include="..\AlfaguaraClub.Backend.Domain\AlfaguaraClub.Backend.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\StatusBookingServices\QueryStatusBookingCommands\" />
+    <Folder Include="Services\StatusBookingServices\UpdateStatusBookingCommands\" />
+  </ItemGroup>
+
 </Project>
