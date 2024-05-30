@@ -25,7 +25,9 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public long SpaceId { get; set; }
         public Space Space { get; set; }
         public DateTimeOffset ActivityDate { get; set; }
-        public TimeSpan ActivityHour { get; set; }
+        public TimeSpan StartActivityHour { get; set; }
+        public TimeSpan EndActivityHour { get; set; }
+
         public ICollection<Booking> Bookings { get; set; }
 
     }

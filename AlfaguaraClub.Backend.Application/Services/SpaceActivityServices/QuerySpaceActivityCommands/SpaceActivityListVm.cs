@@ -14,7 +14,8 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Query
         public int? TypeActivityId { get; set; }
         public long SpaceId { get; set; }
         public DateTimeOffset ActivityDate { get; set; }
-        public TimeSpan ActivityHour { get; set; }
+        public TimeSpan StartActivityHour { get; set; }
+        public TimeSpan EndActivityHour { get; set; }
         public ICollection<BookingDto> Bookings { get; set; }
 
     }
