@@ -29,7 +29,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
             var stories = await QueryNoTracking().Where(story=> story.IsActive)
                                                  .Include(story => story.Category).Include(story => story.Activity).Include(story => story.Pictures)
                                                  .OrderByDescending(story => story.PriorityRating)
-                                                 .OrderByDescending(story=> story.StoryPublishDate)
+                                                 .ThenByDescending(story=> story.StoryPublishDate)
                                                  .ToListAsync();
             return stories;
         }

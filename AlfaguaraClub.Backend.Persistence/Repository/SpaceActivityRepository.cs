@@ -16,19 +16,25 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
 
         public async Task<SpaceActivity> GetSingleSpaceActivity(long spaceActivityId)
         {
-            var spaceActivity = await QueryNoTracking().Where(sp=> sp.SpaceActivityId == spaceActivityId).Include(sp=> sp.Bookings).FirstOrDefaultAsync();
+            var spaceActivity = await QueryNoTracking().Where(sp=> sp.SpaceActivityId == spaceActivityId)                  
+                                                       .Include(sp=> sp.Bookings).FirstOrDefaultAsync();
             return spaceActivity;
         }
 
         public async Task<List<SpaceActivity>> GetSpaceActivitiesWithBooking()
         {
-            var activities = await QueryNoTracking().Where(ac=> ac.IsActive).Include(ac=> ac.Bookings).ToListAsync();
+            var activities = await QueryNoTracking().Where(ac=> ac.IsActive)
+                                                    .OrderByDescending(ac=> ac.SpaceActivityId)
+                                                    .Include(ac=> ac.Bookings).ToListAsync();
             return activities;
         }
 
         public async Task<List<SpaceActivity>> GetSpaceActivityBySpace(long spaceId)
         {
-            var spaceActivity = await QueryNoTracking().Where(sp=> sp.SpaceId == spaceId).Include(sp=> sp.Bookings).ToListAsync();
+            var spaceActivity = await QueryNoTracking().Where(sp=> sp.SpaceId == spaceId)
+                                                       .Include(sp=> sp.Bookings)
+                                                       .OrderByDescending(ac => ac.SpaceActivityId)
+                                                       .ToListAsync();
             return spaceActivity;
         }
     }

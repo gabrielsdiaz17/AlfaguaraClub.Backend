@@ -19,6 +19,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
             var users = await QueryNoTracking().Where(us=> us.IsActive)
                               .Include(us=>us.Membership)
                               .Include(us=>us.Role)
+                              .OrderByDescending(us=>us.UserId)
                               .ToListAsync();
             return users;
         }

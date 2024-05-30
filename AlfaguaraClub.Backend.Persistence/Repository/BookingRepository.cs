@@ -32,6 +32,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
                                  .Include(book => book.SpaceActivity)
                                  .Include(book => book.Membership)
                                  .Include(book => book.StatusBooking)
+                                 .OrderByDescending(book=>book.BookingId)
                                  .ToListAsync();
             return bookings;    
         }
@@ -43,6 +44,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
                                              .Include(book => book.SpaceActivity)
                                              .Include(book => book.Membership)
                                              .Include(book => book.StatusBooking)
+                                             .OrderByDescending(book => book.BookingId)
                                              .ToListAsync();
             return bookingsByMembership;
         }
@@ -54,6 +56,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
                                              .Include(book => book.SpaceActivity)
                                              .Include(book => book.Membership)
                                              .Include(book => book.StatusBooking)
+                                             .OrderByDescending(book => book.BookingId)
                                              .ToListAsync();
             return bookingsBySpaceActivity;
         }

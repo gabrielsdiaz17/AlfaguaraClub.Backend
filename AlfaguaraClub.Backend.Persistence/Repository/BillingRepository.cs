@@ -22,25 +22,29 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
 
         public async Task<List<Billing>> GetBillings()
         {
-            var billings = await QueryNoTracking().Where(bill=>bill.IsActive).ToListAsync();
+            var billings = await QueryNoTracking().Where(bill=>bill.IsActive)
+                                                  .OrderByDescending(bill=>bill.BillingId).ToListAsync();
             return billings;
         }
 
         public async Task<List<Billing>> GetBillingsByDate(DateTimeOffset date)
         {
-            var billingsByDate = await QueryNoTracking().Where(bill=> bill.BillingDate == date && bill.IsActive).ToListAsync();
+            var billingsByDate = await QueryNoTracking().Where(bill=> bill.BillingDate == date && bill.IsActive)
+                                                        .OrderByDescending(bill => bill.BillingId).ToListAsync();
             return billingsByDate;
         }
 
         public async Task<List<Billing>> GetBillingsByDateAndStatus(DateTimeOffset date, int billingStatus)
         {
-            var billings = await QueryNoTracking().Where(bill=> bill.BillingDate == date && bill.BillingStatusId == billingStatus).ToListAsync();
+            var billings = await QueryNoTracking().Where(bill=> bill.BillingDate == date && bill.BillingStatusId == billingStatus)
+                                                  .OrderByDescending(bill => bill.BillingId).ToListAsync();
             return billings;
         }
 
         public async Task<List<Billing>> GetBillingsByStatusBilling(int billingStatus)
         {
-            var billingByStatus = await QueryNoTracking().Where(bill=>bill.BillingStatusId == billingStatus).ToListAsync();
+            var billingByStatus = await QueryNoTracking().Where(bill=>bill.BillingStatusId == billingStatus)
+                                                         .OrderByDescending(bill => bill.BillingId).ToListAsync();
             return billingByStatus;
         }
     }

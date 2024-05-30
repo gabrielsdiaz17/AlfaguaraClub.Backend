@@ -9,5 +9,9 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface IPictureRepository: IRepository<Picture>
     {
+        Task<List<Picture>> GetActivePictures();
+        Task<Picture> GetPictureById(long pictureId);
+        Task<List<Picture>> GetPicturesByStory(long storyId);
+        Task<List<Picture>> GetPicturesBySpace(long spaceId);
     }
 }

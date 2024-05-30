@@ -19,6 +19,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
             var notification = await QueryNoTracking().Where(notification => notification.NotificationId == id)
                                                       .Include(notification=> notification.NotificationType)
                                                       .Include(notification=> notification.User)
+                                                      .OrderByDescending(notification=> notification.NotificationId)
                                                       .FirstOrDefaultAsync();
             return notification;
 
@@ -29,6 +30,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
             var notifications = await QueryNoTracking().Where(notification=> notification.IsActive)
                                                        .Include(notification=> notification.NotificationType)
                                                        .Include(notification=>notification.User)
+                                                       .OrderByDescending(notification => notification.NotificationId)
                                                        .ToListAsync();
             return notifications;
         }
@@ -38,13 +40,16 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
             var notificationByType = await QueryNoTracking().Where(notification => notification.IsActive && notification.NotificationTypeId == typeNotification)
                                                             .Include(notification => notification.NotificationType)
                                                             .Include(notification => notification.User)
+                                                            .OrderByDescending(notification => notification.NotificationId)
                                                             .ToListAsync();
             return notificationByType;
         }
 
         public async Task<List<Notification>> GetNotificatipnByState(bool sent, DateTimeOffset dateNotification)
         {
-            var notifications = await QueryNoTracking().Where(notification => notification.NotificationSent == sent && notification.NotificationDate == dateNotification).ToListAsync();
+            var notifications = await QueryNoTracking().Where(notification => notification.NotificationSent == sent && notification.NotificationDate == dateNotification)
+                                                       .OrderByDescending(notification => notification.NotificationId)
+                                                       .ToListAsync();
             return notifications;
         }
     }
