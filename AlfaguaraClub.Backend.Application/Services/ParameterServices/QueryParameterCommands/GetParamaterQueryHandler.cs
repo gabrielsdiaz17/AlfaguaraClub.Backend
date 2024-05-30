@@ -24,5 +24,5 @@ namespace AlfaguaraClub.Backend.Application.Services.ParameterServices.QueryPara
             return _mapper.Map<ParameterListVm>(parameter);
         }
     }
-}
+
 }

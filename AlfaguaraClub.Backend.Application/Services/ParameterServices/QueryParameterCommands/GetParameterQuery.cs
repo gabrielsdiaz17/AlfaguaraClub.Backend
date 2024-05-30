@@ -10,6 +10,6 @@ namespace AlfaguaraClub.Backend.Application.Services.ParameterServices.QueryPara
     public class GetParameterQuery: IRequest<ParameterListVm>
     {
         public long ParameterId { get; set; }
-    {
+    
     }
 }
