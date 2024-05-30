@@ -1,14 +1,12 @@
-﻿using AlfaguaraClub.Backend.Domain.Enums;
-using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlfaguaraClub.Backend.Application.Services.BillingServices.UpdateBillingCommands
+namespace AlfaguaraClub.Backend.Application.Services.BookingServices.QueryBookingCommands
 {
-    public class UpdateBillingCommand: IRequest
+    public class BillingDto
     {
         public long BillingId { get; set; }
         public DateTimeOffset BillingDate { get; set; }
@@ -20,6 +18,5 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingServices.UpdateBilli
         public decimal? TaxesValue { get; set; }
         public decimal TotalPayment { get; set; }
         public int BillingStatusId { get; set; }
-
     }
 }

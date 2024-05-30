@@ -13,7 +13,7 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingServices.CreateBilli
         public DateTimeOffset BillingDate { get; set; }
         public long UserId { get; set; }
         public long? BookingId { get; set; }
-        public string Concept { get; set; }
+        public string BillingConsecutive { get; set; }
         public decimal Subtotal { get; set; }
         public double? PercentageTaxes { get; set; }
         public decimal? TaxesValue { get; set; }

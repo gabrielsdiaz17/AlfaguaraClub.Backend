@@ -12,10 +12,11 @@ namespace AlfaguaraClub.Backend.Application.Services.BookingServices.QueryBookin
         public long BookingId { get; set; }
         public long UserId { get; set; }
         public long SpaceActivityId { get; set; }
-        public SpaceActivityDto MyProperty { get; set; }
+        public SpaceActivityDto SpaceActivity { get; set; }
         public long? MembershipId { get; set; }
         public MembershipDto Membership { get; set; }
         public int StatusBookingId { get; set; }
         public StatusBookingDto StatusBooking { get; set; }
+        public BillingDto Billing { get; set; }
     }
 }

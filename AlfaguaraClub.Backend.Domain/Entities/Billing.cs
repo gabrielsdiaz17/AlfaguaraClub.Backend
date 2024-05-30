@@ -23,7 +23,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("Booking")]
         public long? BookingId { get; set; }
         public Booking Booking { get; set; }
-        public string Concept { get; set; }
+        public string BillingConsecutive { get; set; }
         public decimal Subtotal { get; set; }
         public double? PercentageTaxes { get; set; }
         public decimal? TaxesValue { get; set; }
