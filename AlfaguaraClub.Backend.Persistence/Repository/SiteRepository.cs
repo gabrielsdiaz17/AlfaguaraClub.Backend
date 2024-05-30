@@ -16,7 +16,9 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
 
         public async Task<List<Site>> GetSiteWithCostCenter()
         {
-            var listSites = await QueryNoTracking().Where(site=> site.IsActive).Include(site=>site.CostCenters).ToListAsync();
+            var listSites = await QueryNoTracking().Where(site=> site.IsActive)
+                                                   .OrderByDescending(site=>site.SiteId)
+                                                   .Include(site=>site.CostCenters).ToListAsync();
             return listSites;
         }
     }

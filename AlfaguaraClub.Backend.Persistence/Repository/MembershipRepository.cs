@@ -18,6 +18,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
             var memberships = await QueryNoTracking().Where(member=> member.IsActive)
                                     .Include(member=> member.Users)
+                                    .OrderByDescending(member=>member.MembershipId)
                                     .ToListAsync();
             return memberships;
         }       
@@ -33,6 +34,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
             var membership = await QueryNoTracking().Where(membership=> membership.UniqueIdentifier == uniqueIdentifier)
                                                     .Include(member=> member.Users)
+                                                    .OrderByDescending(member => member.MembershipId)
                                                     .FirstOrDefaultAsync();
             return membership;
         }
