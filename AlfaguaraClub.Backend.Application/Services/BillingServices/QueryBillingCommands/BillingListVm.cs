@@ -13,17 +13,17 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingServices.QueryBillin
     {
         public long BillingId { get; set; }
         public DateTimeOffset BillingDate { get; set; }
+        public string BillingConsecutive { get; set; }
         public long UserId { get; set; }
         public UserDto User { get; set; }
-        public long? BookingId { get; set; }
-        public BookingDto? Booking { get; set; }
-        public string BillingConsecutive { get; set; }
-        public decimal Subtotal { get; set; }
-        public double? PercentageTaxes { get; set; }
-        public decimal? TaxesValue { get; set; }
-        public decimal TotalPayment { get; set; }
         public int BillingStatusId { get; set; }
-        public BillingStatusDto BillingStatus { get; set; }
+        public BillingStatusDto Status { get; set; }
+        public long? BookingId { get; set; }
+        public BookingDto Booking { get; set; }
+        public int PaymentMethodId { get; set; }
+        public PaymentMethodDto PaymentMethod { get; set; }
+        public string Observations { get; set; }
+        public List<BillingDetailDto> BillingDetail { get; set; }
 
     }
 }
