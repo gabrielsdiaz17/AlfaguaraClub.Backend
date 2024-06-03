@@ -15,20 +15,23 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [Key]
         public long BillingId { get; set; }
         public DateTimeOffset BillingDate { get; set; }
+        [MaxLength(50)]
+        public string BillingConsecutive { get; set; }
 
         [ForeignKey("User")]
         public long UserId { get; set; }
         public User User { get; set; }
+        public int BillingStatusId { get; set; }
+        public BillingStatus Status { get; set; }
 
         [ForeignKey("Booking")]
         public long? BookingId { get; set; }
         public Booking Booking { get; set; }
-        public string BillingConsecutive { get; set; }
-        public decimal Subtotal { get; set; }
-        public double? PercentageTaxes { get; set; }
-        public decimal? TaxesValue { get; set; }
-        public decimal TotalPayment { get; set; }
-        public int BillingStatusId { get; set; }
-        public BillingStatus Status { get; set; }
+        [ForeignKey("PaymentMethod")]
+        public int PaymentMethodId { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        [MaxLength(500)]
+        public string Observations { get; set; }
+        public List<BillingDetail> BillingDetail { get; set; }
     }
 }
