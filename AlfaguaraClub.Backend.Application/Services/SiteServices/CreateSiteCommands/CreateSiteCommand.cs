@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.SiteServices.CreateSiteCommands
 {
-    public class CreateSiteCommand: IRequest<long>
+    public class CreateSiteCommand: IRequest<CreateSiteCommandResponse>
     {
         public string SiteName { get; set; }
         public string SiteAddress { get; set; }

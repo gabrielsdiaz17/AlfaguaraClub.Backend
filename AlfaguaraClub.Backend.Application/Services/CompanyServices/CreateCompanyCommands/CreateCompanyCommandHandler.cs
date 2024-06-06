@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.CompanyServices.CreateCompanyCommands
 {
-    public class CreateCompanyCommandHandler: IRequestHandler<CreateCompany,long>
+    public class CreateCompanyCommandHandler: IRequestHandler<CreateCompanyCommand, CreateCompanyCommandResponse>
     {
         private readonly ICompanyRepository _companyRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,27 @@ namespace AlfaguaraClub.Backend.Application.Services.CompanyServices.CreateCompa
             _mapper = mapper;
         }
 
-        public async Task<long> Handle(CreateCompany request, CancellationToken cancellationToken)
+        public async Task<CreateCompanyCommandResponse> Handle(CreateCompanyCommand request, CancellationToken cancellationToken)
         {
+            var createCompanyCommandResponse = new CreateCompanyCommandResponse();
             var company = _mapper.Map<Company>(request);
-            company = await _companyRepository.AddAsync(company);
-            return company.CompanyId;
+            var validator = new CreateCompanyCommandValidator(_companyRepository);
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+            {
+                createCompanyCommandResponse.Success = false;
+                createCompanyCommandResponse.ValidationErrors = new List<string>();
+                foreach (var error in validationResult.Errors)
+                {
+                    createCompanyCommandResponse.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if (createCompanyCommandResponse.Success)
+            {
+                company = await _companyRepository.AddAsync(company);
+                createCompanyCommandResponse.CompanyId = company.CompanyId;
+            }
+            return createCompanyCommandResponse;
         }
     }
 }
