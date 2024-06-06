@@ -13,5 +13,11 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         public CompanyRepository(IRepository<Company> repository) : base(repository)
         {
         }
+
+        public async Task<bool> IsCompanyNameAndIdentifierUnique(string companyName, string companyIdentifier)
+        {
+            var matches = await QueryNoTracking().Where(c=>c.CompanyName == companyName && c.CompanyIdentifier == companyIdentifier).AnyAsync();
+            return await Task.FromResult(matches);
+        }
     }
 }

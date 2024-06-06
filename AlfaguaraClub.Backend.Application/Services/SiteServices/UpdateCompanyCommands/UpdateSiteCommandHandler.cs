@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -23,7 +24,13 @@ namespace AlfaguaraClub.Backend.Application.Services.SiteServices.UpdateCompanyC
         public async Task Handle(UpdateSiteCommand request, CancellationToken cancellationToken)
         {
             var siteToUpdate = await _siteRepository.GetByIdAsync(request.SiteId);
-            if (siteToUpdate == null) { }
+            if (siteToUpdate == null)
+                throw new NotFoundException(nameof(Site), request.SiteId);
+            var validator = new UpdateSiteCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
+
             _mapper.Map(request,siteToUpdate,typeof(UpdateSiteCommand),typeof(Site));
             await _siteRepository.UpdateAsync(siteToUpdate);
         }

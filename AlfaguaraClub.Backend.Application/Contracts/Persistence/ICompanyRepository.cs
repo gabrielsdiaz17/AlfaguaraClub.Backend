@@ -9,5 +9,6 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface ICompanyRepository: IRepository<Company>
     {
+        Task<bool> IsCompanyNameAndIdentifierUnique(string companyName, string companyIdentifier);
     }
 }

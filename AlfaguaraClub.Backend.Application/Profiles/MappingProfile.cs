@@ -109,7 +109,7 @@ namespace AlfaguaraClub.Backend.Application.Profiles
             CreateMap<Category, UpdateCategoryCommand>().ReverseMap();
 
             CreateMap<Company,CompanyListVm>().ReverseMap();
-            CreateMap<Company,CreateCompany>().ReverseMap();
+            CreateMap<Company,CreateCompanyCommand>().ReverseMap();
             CreateMap<Company,UpdateCompanyCommand>().ReverseMap();
 
             CreateMap<CostCenter, CreateCostCenterCommand>().ReverseMap();
