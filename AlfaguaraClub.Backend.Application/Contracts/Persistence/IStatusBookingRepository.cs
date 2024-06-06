@@ -9,5 +9,6 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface IStatusBookingRepository: IRepository<StatusBooking>
     {
+        Task<List<StatusBooking>> GetStatusBooking();
     }
 }

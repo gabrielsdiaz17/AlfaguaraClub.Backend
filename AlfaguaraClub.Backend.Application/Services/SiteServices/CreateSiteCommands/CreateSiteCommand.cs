@@ -13,6 +13,10 @@ namespace AlfaguaraClub.Backend.Application.Services.SiteServices.CreateSiteComm
         public string SiteAddress { get; set; }
         public string? SiteLocationMap { get; set; }
         public long CompanyId { get; set; }
+        public override string ToString()
+        {
+            return $"Site Name: {SiteName}; Address: {SiteAddress}; ";
+        }
 
     }
 }

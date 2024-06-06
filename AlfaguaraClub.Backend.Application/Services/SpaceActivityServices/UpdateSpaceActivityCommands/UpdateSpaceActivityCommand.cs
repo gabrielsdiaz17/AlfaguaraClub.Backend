@@ -16,6 +16,5 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Updat
         public long SpaceId { get; set; }
         public TimeSpan StartActivityHour { get; set; }
         public TimeSpan EndActivityHour { get; set; }
-        public TimeSpan ActivityHour { get; set; }
     }
 }

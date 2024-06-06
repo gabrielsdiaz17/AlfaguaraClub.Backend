@@ -16,6 +16,9 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Creat
         public long SpaceId { get; set; }
         public TimeSpan StartActivityHour { get; set; }
         public TimeSpan EndActivityHour { get; set; }
-        public TimeSpan ActivityHour { get; set; }
+        public override string ToString()
+        {
+            return $"Space Activity: {ActivityName}; Description: {ActivityDescription}; Quorum: {AvailableQuorum}; Space:{SpaceId}";
+        }
     }
 }

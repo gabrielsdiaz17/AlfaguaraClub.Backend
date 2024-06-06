@@ -10,5 +10,9 @@ namespace AlfaguaraClub.Backend.Application.Services.TypeActivityServices.Create
     public class CreateTypeActivityCommand:IRequest<int>
     {
         public string TypeActivityName { get; set; }
+        public override string ToString()
+        {
+            return $"Type Activity {TypeActivityName}";
+        }
     }
 }
