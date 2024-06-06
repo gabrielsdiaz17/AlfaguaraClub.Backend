@@ -11,6 +11,9 @@ namespace AlfaguaraClub.Backend.Application.Services.ParameterServices.CreatePar
     {
         public string ParameterName { get; set; }
         public string ParameterValue { get; set; }
-
+        public override string ToString()
+        {
+            return $"Parameter Name: {ParameterName}; Value: {ParameterValue}";
+        }
     }
 }

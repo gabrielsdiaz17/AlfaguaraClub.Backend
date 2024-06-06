@@ -13,6 +13,9 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceServices.CreateSpaceCo
         public string SpaceDescription { get; set; }
         public long CostCenterId { get; set; }
         public string? VideoLink { get; set; }
-
+        public override string ToString()
+        {
+            return $"Space Name {SpaceName}; Description: {SpaceDescription}; Cost Center: {CostCenterId}";
+        }
     }
 }

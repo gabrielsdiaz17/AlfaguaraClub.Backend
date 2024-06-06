@@ -13,5 +13,9 @@ namespace AlfaguaraClub.Backend.Application.Services.CompanyServices.CreateCompa
         public string CompanyIdentifier { get; set; }
         public int IdentificationTypeId { get; set; }
         public string CompanyLogo { get; set; }
+        public override string ToString()
+        {
+            return $"Company {CompanyName}; Identifier{CompanyIdentifier}; Identification Type{IdentificationTypeId}";
+        }
     }
 }

@@ -10,5 +10,9 @@ namespace AlfaguaraClub.Backend.Application.Services.MembershipServices.CreateMe
     public class CreateMembershipCommand: IRequest<long>
     {
         public string UniqueIdentifier { get; set; }
+        public override string ToString()
+        {
+            return $"Membership Unique Identifier: {UniqueIdentifier}";
+        }
     }
 }
