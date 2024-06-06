@@ -33,7 +33,7 @@ namespace AlfaguaraClub.Backend.Api
             services.AddTransient<ICostCenterRepository, CostCenterRepository>();
             services.AddTransient<IIdentificationTypeRepository, IdentificationTypeRepository>();
             services.AddTransient<IMembershipRepository, MembershipRepository>();
-            services.AddTransient<INotificationRepository, INotificationRepository>();
+            services.AddTransient<INotificationRepository, NotificationRepository>();
             services.AddTransient<INotificationTypeRepository, NotificationTypeRepository>();
             services.AddTransient<IParameterRepository, ParameterRepository>();
             services.AddTransient<IPaymentMethodRepository, PaymentMethodRepository>();
