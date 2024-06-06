@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -23,7 +24,12 @@ namespace AlfaguaraClub.Backend.Application.Services.UserServices.UpdateUserComm
         public async Task Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var userToUpdate = await _userRepository.GetByIdAsync(request.UserId);
-            if (userToUpdate == null) { }
+            if (userToUpdate == null) 
+                throw new NotFoundException(nameof(User),request.UserId);
+            var validator = new UpdateUserCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count() > 0)
+                throw new ValidationException(validationResult);
             _mapper.Map(request, userToUpdate, typeof(UpdateUserCommand), typeof(User));
             await _userRepository.UpdateAsync(userToUpdate);
         }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.StoryServices.CreateStoryCommands
 {
-    public class CreateStoryCommandHandler : IRequestHandler<CreateStoryCommand, long>
+    public class CreateStoryCommandHandler : IRequestHandler<CreateStoryCommand, CreateStoryCommandResponse>
     {
         private readonly IStoryRepository _storyRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,28 @@ namespace AlfaguaraClub.Backend.Application.Services.StoryServices.CreateStoryCo
             _mapper = mapper;
         }
 
-        public async Task<long> Handle(CreateStoryCommand request, CancellationToken cancellationToken)
+        public async Task<CreateStoryCommandResponse> Handle(CreateStoryCommand request, CancellationToken cancellationToken)
         {
+            var createStoryCommandResponse = new CreateStoryCommandResponse();
             var newStory = _mapper.Map<Story>(request);
-            newStory = await _storyRepository.AddAsync(newStory);
-            return newStory.StoryId;
+            var validator = new CreateStoryCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count() >0)
+            {
+                createStoryCommandResponse.Success = false;
+                createStoryCommandResponse.ValidationErrors = new List<string>();
+                foreach (var error in validationResult.Errors)
+                {
+                    createStoryCommandResponse.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if (createStoryCommandResponse.Success)
+            {
+                newStory = await _storyRepository.AddAsync(newStory);
+                createStoryCommandResponse.StoryId = newStory.StoryId;
+            }
+            
+            return createStoryCommandResponse;
         }
     }
 }

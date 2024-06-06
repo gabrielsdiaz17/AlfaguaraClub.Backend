@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.CreateSpaceActivityCommands
 {
-    public class CreateSpaceActivityCommandHandler : IRequestHandler<CreateSpaceActivityCommand, long>
+    public class CreateSpaceActivityCommandHandler : IRequestHandler<CreateSpaceActivityCommand, CreateSpaceActivityCommandResponse>
     {
         private readonly ISpaceActivityRepository _spaceActivityRepository;
         private readonly IMapper _mapper;
@@ -19,11 +19,27 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Creat
             _spaceActivityRepository = spaceActivityRepository;
             _mapper = mapper;
         }
-        public async Task<long> Handle(CreateSpaceActivityCommand request, CancellationToken cancellationToken)
+        public async Task<CreateSpaceActivityCommandResponse> Handle(CreateSpaceActivityCommand request, CancellationToken cancellationToken)
         {
+            var createSpaceActivityResponse = new CreateSpaceActivityCommandResponse();
             var spaceActivity = _mapper.Map<SpaceActivity>(request);
-            spaceActivity = await _spaceActivityRepository.AddAsync(spaceActivity);
-            return spaceActivity.SpaceActivityId;
+            var validator = new CreateSpaceActivityCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count >0)
+            {
+                createSpaceActivityResponse.Success = false;
+                createSpaceActivityResponse.ValidationErrors = new List<string>();
+                foreach (var error in validationResult.Errors)
+                {
+                    createSpaceActivityResponse.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if (createSpaceActivityResponse.Success)
+            {
+                spaceActivity = await _spaceActivityRepository.AddAsync(spaceActivity);
+                createSpaceActivityResponse.SpaceActivityId = spaceActivity.SpaceActivityId;
+            }            
+            return createSpaceActivityResponse;
         }
     }
 }

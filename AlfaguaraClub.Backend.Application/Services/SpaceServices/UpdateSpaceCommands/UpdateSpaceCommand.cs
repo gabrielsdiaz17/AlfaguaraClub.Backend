@@ -10,9 +10,9 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceServices.UpdateSpaceCo
     public class UpdateSpaceCommand:IRequest
     {
         public long SpaceId { get; set; }
-        public string SiteName { get; set; }
-        public string SiteAddress { get; set; }
-        public string? SiteLocationMap { get; set; }
-        public long CompanyId { get; set; }
+        public string SpaceName { get; set; }
+        public string SpaceDescription { get; set; }
+        public long CostCenterId { get; set; }
+        public string? VideoLink { get; set; }
     }
 }

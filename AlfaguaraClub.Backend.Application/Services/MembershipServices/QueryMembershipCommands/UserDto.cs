@@ -11,6 +11,7 @@ namespace AlfaguaraClub.Backend.Application.Services.MembershipServices.QueryMem
     {
         public long UserId { get; set; }
         public int IdentificationTypeId { get; set; }
+        public string IdentificationNumber { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
