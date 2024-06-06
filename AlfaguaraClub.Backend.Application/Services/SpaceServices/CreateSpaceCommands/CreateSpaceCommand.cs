@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.SpaceServices.CreateSpaceCommands
 {
-    public class CreateSpaceCommand:IRequest<long>
+    public class CreateSpaceCommand:IRequest<CreateSpaceCommandResponse>
     {
         public string SpaceName { get; set; }
         public string SpaceDescription { get; set; }

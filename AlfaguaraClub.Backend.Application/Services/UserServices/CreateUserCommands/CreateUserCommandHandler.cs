@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.UserServices.CreateUserCommands
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, long>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, CreateUserCommandResponse>
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,28 @@ namespace AlfaguaraClub.Backend.Application.Services.UserServices.CreateUserComm
             _mapper = mapper;
         }
 
-        public async Task<long> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<CreateUserCommandResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
+            var createUserCommandResponse = new CreateUserCommandResponse();
             var user= _mapper.Map<User>(request);
-            user = await _userRepository.AddAsync(user);
-            return user.UserId;
+            var validator = new CreateUserCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count()>0)
+            {
+                createUserCommandResponse.Success = false;
+                createUserCommandResponse.ValidationErrors = new List<string>();
+                foreach(var error in validationResult.Errors)
+                {
+                    createUserCommandResponse.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if (createUserCommandResponse.Success)
+            {
+                user = await _userRepository.AddAsync(user);
+                createUserCommandResponse.UserId = user.UserId;
+            }
+            
+            return createUserCommandResponse;
         }
     }
 }

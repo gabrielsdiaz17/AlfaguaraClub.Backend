@@ -13,6 +13,7 @@ namespace AlfaguaraClub.Backend.Application.Services.UserServices.QueryUserComma
         public long UserId { get; set; }
         public int IdentificationTypeId { get; set; }
         public IdentificationTypeDto IdentificationType { get; set; }
+        public string IdentificationNumber { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

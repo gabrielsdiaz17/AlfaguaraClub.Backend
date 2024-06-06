@@ -15,6 +15,7 @@ namespace AlfaguaraClub.Backend.Application.Services.StoryServices.UpdateStoryCo
         public string Summary { get; set; }
         public string Description { get; set; }
         public int? CategoryId { get; set; }
+        public DateTimeOffset StoryPublishDate { get; set; }
         public long? SpaceActivityId { get; set; }
     }
 }

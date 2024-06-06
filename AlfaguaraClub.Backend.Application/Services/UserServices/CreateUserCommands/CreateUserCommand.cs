@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.UserServices.CreateUserCommands
 {
-    public class CreateUserCommand: IRequest<long>
+    public class CreateUserCommand: IRequest<CreateUserCommandResponse>
     {
         public int IdentificationTypeId { get; set; }
+        public string IdentificationNumber { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
         public string Address { get; set; }
         public string CityAddress { get; set; }
         public string PhoneNumber { get; set; }
