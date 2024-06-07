@@ -1,3 +1,4 @@
+using AlfaguaraClub.Backend.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCustomaizedDataStore(builder.Configuration);
 builder.Services.AddCustomizedRepository();
+builder.Services.AddApplicationServices();
+
 
 var app = builder.Build();
 

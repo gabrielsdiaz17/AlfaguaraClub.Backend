@@ -14,16 +14,26 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
         }
 
+        public async Task<Space> GetSpace(long spaceId)
+        {
+            var space = await QueryNoTracking().Where(space => space.SpaceId == spaceId)
+                                                .Include(space => space.Pictures)
+                                                .Include(space => space.SpaceActivities)
+                                                .FirstOrDefaultAsync();
+            return space;
+        }
+
         public async Task<List<Space>> GetSpacesWithImagesIncludeActivities(int? quantityRecords)
         {
             var allSpaces = await QueryNoTracking().Where(space => space.IsActive)
                                                    .Include(space=>space.Pictures)
                                                    .Include(space=> space.SpaceActivities)
-                                                   .Take(quantityRecords ?? 11)
+                                                   .Take(quantityRecords ?? 10)
                                                    .OrderByDescending(space => space.SpaceId)
                                                    .ToListAsync();
                                                    
             return allSpaces;
         }
+        
     }
 }

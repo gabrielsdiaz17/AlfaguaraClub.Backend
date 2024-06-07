@@ -10,5 +10,6 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
     public interface ISpaceRepository: IRepository<Space>
     {
         Task<List<Space>> GetSpacesWithImagesIncludeActivities(int? quantityRecords);
+        Task<Space> GetSpace(long spaceId);
     }
 }
