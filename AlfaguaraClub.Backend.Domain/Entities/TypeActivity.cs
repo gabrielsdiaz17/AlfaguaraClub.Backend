@@ -12,5 +12,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public int TypeActivityId { get; set; }
         [MaxLength(100)]
         public string TypeActivityName { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

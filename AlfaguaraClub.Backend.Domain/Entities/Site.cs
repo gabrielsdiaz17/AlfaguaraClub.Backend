@@ -22,6 +22,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("Company")]
         public long CompanyId { get; set; }
         public Company Company { get; set; }
+        public bool IsActive { get; set; }
         public ICollection<CostCenter> CostCenters { get; set; }
     }
 }

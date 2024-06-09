@@ -19,6 +19,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("Site")]
         public long SiteId { get; set; }
         public Site Site { get; set; }
+        public bool IsActive { get; set; }
         public ICollection<Space> Spaces { get; set; }
     }
 }

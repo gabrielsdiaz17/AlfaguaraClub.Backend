@@ -14,5 +14,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public string PaymentMethodCode { get; set; }
         [MaxLength(200)]
         public string Description { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

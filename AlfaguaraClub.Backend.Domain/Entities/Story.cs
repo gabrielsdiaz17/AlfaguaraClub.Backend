@@ -29,6 +29,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("SpaceActivity")]
         public long? SpaceActivityId { get; set; }
         public SpaceActivity Activity { get; set; }
+        public bool IsActive { get; set; }
         public ICollection<Picture> Pictures { get; set; }
 
     }

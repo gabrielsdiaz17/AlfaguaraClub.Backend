@@ -14,6 +14,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public int RoleId { get; set; }
         [MaxLength(200)]
         public string RoleName { get; set; }
+        public bool IsActive { get; set; }
         public ICollection<User> Users { get; set; }
     }
 }

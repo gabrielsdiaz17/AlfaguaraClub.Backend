@@ -20,5 +20,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public Story Story { get; set; }
         public long? SpaceId { get; set; }
         public Space Space { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

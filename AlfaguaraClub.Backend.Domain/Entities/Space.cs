@@ -23,6 +23,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public CostCenter CostCenter { get; set; }
         [Column(TypeName = "text")]
         public string? VideoLink { get; set; }
+        public bool IsActive { get; set; }
         public ICollection<Picture> Pictures { get; set; }
         public ICollection<SpaceActivity> SpaceActivities { get; set; }
     }
