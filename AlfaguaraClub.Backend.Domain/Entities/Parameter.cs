@@ -15,5 +15,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public string ParameterName { get; set; }
         [Column(TypeName = "text")]
         public string ParameterValue { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

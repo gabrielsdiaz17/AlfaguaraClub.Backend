@@ -12,5 +12,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public int StatusBookingId { get; set; }
         [MaxLength(50)]
         public string Status { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

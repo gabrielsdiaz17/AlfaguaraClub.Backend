@@ -12,5 +12,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public int NotificationTypeId { get; set; }
         [MaxLength(500)]
         public string NotificationTypeDescription { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

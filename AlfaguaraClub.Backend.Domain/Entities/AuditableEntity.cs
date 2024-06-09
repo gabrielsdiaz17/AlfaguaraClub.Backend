@@ -12,6 +12,5 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public long CreatedById { get; set; }
         public DateTimeOffset UpdatedDate { get; set; }
         public long UpdatedById { get; set; }
-        public bool IsActive { get; set; }
     }
 }

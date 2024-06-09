@@ -22,6 +22,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public IdentificationType IdentificationType { get; set; }
         [Column(TypeName = "text")]
         public string CompanyLogo { get; set; }
+        public bool IsActive { get; set; }
         public ICollection<Site> Sites { get; set; }
     }
 }

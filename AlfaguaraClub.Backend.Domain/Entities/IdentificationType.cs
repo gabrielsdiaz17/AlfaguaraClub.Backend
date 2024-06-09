@@ -17,6 +17,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public string  Nomenclature { get; set; }
         [MaxLength(500)]
         public string Description { get; set; }
+        public bool IsActive { get; set; }
 
         private ICollection<User> Users;
     }

@@ -14,6 +14,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public long MembershipId { get; set; }
         [MaxLength(50)]
         public string UniqueIdentifier { get; set; }
+        public bool IsActive { get; set; }
         public ICollection<User> Users { get; set; }
     }
 }

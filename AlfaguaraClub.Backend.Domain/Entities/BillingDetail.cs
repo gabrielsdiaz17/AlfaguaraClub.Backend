@@ -21,5 +21,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [MaxLength(500)]
         public decimal SubtotalPrice { get; set; }
         public decimal TotalPrice { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

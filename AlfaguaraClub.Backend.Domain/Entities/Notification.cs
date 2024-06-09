@@ -23,5 +23,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [Column(TypeName = "text")]
         public string Message { get; set; }
         public bool NotificationSent { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

@@ -14,5 +14,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public string Status { get; set; }
         [MaxLength(20)]
         public string? Nomenclature { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }
