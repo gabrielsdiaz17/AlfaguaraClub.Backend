@@ -44,7 +44,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public TypeUser? TypeUser { get; set; }
         public bool AcceptProtectionData { get; set; }
         [Column(TypeName = "text")]
-        public string Photograph { get; set; }
+        public string? Photograph { get; set; }
         public bool IsActive { get; set; }
         public ICollection<Booking> Bookings { get; set; }
         public ICollection<Billing> Billings { get; set; }
