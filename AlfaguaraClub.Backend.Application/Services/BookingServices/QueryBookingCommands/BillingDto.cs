@@ -18,5 +18,7 @@ namespace AlfaguaraClub.Backend.Application.Services.BookingServices.QueryBookin
         public decimal? TaxesValue { get; set; }
         public decimal TotalPayment { get; set; }
         public int BillingStatusId { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

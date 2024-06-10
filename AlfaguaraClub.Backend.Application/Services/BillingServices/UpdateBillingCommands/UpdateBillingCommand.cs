@@ -19,6 +19,7 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingServices.UpdateBilli
         public long? BookingId { get; set; }
         public int PaymentMethodId { get; set; }
         public string Observations { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }

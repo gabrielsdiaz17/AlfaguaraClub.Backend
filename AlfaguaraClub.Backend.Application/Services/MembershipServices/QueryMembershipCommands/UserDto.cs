@@ -23,7 +23,9 @@ namespace AlfaguaraClub.Backend.Application.Services.MembershipServices.QueryMem
         public long? MembershipId { get; set; }
         public TypeUser? TypeUser { get; set; }
         public bool AcceptProtectionData { get; set; }
-        public string Photograph { get; set; }
+        public string? Photograph { get; set; }
+        public bool IsActive { get; set; }
+
 
     }
 }

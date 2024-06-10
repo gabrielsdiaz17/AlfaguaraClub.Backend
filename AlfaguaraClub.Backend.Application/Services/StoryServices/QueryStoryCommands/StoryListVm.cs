@@ -19,6 +19,8 @@ namespace AlfaguaraClub.Backend.Application.Services.StoryServices.QueryStoryCom
         public DateTimeOffset StoryPublishDate { get; set; }
         public long? SpaceActivityId { get; set; }
         public SpaceActivityDto Activity { get; set; }
+        public bool IsActive { get; set; }
+
         public ICollection<PictureDto> Pictures { get; set; }
 
 

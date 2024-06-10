@@ -15,5 +15,7 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingDetailServices.Query
         public int Quantity { get; set; }
         public decimal SubtotalPrice { get; set; }
         public decimal TotalPrice { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

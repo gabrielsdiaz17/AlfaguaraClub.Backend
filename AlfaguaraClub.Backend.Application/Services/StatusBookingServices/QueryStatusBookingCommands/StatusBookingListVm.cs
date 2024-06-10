@@ -10,5 +10,7 @@ namespace AlfaguaraClub.Backend.Application.Services.StatusBookingServices.Query
     {
         public int StatusBookingId { get; set; }
         public string Status { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

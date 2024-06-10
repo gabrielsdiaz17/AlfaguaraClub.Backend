@@ -11,6 +11,8 @@ namespace AlfaguaraClub.Backend.Application.Services.CategoryServices.UpdateCate
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
+        public bool IsActive { get; set; }
+
 
     }
 }

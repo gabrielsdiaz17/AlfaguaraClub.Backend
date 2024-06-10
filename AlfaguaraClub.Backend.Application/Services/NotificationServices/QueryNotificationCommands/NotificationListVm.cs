@@ -19,5 +19,7 @@ namespace AlfaguaraClub.Backend.Application.Services.NotificationServices.QueryN
         public string Subject { get; set; }
         public string Message { get; set; }
         public bool NotificationSent { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

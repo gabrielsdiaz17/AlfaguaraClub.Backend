@@ -10,6 +10,8 @@ namespace AlfaguaraClub.Backend.Application.Services.NotificationTypeServices.Cr
     public class CreateNotificationTypeCommand:IRequest<int>
     {
         public string NotificationTypeDescription { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Notification Type{NotificationTypeDescription}";

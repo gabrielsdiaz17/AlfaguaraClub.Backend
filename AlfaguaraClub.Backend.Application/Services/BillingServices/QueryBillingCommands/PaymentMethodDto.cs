@@ -11,6 +11,7 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingServices.QueryBillin
         public int PaymentMethodId { get; set; }
         public string PaymentMethodCode { get; set; }
         public string Description { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }

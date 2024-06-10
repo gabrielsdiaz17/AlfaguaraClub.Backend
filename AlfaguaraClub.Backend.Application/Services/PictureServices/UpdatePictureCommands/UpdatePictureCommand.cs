@@ -14,5 +14,7 @@ namespace AlfaguaraClub.Backend.Application.Services.PictureServices.UpdatePictu
         public PictureType PictureType { get; set; }
         public long? StoryId { get; set; }
         public long? SpaceId { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

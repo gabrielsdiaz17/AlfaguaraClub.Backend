@@ -15,5 +15,7 @@ namespace AlfaguaraClub.Backend.Application.Services.CostcenterServices.QueryCos
         public string SpaceName { get; set; }
         public string SpaceDescription { get; set; }
         public string? VideoLink { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

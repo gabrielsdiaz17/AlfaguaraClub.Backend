@@ -10,6 +10,8 @@ namespace AlfaguaraClub.Backend.Application.Services.CategoryServices.CreateCate
     public class CreateCategoryCommand:IRequest<int>
     {
         public string CategoryName { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Category Name {CategoryName}";

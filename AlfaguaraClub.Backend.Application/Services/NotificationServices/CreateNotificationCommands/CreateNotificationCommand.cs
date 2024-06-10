@@ -15,6 +15,8 @@ namespace AlfaguaraClub.Backend.Application.Services.NotificationServices.Create
         public string Subject { get; set; }
         public string Message { get; set; }
         public bool NotificationSent { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Notification User: {UserId}; Date: {NotificationDate}; Subject:{Subject}; Sent:{NotificationSent}";

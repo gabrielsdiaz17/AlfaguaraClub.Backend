@@ -14,5 +14,7 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.UpdateProdu
         public string ProductDescription { get; set; }
         public decimal UnitPrice { get; set; }
         public int TaxId { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

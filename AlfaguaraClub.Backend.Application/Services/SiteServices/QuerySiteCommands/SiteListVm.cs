@@ -16,6 +16,8 @@ namespace AlfaguaraClub.Backend.Application.Services.SiteServices.QuerySiteComma
         public string SiteAddress { get; set; }
         public string? SiteLocationMap { get; set; }
         public long CompanyId { get; set; }
+        public bool IsActive { get; set; }
+
         public ICollection<CostCenterDto>? CostCenters { get; set; }
     }
 }

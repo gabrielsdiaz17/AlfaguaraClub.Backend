@@ -10,6 +10,7 @@ namespace AlfaguaraClub.Backend.Application.Services.BookingServices.QueryBookin
     {
         public long MembershipId { get; set; }
         public string UniqueIdentifier { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }

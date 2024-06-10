@@ -10,5 +10,7 @@ namespace AlfaguaraClub.Backend.Application.Services.TypeActivityServices.QueryT
     {
         public int TypeActivityId { get; set; }
         public string TypeActivityName { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

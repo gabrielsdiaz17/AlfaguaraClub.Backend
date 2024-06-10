@@ -16,6 +16,8 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCom
         public TimeSpan StartActivityHour { get; set; }
         public TimeSpan EndActivityHour { get; set; }
         public TimeSpan ActivityHour { get; set; }
+        public bool IsActive { get; set; }
+
 
     }
 }

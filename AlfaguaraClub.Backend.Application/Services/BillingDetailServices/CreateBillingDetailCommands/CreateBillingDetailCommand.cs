@@ -14,6 +14,8 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingDetailServices.Creat
         public int Quantity { get; set; }
         public decimal SubtotalPrice { get; set; }
         public decimal TotalPrice { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Billing Detail Billing: {BillingId}; Product:{ProductId}; Quantity: {Quantity}; TotalPrice: {TotalPrice}" ;

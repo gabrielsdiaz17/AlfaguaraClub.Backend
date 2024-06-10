@@ -12,5 +12,7 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.QueryProduc
         public string TaxName { get; set; }
         public int TaxValue { get; set; }
         public double TaxPercentage { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }
