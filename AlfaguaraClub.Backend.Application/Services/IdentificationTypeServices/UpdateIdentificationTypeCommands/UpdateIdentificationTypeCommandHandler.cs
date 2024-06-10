@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -23,7 +24,12 @@ namespace AlfaguaraClub.Backend.Application.Services.IdentificationTypeServices.
         public async Task Handle(UpdateIdentificationTypeCommand request, CancellationToken cancellationToken)
         {
             var identificationTypeToUdate = await _IIdentificationTypeRepository.GetByIdAsync(request.IdendificationTypeId);
-            if(identificationTypeToUdate == null) { }
+            if (identificationTypeToUdate == null)
+                throw new NotFoundException(nameof(IdentificationType), request.IdendificationTypeId);
+            var validator = new UpdateIdentificationTypeCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
             _mapper.Map(request, identificationTypeToUdate, typeof (UpdateIdentificationTypeCommand), typeof(IdentificationType));
             await _IIdentificationTypeRepository.UpdateAsync(identificationTypeToUdate);
         }

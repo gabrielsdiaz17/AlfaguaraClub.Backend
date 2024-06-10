@@ -14,6 +14,13 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
         }
 
+        public async Task<CostCenter> GetCostCenter(long costCenterId)
+        {
+            var costCenter = await QueryNoTracking().Where(cost => cost.CostCenterId == costCenterId)
+                                                    .Include(cost=>cost.Spaces).FirstOrDefaultAsync();
+            return costCenter;
+        }
+
         public async Task<List<CostCenter>> GetCostCenterWithSpaces()
         {
             var cc = await QueryNoTracking().Where(cc=>cc.IsActive).Include(cc=>cc.Spaces).ToListAsync();

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.CategoryServices.CreateCategoryCommands
 {
-    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, int>
+    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, CreateCategoryCommandResponse>
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,27 @@ namespace AlfaguaraClub.Backend.Application.Services.CategoryServices.CreateCate
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<CreateCategoryCommandResponse> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
+            var createCategoryCommandResponse= new CreateCategoryCommandResponse();
             var newCategory = _mapper.Map<Category>(request);
-            newCategory = await _categoryRepository.AddAsync(newCategory);
-            return newCategory.CategoryId;
+            var validator = new CreateCategoryCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if(validationResult.Errors.Count >= 0)
+            {
+                createCategoryCommandResponse.Success = false;
+                createCategoryCommandResponse.ValidationErrors = new List<string>();
+                foreach(var error in validationResult.Errors)
+                {
+                    createCategoryCommandResponse.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if(createCategoryCommandResponse.Success)
+            {
+                newCategory = await _categoryRepository.AddAsync(newCategory);
+                createCategoryCommandResponse.CategoryId = newCategory.CategoryId;
+            }            
+            return createCategoryCommandResponse;
         }
     }
 }

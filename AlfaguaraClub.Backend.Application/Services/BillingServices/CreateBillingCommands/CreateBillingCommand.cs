@@ -1,4 +1,5 @@
-﻿using AlfaguaraClub.Backend.Domain.Enums;
+﻿using AlfaguaraClub.Backend.Application.Services.CompanyServices.CreateCompanyCommands;
+using AlfaguaraClub.Backend.Domain.Enums;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.BillingServices.CreateBillingCommands
 {
-    public class CreateBillingCommand: IRequest<long>
+    public class CreateBillingCommand: IRequest<CreateBillingCommandResponse>
     {
         public DateTimeOffset BillingDate { get; set; }
         public string BillingConsecutive { get; set; }

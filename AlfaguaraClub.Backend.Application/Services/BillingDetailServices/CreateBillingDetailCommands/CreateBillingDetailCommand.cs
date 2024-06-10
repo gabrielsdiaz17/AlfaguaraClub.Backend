@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.BillingDetailServices.CreateBillingDetailCommands
 {
-    public class CreateBillingDetailCommand: IRequest<long>
+    public class CreateBillingDetailCommand: IRequest<CreateBillingDetailCommandResponse>
     {
         public long BillingId { get; set; }
         public long ProductId { get; set; }

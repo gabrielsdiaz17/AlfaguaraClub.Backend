@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.IdentificationTypeServices.CreateIdentificationTypeCommands
 {
-    public class CreateIdentificationTypeCommandHandler : IRequestHandler<CreateIdentificationTypeCommand, int>
+    public class CreateIdentificationTypeCommandHandler : IRequestHandler<CreateIdentificationTypeCommand, CreateIdentificationTypeCommandResponse>
     {
         private readonly IIdentificationTypeRepository _identifierTypeRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,27 @@ namespace AlfaguaraClub.Backend.Application.Services.IdentificationTypeServices.
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateIdentificationTypeCommand request, CancellationToken cancellationToken)
+        public async Task<CreateIdentificationTypeCommandResponse> Handle(CreateIdentificationTypeCommand request, CancellationToken cancellationToken)
         {
+            var response = new CreateIdentificationTypeCommandResponse();
             var newIdentificationType = _mapper.Map<IdentificationType>(request);
-            newIdentificationType = await _identifierTypeRepository.AddAsync(newIdentificationType);
-            return newIdentificationType.IdendificationTypeId;
+            var validator = new CreateIdentificationTyperCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if(validationResult.Errors.Count > 0)
+            {
+                response.Success = false;
+                response.ValidationErrors = new List<string>();
+                foreach(var error in validationResult.Errors)
+                {
+                    response.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if(response.Success)
+            {
+                newIdentificationType = await _identifierTypeRepository.AddAsync(newIdentificationType);
+                response.IdendificationTypeId = newIdentificationType.IdendificationTypeId;
+            }
+            return response;
         }
     }
 }

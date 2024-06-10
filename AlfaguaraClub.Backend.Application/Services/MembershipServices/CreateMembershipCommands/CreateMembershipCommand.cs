@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.MembershipServices.CreateMembershipCommands
 {
-    public class CreateMembershipCommand: IRequest<long>
+    public class CreateMembershipCommand: IRequest<CreateMembershipCommandResponse>
     {
         public string UniqueIdentifier { get; set; }
         public bool IsActive { get; set; }

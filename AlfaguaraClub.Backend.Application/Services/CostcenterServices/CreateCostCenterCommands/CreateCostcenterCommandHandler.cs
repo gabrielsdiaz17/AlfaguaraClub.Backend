@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.CostcenterServices.CreateCostCenterCommands
 {
-    public class CreateCostcenterCommandHandler : IRequestHandler<CreateCostCenterCommand, long>
+    public class CreateCostcenterCommandHandler : IRequestHandler<CreateCostCenterCommand, CreateCostCenterCommandResponse>
     {
         private readonly ICostCenterRepository _costCenterRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,27 @@ namespace AlfaguaraClub.Backend.Application.Services.CostcenterServices.CreateCo
             _mapper = mapper;
         }
 
-        public async Task<long> Handle(CreateCostCenterCommand request, CancellationToken cancellationToken)
+        public async Task<CreateCostCenterCommandResponse> Handle(CreateCostCenterCommand request, CancellationToken cancellationToken)
         {
+            var createCostCenterResponse = new CreateCostCenterCommandResponse();
             var costCenter = _mapper.Map<CostCenter>(request);
-            costCenter = await _costCenterRepository.AddAsync(costCenter);
-            return costCenter.CostCenterId;
+            var validator = new CreateCostCenterCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count >0 ) 
+            {
+                createCostCenterResponse.Success = false;
+                createCostCenterResponse.ValidationErrors = new List<string>();
+                foreach ( var error in validationResult.Errors )
+                {
+                    createCostCenterResponse.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if (createCostCenterResponse.Success)
+            {
+                costCenter = await _costCenterRepository.AddAsync(costCenter);
+                createCostCenterResponse.CostCenterId = costCenter.CostCenterId;
+            }
+            return createCostCenterResponse;
         }
     }
 }

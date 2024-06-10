@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.IdentificationTypeServices.CreateIdentificationTypeCommands
 {
-    public class CreateIdentificationTypeCommand:IRequest<int>
+    public class CreateIdentificationTypeCommand:IRequest<CreateIdentificationTypeCommandResponse>
     {
         public int IdentificationTypeCode { get; set; }
         public string Nomenclature { get; set; }
