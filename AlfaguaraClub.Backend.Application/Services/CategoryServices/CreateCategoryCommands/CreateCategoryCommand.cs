@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.CategoryServices.CreateCategoryCommands
 {
-    public class CreateCategoryCommand:IRequest<int>
+    public class CreateCategoryCommand:IRequest<CreateCategoryCommandResponse>
     {
         public string CategoryName { get; set; }
         public bool IsActive { get; set; }

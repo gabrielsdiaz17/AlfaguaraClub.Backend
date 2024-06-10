@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.BookingServices.CreateBookingCommands
 {
-    public class CreateBookingCommand:IRequest<long>
+    public class CreateBookingCommand:IRequest<CreateBookingCommandResponse>
     {
         public long UserId { get; set; }
         public long SpaceActivityId { get; set; }

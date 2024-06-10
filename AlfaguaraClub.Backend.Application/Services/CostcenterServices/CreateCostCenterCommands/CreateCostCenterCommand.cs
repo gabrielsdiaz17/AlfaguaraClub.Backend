@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.CostcenterServices.CreateCostCenterCommands
 {
-    public class CreateCostCenterCommand: IRequest<long>        
+    public class CreateCostCenterCommand: IRequest<CreateCostCenterCommandResponse>        
     {
         public string CostCenterCode { get; set; }
         public string CostCenterName { get; set; }

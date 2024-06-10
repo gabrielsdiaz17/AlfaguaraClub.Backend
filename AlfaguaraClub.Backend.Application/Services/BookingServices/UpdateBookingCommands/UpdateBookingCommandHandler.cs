@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -21,9 +22,14 @@ namespace AlfaguaraClub.Backend.Application.Services.BookingServices.UpdateBooki
         }
 
         public async Task Handle(UpdateBookingCommand request, CancellationToken cancellationToken)
-        {
+        {            
             var bookingToUpdate = await _bookingRepository.GetByIdAsync(request.BookingId);
-            if (bookingToUpdate == null) { }
+            if (bookingToUpdate == null)
+                throw new NotFoundException(nameof(Booking), bookingToUpdate.BookingId);
+            var validator = new UpdateBookingCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
             _mapper.Map(request, bookingToUpdate ,typeof(UpdateBookingCommand), typeof(Booking));
             await _bookingRepository.UpdateAsync(bookingToUpdate);
         }

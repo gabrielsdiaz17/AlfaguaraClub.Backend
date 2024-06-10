@@ -1,0 +1,27 @@
+﻿using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AlfaguaraClub.Backend.Application.Services.BookingServices.UpdateBookingCommands
+{
+    public class UpdateBookingCommandValidator:AbstractValidator<UpdateBookingCommand>
+    {
+        public UpdateBookingCommandValidator()
+        {
+            RuleFor(x => x.UserId)
+                .NotEmpty().WithMessage("{PropertyName} es requerido.")
+                .NotNull().GreaterThan(0);
+
+            RuleFor(x => x.SpaceActivityId)
+                .NotEmpty().WithMessage("{PropertyName} es requerido.")
+                .NotNull().GreaterThan(0);
+
+            RuleFor(x => x.StatusBookingId)
+                .NotEmpty().WithMessage("{PropertyName} es requerido.")
+                .NotNull().GreaterThan(0);
+        }
+    }
+}

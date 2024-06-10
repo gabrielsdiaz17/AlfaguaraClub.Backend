@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -23,7 +24,12 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingDetailServices.Updat
         public async Task Handle(UpdateBillingDetailCommand request, CancellationToken cancellationToken)
         {
             var billingDetailToUpdate = await _billingDetailRepository.GetByIdAsync(request.BillingDetailId);
-            if (billingDetailToUpdate == null) { }
+            if (billingDetailToUpdate == null)
+                throw new NotFoundException(nameof(BillingDetail), request.BillingDetailId);
+            var validator = new UpdateBillingDetailCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
             _mapper.Map(request, billingDetailToUpdate, typeof(UpdateBillingDetailCommand), typeof(BillingDetail));
             await _billingDetailRepository.UpdateAsync(billingDetailToUpdate);
         }

@@ -14,5 +14,7 @@ namespace AlfaguaraClub.Backend.Application.Services.CompanyServices.CreateCompa
             
         }
         public long CompanyId { get; set; }
+        public DateTimeOffset BillingDate { get; set; }
+
     }
 }
