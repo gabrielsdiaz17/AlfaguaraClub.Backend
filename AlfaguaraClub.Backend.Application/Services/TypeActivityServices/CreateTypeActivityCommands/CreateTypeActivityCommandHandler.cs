@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.TypeActivityServices.CreateTypeActivityCommands
 {
-    public class CreateTypeActivityCommandHandler : IRequestHandler<CreateTypeActivityCommand, int>
+    public class CreateTypeActivityCommandHandler : IRequestHandler<CreateTypeActivityCommand, CreateTypeActivityCommandResponse>
     {
         private readonly ITypeActivityRepository _typeActivityRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,23 @@ namespace AlfaguaraClub.Backend.Application.Services.TypeActivityServices.Create
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateTypeActivityCommand request, CancellationToken cancellationToken)
+        public async Task<CreateTypeActivityCommandResponse> Handle(CreateTypeActivityCommand request, CancellationToken cancellationToken)
         {
+            var response = new CreateTypeActivityCommandResponse();
             var typeActivity = _mapper.Map<TypeActivity>(request);
-            typeActivity = await _typeActivityRepository.AddAsync(typeActivity);
-            return typeActivity.TypeActivityId;
+            var validator = new CreateTypeActivityCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if(validationResult.Errors.Count > 0)
+            {
+                response.Success = false;
+                response.ValidationErrors = new List<string>();
+            }
+            if(response.Success)
+            {
+                typeActivity = await _typeActivityRepository.AddAsync(typeActivity);
+                response.TypeActivityId = typeActivity.TypeActivityId;
+            }
+            return response;
         }
     }
 }
