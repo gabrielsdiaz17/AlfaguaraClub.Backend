@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -23,7 +24,12 @@ namespace AlfaguaraClub.Backend.Application.Services.NotificationServices.Update
         public async Task Handle(UpdateNotificationCommand request, CancellationToken cancellationToken)
         {
             var notificationToUpdate = await _notificationRepository.GetByIdAsync(request.NotificationId);
-            if (notificationToUpdate == null) { }
+            if (notificationToUpdate == null) 
+                throw new NotFoundException(nameof(Notification), notificationToUpdate.NotificationId);
+            var validator = new UpdateNotificationCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
             _mapper.Map(request, notificationToUpdate, typeof(UpdateNotificationCommand), typeof(Notification));
             await _notificationRepository.UpdateAsync(notificationToUpdate);
         }

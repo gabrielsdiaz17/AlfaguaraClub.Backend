@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -23,7 +24,12 @@ namespace AlfaguaraClub.Backend.Application.Services.CostcenterServices.UpdateCo
         public async Task Handle(UpdateCostCenterCommand request, CancellationToken cancellationToken)
         {
             var costCenterToUpdate = await _costCenterRepository.GetByIdAsync(request.CostCenterId);
-            if(costCenterToUpdate == null) { }
+            if (costCenterToUpdate == null)
+                throw new NotFoundException(nameof(CostCenter), request.CostCenterId);
+            var validator = new UpdateCostCenterCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
             _mapper.Map(request, costCenterToUpdate, typeof(UpdateCostCenterCommand),typeof(CostCenter));
             await _costCenterRepository.UpdateAsync(costCenterToUpdate);
         }

@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Services.BookingServices.CreateBookingCommands;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.NotificationServices.CreateNotificationCommands
 {
-    public class CreateNotificationCommandHandler : IRequestHandler<CreateNotificationCommand, long>
+    public class CreateNotificationCommandHandler : IRequestHandler<CreateNotificationCommand, CreateNotificationCommandResponse>
     {
         private readonly INotificationRepository _notificationRepository;
         private readonly IMapper _mapper;
@@ -20,11 +21,28 @@ namespace AlfaguaraClub.Backend.Application.Services.NotificationServices.Create
             _mapper = mapper;
         }
 
-        public async Task<long> Handle(CreateNotificationCommand request, CancellationToken cancellationToken)
+        public async Task<CreateNotificationCommandResponse> Handle(CreateNotificationCommand request, CancellationToken cancellationToken)
         {
+            var response = new CreateNotificationCommandResponse();
             var newNotification = _mapper.Map<Notification>(request);
-            newNotification = await _notificationRepository.AddAsync(newNotification);
-            return newNotification.NotificationId;
+            var validator = new CreteNotificationCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count >0) 
+            {
+                response.Success = false;
+                response.ValidationErrors = new List<string>();
+                foreach(var error in validationResult.Errors)
+                {
+                    response.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if (response.Success)
+            {
+                newNotification = await _notificationRepository.AddAsync(newNotification);
+                response.NotificationId = newNotification.NotificationId;
+                response.NotificationSent = newNotification.NotificationSent;
+            }
+            return response;
         }
     }
 }

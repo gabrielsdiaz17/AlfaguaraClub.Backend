@@ -46,7 +46,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(await _mediator.Send(getBillingListStatus));
         }
 
-        [HttpPost(Name = "GetBillingByDateAndStatus")]
+        [HttpPost("/GetBillingByDateStatus/",Name = "GetBillingByDateAndStatus")]
         public async Task<ActionResult<CreateBillingCommandResponse>> GetBillingByDateAndStatus([FromBody] GetBillingListByDateAndStatus getBillingListDS)
         {
             var response = await _mediator.Send(getBillingListDS);

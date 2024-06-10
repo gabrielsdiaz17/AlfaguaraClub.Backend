@@ -31,6 +31,9 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(newCategory);
         }
         [HttpPut(Name = "UpdateCategory")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> Update([FromBody] UpdateCategoryCommand updateCategoryCommand)
         {
             await _mediator.Send(updateCategoryCommand);
