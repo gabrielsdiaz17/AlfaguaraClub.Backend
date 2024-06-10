@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.NotificationServices.CreateNotificationCommands
 {
-    public class CreateNotificationCommand:IRequest<long>
+    public class CreateNotificationCommand:IRequest<CreateNotificationCommandResponse>
     {
         public int NotificationTypeId { get; set; }
         public long UserId { get; set; }

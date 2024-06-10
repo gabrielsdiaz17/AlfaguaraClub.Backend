@@ -53,7 +53,10 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(newBooking);
         }
 
-        [HttpPut(Name ="UpdateBooking")] 
+        [HttpPut(Name ="UpdateBooking")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> Update([FromBody] UpdateBookingCommand updateBookingCommand)
         {
             await _mediator.Send(updateBookingCommand);

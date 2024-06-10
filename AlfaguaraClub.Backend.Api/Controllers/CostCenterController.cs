@@ -37,6 +37,9 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(response);
         }
         [HttpPut(Name ="UpdateCostCenter")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> Update([FromBody] UpdateCostCenterCommand updateCostCenterCommand)
         {
             await _mediator.Send(updateCostCenterCommand);

@@ -35,7 +35,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult>Update(UpdateCompanyCommand updateCompanyCommand)
+        public async Task<ActionResult>Update([FromBody] UpdateCompanyCommand updateCompanyCommand)
         {
             await _mediator.Send(updateCompanyCommand);
             return NoContent();

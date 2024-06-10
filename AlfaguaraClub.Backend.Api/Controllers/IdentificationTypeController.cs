@@ -31,6 +31,9 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(response);
         }
         [HttpPut(Name ="UpdateIdentificationType")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<UpdateIdentificationTypeCommand>> Update([FromBody] UpdateIdentificationTypeCommand updateIdentificationTypeCommand)
         {
             await _mediator.Send(updateIdentificationTypeCommand);
