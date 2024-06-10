@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -23,7 +24,12 @@ namespace AlfaguaraClub.Backend.Application.Services.TypeActivityServices.Update
         public async Task Handle(UpdateTypeActivityCommand request, CancellationToken cancellationToken)
         {
             var typeActivityToUpdate = await _typeActivityRepository.GetByIdAsync(request.TypeActivityId);
-            if (typeActivityToUpdate == null) { }
+            if (typeActivityToUpdate == null) 
+                throw new NotFoundException(nameof(TypeActivity),  request.TypeActivityId);
+            var validator = new UpdateTypeActivityCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
             _mapper.Map(request, typeActivityToUpdate, typeof(UpdateTypeActivityCommand), typeof(TypeActivity));
             _typeActivityRepository.UpdateAsync(typeActivityToUpdate);
         }

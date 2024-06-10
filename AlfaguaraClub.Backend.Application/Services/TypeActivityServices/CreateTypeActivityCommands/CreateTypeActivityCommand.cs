@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.TypeActivityServices.CreateTypeActivityCommands
 {
-    public class CreateTypeActivityCommand:IRequest<int>
+    public class CreateTypeActivityCommand:IRequest<CreateTypeActivityCommandResponse>
     {
         public string TypeActivityName { get; set; }
         public bool IsActive { get; set; }
