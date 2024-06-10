@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.ProductServices.CreateProductCommands
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, long>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, CreateProductCommandResponse>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,27 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.CreateProdu
             _mapper = mapper;
         }
 
-        public async Task<long> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<CreateProductCommandResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
+            var response = new CreateProductCommandResponse();
             var newProduct = _mapper.Map<Product>(request);
-            newProduct = await _productRepository.AddAsync(newProduct);
-            return newProduct.ProductId;
+            var validator = new CreateProductCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if(validationResult.Errors.Count > 0)
+            {
+                response.Success = false;
+                response.ValidationErrors = new List<string>();
+                foreach (var error in validationResult.Errors)
+                {
+                    response.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if(response.Success)
+            {
+                newProduct = await _productRepository.AddAsync(newProduct);
+                response.ProductId = newProduct.ProductId;
+            }
+            return response;
         }
     }
 }

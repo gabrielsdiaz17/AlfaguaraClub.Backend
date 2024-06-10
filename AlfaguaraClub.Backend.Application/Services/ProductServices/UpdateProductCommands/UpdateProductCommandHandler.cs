@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -23,7 +24,12 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.UpdateProdu
         public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             var productToUpdate = await _productRepository.GetByIdAsync(request.ProductId);
-            if (productToUpdate == null) { }
+            if (productToUpdate == null)
+                throw new NotFoundException(nameof(Product), request.ProductId);
+            var validator = new UpdateProductCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
             _mapper.Map(request, productToUpdate, typeof(UpdateProductCommand), typeof(Product));
         }
     }

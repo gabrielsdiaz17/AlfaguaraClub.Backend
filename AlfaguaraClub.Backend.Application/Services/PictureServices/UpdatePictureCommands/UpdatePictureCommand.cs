@@ -11,6 +11,7 @@ namespace AlfaguaraClub.Backend.Application.Services.PictureServices.UpdatePictu
     public class UpdatePictureCommand:IRequest
     {
         public long PictureId { get; set; }
+        public string PictureData { get; set; }
         public PictureType PictureType { get; set; }
         public long? StoryId { get; set; }
         public long? SpaceId { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.ParameterServices.CreateParameterCommands
 {
-    public class CreateParameterCommand: IRequest<long>
+    public class CreateParameterCommand: IRequest<CreateParameterCommandResponse>
     {
         public string ParameterName { get; set; }
         public string ParameterValue { get; set; }

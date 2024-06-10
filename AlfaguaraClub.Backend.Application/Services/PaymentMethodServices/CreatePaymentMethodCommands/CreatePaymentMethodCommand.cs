@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.PaymentMethodServices.CreatePaymentMethodCommands
 {
-    public class CreatePaymentMethodCommand:IRequest<int>
+    public class CreatePaymentMethodCommand:IRequest<CreatePaymentMethodCommandResponse>
     {
         public string PaymentMethodCode { get; set; }
         public string Description { get; set; }

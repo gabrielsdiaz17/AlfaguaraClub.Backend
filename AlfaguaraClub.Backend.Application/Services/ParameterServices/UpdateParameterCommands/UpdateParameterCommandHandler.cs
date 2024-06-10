@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -23,7 +24,12 @@ namespace AlfaguaraClub.Backend.Application.Services.ParameterServices.UpdatePar
         public async Task Handle(UpdateParameterCommand request, CancellationToken cancellationToken)
         {
             var parameterToUpdate = await _parameterRepository.GetByIdAsync(request.ParameterId);
-            if (parameterToUpdate == null) { }
+            if (parameterToUpdate == null)
+                throw new NotFoundException(nameof(Parameter), request.ParameterId);
+            var validator = new UpdateParameterCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
             _mapper.Map(request, parameterToUpdate, typeof(UpdateParameterCommand), typeof(Parameter));
             await _parameterRepository.UpdateAsync(parameterToUpdate);
         }

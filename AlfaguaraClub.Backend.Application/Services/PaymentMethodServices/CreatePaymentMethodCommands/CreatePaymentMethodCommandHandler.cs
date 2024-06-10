@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.PaymentMethodServices.CreatePaymentMethodCommands
 {
-    public class CreatePaymentMethodCommandHandler : IRequestHandler<CreatePaymentMethodCommand, int>
+    public class CreatePaymentMethodCommandHandler : IRequestHandler<CreatePaymentMethodCommand, CreatePaymentMethodCommandResponse>
     {
         private readonly IPaymentMethodRepository _paymentMethodRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,27 @@ namespace AlfaguaraClub.Backend.Application.Services.PaymentMethodServices.Creat
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreatePaymentMethodCommand request, CancellationToken cancellationToken)
+        public async Task<CreatePaymentMethodCommandResponse> Handle(CreatePaymentMethodCommand request, CancellationToken cancellationToken)
         {
+            var response = new CreatePaymentMethodCommandResponse();
             var newPaymentMethod = _mapper.Map<PaymentMethod>(request);
-            newPaymentMethod = await _paymentMethodRepository.AddAsync(newPaymentMethod);
-            return newPaymentMethod.PaymentMethodId;
+            var validator = new CreatePaymentMethodCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if(validationResult.Errors.Count > 0)
+            {
+                response.Success = false;
+                response.ValidationErrors = new List<string>();
+                foreach(var error in validationResult.Errors)
+                {
+                    response.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if (response.Success)
+            {
+                newPaymentMethod = await _paymentMethodRepository.AddAsync(newPaymentMethod);
+                response.PaymentMethodId = newPaymentMethod.PaymentMethodId;
+            }
+            return response;
         }
     }
 }

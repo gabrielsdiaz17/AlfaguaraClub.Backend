@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.TaxServices.CreateTaxCommands
 {
-    public class CreateTaxCommand: IRequest<int>
+    public class CreateTaxCommand: IRequest<CreateTaxCommandResponse>
     {
         public string TaxName { get; set; }
         public int TaxValue { get; set; }

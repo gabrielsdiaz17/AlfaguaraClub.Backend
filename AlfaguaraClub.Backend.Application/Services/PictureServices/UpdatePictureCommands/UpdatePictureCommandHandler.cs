@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Contracts.Persistence;
+using AlfaguaraClub.Backend.Application.Exceptions;
 using AlfaguaraClub.Backend.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -23,8 +24,13 @@ namespace AlfaguaraClub.Backend.Application.Services.PictureServices.UpdatePictu
         public async Task Handle(UpdatePictureCommand request, CancellationToken cancellationToken)
         {
             var pictureToUpdate = await _pictureRepository.GetByIdAsync(request.PictureId);
-            if (pictureToUpdate == null) { }
+            if (pictureToUpdate == null)
+                throw new NotFoundException(nameof(Picture), request.PictureId);
             _mapper.Map(request, pictureToUpdate, typeof(UpdatePictureCommand), typeof(Picture));
+            var validator = new UpdatePictureCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
             await _pictureRepository.UpdateAsync(pictureToUpdate);
         }
     }

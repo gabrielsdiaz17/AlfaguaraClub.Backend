@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.PictureServices.CreatePictureCommands
 {
-    public class CreatePictureCommand:IRequest<long>
+    public class CreatePictureCommand:IRequest<CreatePictureCommandResponse>
     {
         public string PictureData { get; set; }
         public PictureType PictureType { get; set; }

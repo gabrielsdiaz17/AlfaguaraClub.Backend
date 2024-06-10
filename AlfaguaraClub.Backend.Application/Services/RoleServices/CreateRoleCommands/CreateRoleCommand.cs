@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.RoleServices.CreateRoleCommands
 {
-    public class CreateRoleCommand:IRequest<int>
+    public class CreateRoleCommand:IRequest<CreateRoleCommandResponse>
     {
         public string RoleName { get; set; }
         public bool IsActive { get; set; }

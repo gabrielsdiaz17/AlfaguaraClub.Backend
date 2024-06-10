@@ -21,6 +21,13 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
             return parameter;
         }
 
+        public async Task<Parameter> GetParameterByName(string name)
+        {
+            var parameter = await QueryNoTracking().Where(param => param.ParameterName == name)
+                                                   .FirstOrDefaultAsync();
+            return parameter;
+        }
+
         public async Task<List<Parameter>> GetParameters()
         {
             var listParameters = await QueryNoTracking().Where(param=> param.IsActive).OrderByDescending(param => param.ParameterId).ToListAsync();   

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.TaxServices.CreateTaxCommands
 {
-    public class CreateTaxCommandHandler : IRequestHandler<CreateTaxCommand, int>
+    public class CreateTaxCommandHandler : IRequestHandler<CreateTaxCommand, CreateTaxCommandResponse>
     {
         private readonly ITaxRepository _taxRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,27 @@ namespace AlfaguaraClub.Backend.Application.Services.TaxServices.CreateTaxComman
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateTaxCommand request, CancellationToken cancellationToken)
+        public async Task<CreateTaxCommandResponse> Handle(CreateTaxCommand request, CancellationToken cancellationToken)
         {
+            var response = new CreateTaxCommandResponse();
             var newTax = _mapper.Map<Tax>(request);
-            newTax = await _taxRepository.AddAsync(newTax);
-            return newTax.TaxId;
+            var validator = new CreateTaxCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+            if(validationResult.Errors.Count > 0)
+            {
+                response.Success = false;
+                response.ValidationErrors = new List<string>();
+                foreach(var error in validationResult.Errors)
+                {
+                    response.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
+            if(response.Success)
+            {
+                newTax = await _taxRepository.AddAsync(newTax);
+                response.TaxId = newTax.TaxId;
+            }
+            return response;
         }
     }
 }
