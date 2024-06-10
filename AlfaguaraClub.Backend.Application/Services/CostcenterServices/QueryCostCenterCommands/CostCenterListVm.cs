@@ -13,6 +13,8 @@ namespace AlfaguaraClub.Backend.Application.Services.CostcenterServices.QueryCos
         public string CostCenterCode { get; set; }
         public string CostCenterName { get; set; }
         public long SiteId { get; set; }
+        public bool IsActive { get; set; }
+
         public ICollection<SpaceDto> Spaces { get; set; }
 
     }

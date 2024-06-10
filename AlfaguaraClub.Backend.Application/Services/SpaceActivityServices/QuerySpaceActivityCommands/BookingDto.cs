@@ -12,6 +12,7 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Query
         public long UserId { get; set; }
         public long? MembershipId { get; set; }
         public int StatusBookingId { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }

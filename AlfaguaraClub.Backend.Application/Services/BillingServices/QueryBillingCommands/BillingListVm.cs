@@ -23,6 +23,8 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingServices.QueryBillin
         public int PaymentMethodId { get; set; }
         public PaymentMethodDto PaymentMethod { get; set; }
         public string Observations { get; set; }
+        public bool IsActive { get; set; }
+
         public List<BillingDetailDto> BillingDetail { get; set; }
 
     }

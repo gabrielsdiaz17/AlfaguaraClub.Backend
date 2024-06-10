@@ -13,6 +13,8 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.CreateProdu
         public string ProductDescription { get; set; }
         public decimal UnitPrice { get; set; }
         public int TaxId { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Product Code: {ProductCode}; Description: {ProductDescription}; Unit Price: {UnitPrice}";

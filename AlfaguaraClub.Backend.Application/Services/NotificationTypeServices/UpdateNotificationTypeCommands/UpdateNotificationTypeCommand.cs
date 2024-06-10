@@ -11,6 +11,8 @@ namespace AlfaguaraClub.Backend.Application.Services.NotificationTypeServices.Up
     {
         public int NotificationTypeId { get; set; }
         public string NotificationTypeDescription { get; set; }
+        public bool IsActive { get; set; }
+
 
     }
 }

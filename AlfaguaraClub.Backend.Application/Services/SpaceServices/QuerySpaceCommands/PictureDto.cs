@@ -12,6 +12,8 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCom
         public long PictureId { get; set; }
         public string PictureData { get; set; }
         public PictureType PictureType { get; set; }
+        public bool IsActive { get; set; }
+
 
     }
 }

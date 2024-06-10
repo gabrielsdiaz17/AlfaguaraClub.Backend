@@ -13,5 +13,7 @@ namespace AlfaguaraClub.Backend.Application.Services.IdentificationTypeServices.
         public int IdentificationTypeCode { get; set; }
         public string Nomenclature { get; set; }
         public string Description { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

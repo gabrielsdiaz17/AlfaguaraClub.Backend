@@ -11,6 +11,7 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingServices.QueryBillin
         public int BillingStatusId { get; set; }
         public string Status { get; set; }
         public string? Nomenclature { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }

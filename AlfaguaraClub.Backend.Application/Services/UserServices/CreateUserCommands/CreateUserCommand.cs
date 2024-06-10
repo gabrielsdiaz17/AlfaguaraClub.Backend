@@ -24,7 +24,9 @@ namespace AlfaguaraClub.Backend.Application.Services.UserServices.CreateUserComm
         public long? MembershipId { get; set; }
         public TypeUser? TypeUser { get; set; }
         public bool AcceptProtectionData { get; set; }
-        public string Photograph { get; set; }
+        public string? Photograph { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"User Identification Type: {IdentificationTypeId}; Name: {Name} {LastName}; Email: {Email}; Address: {Address}";

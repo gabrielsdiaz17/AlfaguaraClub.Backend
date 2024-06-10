@@ -10,6 +10,8 @@ namespace AlfaguaraClub.Backend.Application.Services.RoleServices.CreateRoleComm
     public class CreateRoleCommand:IRequest<int>
     {
         public string RoleName { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Role {RoleName}";

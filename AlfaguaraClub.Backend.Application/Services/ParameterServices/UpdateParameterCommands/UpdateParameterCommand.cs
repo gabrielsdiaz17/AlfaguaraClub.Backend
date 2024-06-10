@@ -12,5 +12,7 @@ namespace AlfaguaraClub.Backend.Application.Services.ParameterServices.UpdatePar
         public long ParameterId { get; set; }
         public string ParameterName { get; set; }
         public string ParameterValue { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

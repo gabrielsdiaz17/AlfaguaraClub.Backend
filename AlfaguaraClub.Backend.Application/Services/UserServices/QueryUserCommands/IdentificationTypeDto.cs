@@ -12,6 +12,7 @@ namespace AlfaguaraClub.Backend.Application.Services.UserServices.QueryUserComma
         public int IdentificationTypeCode { get; set; }
         public string Nomenclature { get; set; }
         public string Description { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }

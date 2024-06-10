@@ -11,6 +11,8 @@ namespace AlfaguaraClub.Backend.Application.Services.PaymentMethodServices.Creat
     {
         public string PaymentMethodCode { get; set; }
         public string Description { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Payment Method Code{PaymentMethodCode}; Description{Description}";

@@ -13,6 +13,7 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCom
         public string SiteAddress { get; set; }
         public string? SiteLocationMap { get; set; }
         public long CompanyId { get; set; }
+        public bool IsActive { get; set; }
         public ICollection<PictureDto> Pictures { get; set; }
         public ICollection<SpaceActivityDto> SpaceActivities { get; set; }
 

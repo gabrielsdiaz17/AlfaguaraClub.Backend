@@ -17,5 +17,7 @@ namespace AlfaguaraClub.Backend.Application.Services.StoryServices.UpdateStoryCo
         public int? CategoryId { get; set; }
         public DateTimeOffset StoryPublishDate { get; set; }
         public long? SpaceActivityId { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

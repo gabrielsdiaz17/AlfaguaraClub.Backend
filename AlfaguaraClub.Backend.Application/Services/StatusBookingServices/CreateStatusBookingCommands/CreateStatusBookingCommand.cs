@@ -10,6 +10,8 @@ namespace AlfaguaraClub.Backend.Application.Services.StatusBookingServices.Creat
     public class CreateStatusBookingCommand:IRequest<int>
     {
         public string Status { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Status {Status} Created;";

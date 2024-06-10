@@ -16,5 +16,7 @@ namespace AlfaguaraClub.Backend.Application.Services.NotificationServices.Update
         public string Subject { get; set; }
         public string Message { get; set; }
         public bool NotificationSent { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

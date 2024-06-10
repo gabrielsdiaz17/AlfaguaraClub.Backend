@@ -14,5 +14,7 @@ namespace AlfaguaraClub.Backend.Application.Services.CompanyServices.UpdateCompa
         public string CompanyIdentifier { get; set; }
         public int IdentificationTypeId { get; set; }
         public string CompanyLogo { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

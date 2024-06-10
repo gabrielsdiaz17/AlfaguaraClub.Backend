@@ -10,6 +10,8 @@ namespace AlfaguaraClub.Backend.Application.Services.MembershipServices.QueryMem
     {
         public long MembershipId { get; set; }
         public string UniqueIdentifier { get; set; }
+        public bool IsActive { get; set; }
+
         public ICollection<UserDto> Users { get; set; }
 
     }

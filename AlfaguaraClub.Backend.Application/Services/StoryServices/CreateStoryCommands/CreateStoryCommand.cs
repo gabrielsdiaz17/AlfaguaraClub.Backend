@@ -16,6 +16,8 @@ namespace AlfaguaraClub.Backend.Application.Services.StoryServices.CreateStoryCo
         public int? CategoryId { get; set; }
         public DateTimeOffset StoryPublishDate { get; set; }
         public long? SpaceActivityId { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Story: Title{Title}; Priority Rating: {PriorityRating}; Summary: {Summary}";

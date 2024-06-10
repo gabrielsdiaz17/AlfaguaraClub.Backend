@@ -19,5 +19,7 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Updat
         public DateTimeOffset ActivityDate { get; set; }
         public TimeSpan StartActivityHour { get; set; }
         public TimeSpan EndActivityHour { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

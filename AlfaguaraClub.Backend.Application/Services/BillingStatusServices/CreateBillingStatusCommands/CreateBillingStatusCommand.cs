@@ -11,6 +11,8 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingStatusServices.Creat
     {
         public string Status { get; set; }
         public string? Nomenclature { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Billing Status: Status{Status}";

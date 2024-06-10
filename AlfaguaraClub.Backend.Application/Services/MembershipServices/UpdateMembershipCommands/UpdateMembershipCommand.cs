@@ -11,5 +11,7 @@ namespace AlfaguaraClub.Backend.Application.Services.MembershipServices.UpdateMe
     {
         public long MembershipId { get; set; }
         public string UniqueIdentifier { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

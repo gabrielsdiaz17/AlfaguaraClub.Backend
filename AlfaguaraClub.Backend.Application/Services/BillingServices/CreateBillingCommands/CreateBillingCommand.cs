@@ -19,6 +19,8 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingServices.CreateBilli
         public long? BookingId { get; set; }
         public int PaymentMethodId { get; set; }
         public string Observations { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $"Billing Consecutive: {BillingConsecutive}; User: {UserId}; Status: {BillingStatusId}; Payment method: {PaymentMethodId}; Observations{Observations}";

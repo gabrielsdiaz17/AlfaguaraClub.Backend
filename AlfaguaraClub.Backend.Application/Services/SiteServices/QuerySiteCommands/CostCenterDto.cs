@@ -12,5 +12,7 @@ namespace AlfaguaraClub.Backend.Application.Services.SiteServices.QuerySiteComma
         public long CostCenterId { get; set; }
         public string CostCenterCode { get; set; }
         public string CostCenterName { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

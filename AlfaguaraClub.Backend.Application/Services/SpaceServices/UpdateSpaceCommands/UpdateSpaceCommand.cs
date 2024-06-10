@@ -14,5 +14,7 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceServices.UpdateSpaceCo
         public string SpaceDescription { get; set; }
         public long CostCenterId { get; set; }
         public string? VideoLink { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

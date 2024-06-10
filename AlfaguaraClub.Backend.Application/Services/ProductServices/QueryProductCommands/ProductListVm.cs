@@ -14,5 +14,7 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.QueryProduc
         public decimal UnitPrice { get; set; }
         public int TaxId { get; set; }
         public TaxDto Tax { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

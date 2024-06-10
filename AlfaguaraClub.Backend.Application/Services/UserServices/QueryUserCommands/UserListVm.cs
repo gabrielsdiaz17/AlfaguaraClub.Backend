@@ -27,6 +27,8 @@ namespace AlfaguaraClub.Backend.Application.Services.UserServices.QueryUserComma
         public MembershipDto Membership { get; set; }
         public TypeUser? TypeUser { get; set; }
         public bool AcceptProtectionData { get; set; }
-        public string Photograph { get; set; }
+        public string? Photograph { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

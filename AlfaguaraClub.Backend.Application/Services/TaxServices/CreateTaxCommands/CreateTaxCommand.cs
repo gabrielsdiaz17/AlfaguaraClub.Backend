@@ -12,6 +12,8 @@ namespace AlfaguaraClub.Backend.Application.Services.TaxServices.CreateTaxComman
         public string TaxName { get; set; }
         public int TaxValue { get; set; }
         public double TaxPercentage { get; set; }
+        public bool IsActive { get; set; }
+
         public override string ToString()
         {
             return $" Tax: {TaxName}; Value: {TaxValue}";

@@ -10,6 +10,8 @@ namespace AlfaguaraClub.Backend.Application.Services.UserServices.QueryUserComma
     {
         public int RoleId { get; set; }
         public string RoleName { get; set; }
+        public bool IsActive { get; set; }
+
 
     }
 }
