@@ -20,7 +20,7 @@ namespace AlfaguaraClub.Backend.Application.Services.ParameterServices.QueryPara
         }
         public async Task<ParameterListVm> Handle(GetParameterQuery request, CancellationToken cancellationToken)
         {
-            var parameter = await _parameterRepository.GetParameterById(request.ParameterId);
+            var parameter = await _parameterRepository.GetParameterByName(request.ParameterName);
             return _mapper.Map<ParameterListVm>(parameter);
         }
     }

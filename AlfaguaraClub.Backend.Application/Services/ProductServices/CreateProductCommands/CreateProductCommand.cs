@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.ProductServices.CreateProductCommands
 {
-    public class CreateProductCommand: IRequest<long>
+    public class CreateProductCommand: IRequest<CreateProductCommandResponse>
     {
         public string ProductCode { get; set; }
         public string ProductDescription { get; set; }

@@ -11,5 +11,6 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
     {
         Task<List<Parameter>> GetParameters();
         Task<Parameter> GetParameterById(long parameterId);
+        Task<Parameter> GetParameterByName(string name);
     }
 }
