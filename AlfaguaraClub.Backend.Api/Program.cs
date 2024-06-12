@@ -23,6 +23,7 @@ if (app.Environment.IsDevelopment())
     await app.InitialiseDatabaseAsync();
 
 }
+app.UseCustomizedCors();
 
 app.UseHttpsRedirection();
 
