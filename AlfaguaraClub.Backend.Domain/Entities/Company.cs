@@ -20,7 +20,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("IdentificationType")]
         public int IdentificationTypeId { get; set; }
         public IdentificationType IdentificationType { get; set; }
-        [Column(TypeName = "text")]
+        [Column(TypeName = "longtext")]
         public string CompanyLogo { get; set; }
         public bool IsActive { get; set; }
         public ICollection<Site> Sites { get; set; }

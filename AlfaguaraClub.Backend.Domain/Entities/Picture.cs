@@ -13,7 +13,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
     {
         [Key]
         public long PictureId { get; set; }
-        [Column(TypeName = "text")]
+        [Column(TypeName = "longtext")]
         public string PictureData { get; set; }
         public PictureType PictureType { get; set; }
         public long? StoryId { get; set; }
