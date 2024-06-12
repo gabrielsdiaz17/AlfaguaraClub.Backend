@@ -184,6 +184,8 @@ namespace AlfaguaraClub.Backend.Application.Profiles
             CreateMap<TypeActivity, CreateTypeActivityCommand>().ReverseMap();
             CreateMap<TypeActivity, TypeActivityListVm>().ReverseMap();
             CreateMap<TypeActivity, UpdateTypeActivityCommand>().ReverseMap();
+            CreateMap<TypeActivity, TypeActivityDto>().ReverseMap();
+
 
             CreateMap<User, UserListVm>().ReverseMap();
             CreateMap<User, CreateUserCommand>().ReverseMap();
