@@ -16,3 +16,6 @@
 /.vs/ProjectEvaluation
 /AlfaguaraClub.Application.UnitTest/bin/Debug/net8.0
 /AlfaguaraClub.Application.UnitTest/obj
+/AlfaguaraClub.Persistence.IntegrationTest/bin/Debug/net8.0
+/AlfaguaraClub.Persistence.IntegrationTest/obj/Debug/net8.0
+/AlfaguaraClub.Persistence.IntegrationTest/obj
