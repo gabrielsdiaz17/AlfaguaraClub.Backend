@@ -14,3 +14,5 @@
 /AlfaguaraClub.Backend.Infraestructure/bin/Debug/net8.0
 /AlfaguaraClub.Backend.Persistence/bin/Debug/net8.0
 /.vs/ProjectEvaluation
+/AlfaguaraClub.Application.UnitTest/bin/Debug/net8.0
+/AlfaguaraClub.Application.UnitTest/obj
