@@ -19,7 +19,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         [HttpGet(Name = "GetAllCompanies")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult<List<CompanyListVm>>> GetAllStories()
+        public async Task<ActionResult<List<CompanyListVm>>> GetAllCompanies()
         {
             var companies = await _mediator.Send(new GetCompanyListQuery());
             return companies;
