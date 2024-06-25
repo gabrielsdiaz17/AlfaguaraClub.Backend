@@ -10,6 +10,7 @@ namespace AlfaguaraClub.Backend.Application.Services.PictureServices.CreatePictu
 {
     public class CreatePictureCommand:IRequest<CreatePictureCommandResponse>
     {
+        public string PictureName { get; set; }
         public string PictureData { get; set; }
         public PictureType PictureType { get; set; }
         public long? StoryId { get; set; }

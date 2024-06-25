@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.BillingStatusServices.CreateBillingStatusCommands
 {
-    public class CreateBillingStatusCommand:IRequest<int>
+    public class CreateBillingStatusCommand:IRequest<CreateBillingStatusCommandResponse>
     {
         public string Status { get; set; }
         public string? Nomenclature { get; set; }

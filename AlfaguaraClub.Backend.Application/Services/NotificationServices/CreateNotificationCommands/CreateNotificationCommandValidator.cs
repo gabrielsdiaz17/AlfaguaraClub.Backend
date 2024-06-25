@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AlfaguaraClub.Backend.Application.Services.NotificationTypeServices.CreateNotificationTypeCommands;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.NotificationServices.CreateNotificationCommands
 {
-    public class CreteNotificationCommandValidator:AbstractValidator<CreateNotificationCommand>
+    public class CreateNotificationCommandValidator:AbstractValidator<CreateNotificationCommand>
     {
-        public CreteNotificationCommandValidator()
+        public CreateNotificationCommandValidator()
         {
             RuleFor(x => x.NotificationTypeId)
                 .NotEmpty().WithMessage("{PropertyName} es requerido.")

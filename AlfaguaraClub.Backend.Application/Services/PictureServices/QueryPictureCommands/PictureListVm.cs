@@ -11,6 +11,7 @@ namespace AlfaguaraClub.Backend.Application.Services.PictureServices.QueryPictur
     public class PictureListVm
     {
         public long PictureId { get; set; }
+        public string PictureName { get; set; }
         public string PictureData { get; set; }
         public PictureType PictureType { get; set; }
         public long? StoryId { get; set; }
