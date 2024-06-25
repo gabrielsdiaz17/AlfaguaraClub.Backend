@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.BillingStatusServices.CreateBillingStatusCommands
 {
-    public class CreateBillingStatusCommandHandler : IRequestHandler<CreateBillingStatusCommand, int>
+    public class CreateBillingStatusCommandHandler : IRequestHandler<CreateBillingStatusCommand, CreateBillingStatusCommandResponse>
     {
         private readonly IBillingStatusRepository _billingStatusRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,13 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingStatusServices.Creat
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateBillingStatusCommand request, CancellationToken cancellationToken)
+        public async Task<CreateBillingStatusCommandResponse> Handle(CreateBillingStatusCommand request, CancellationToken cancellationToken)
         {
+            var response = new CreateBillingStatusCommandResponse();    
             var newBillingStatus = _mapper.Map<BillingStatus>(request);
             newBillingStatus = await _billingStatusRepository.AddAsync(newBillingStatus);
-            return newBillingStatus.BillingStatusId;
+            response.BillingStatusId = newBillingStatus.BillingStatusId;
+            return response;
         }
     }
 }

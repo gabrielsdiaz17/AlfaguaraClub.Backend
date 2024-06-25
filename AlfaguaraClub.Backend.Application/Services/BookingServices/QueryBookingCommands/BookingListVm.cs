@@ -1,4 +1,5 @@
-﻿using AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCommands;
+﻿using AlfaguaraClub.Backend.Application.Services.MembershipServices.QueryMembershipCommands;
+using AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace AlfaguaraClub.Backend.Application.Services.BookingServices.QueryBookin
     {
         public long BookingId { get; set; }
         public long UserId { get; set; }
+        public UserDto User { get; set; }
         public long SpaceActivityId { get; set; }
         public SpaceActivityDto SpaceActivity { get; set; }
         public long? MembershipId { get; set; }

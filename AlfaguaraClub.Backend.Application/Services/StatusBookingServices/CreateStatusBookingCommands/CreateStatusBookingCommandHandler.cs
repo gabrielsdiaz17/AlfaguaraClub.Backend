@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.StatusBookingServices.CreateStatusBookingCommands
 {
-    public class CreateStatusBookingCommandHandler : IRequestHandler<CreateStatusBookingCommand, int>
+    public class CreateStatusBookingCommandHandler : IRequestHandler<CreateStatusBookingCommand, CreateStatusBookingCommandResponse>
     {
         private readonly IStatusBookingRepository _statusBookingRepository;
         private IMapper _mapper;
@@ -20,11 +20,13 @@ namespace AlfaguaraClub.Backend.Application.Services.StatusBookingServices.Creat
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateStatusBookingCommand request, CancellationToken cancellationToken)
+        public async Task<CreateStatusBookingCommandResponse> Handle(CreateStatusBookingCommand request, CancellationToken cancellationToken)
         {
+            var response = new CreateStatusBookingCommandResponse();
             var newStatusB = _mapper.Map<StatusBooking>(request);
             newStatusB = await _statusBookingRepository.AddAsync(newStatusB);
-            return newStatusB.StatusBookingId;
+            response.StatusBookingId = newStatusB.StatusBookingId;
+            return response;
         }
     }
 }

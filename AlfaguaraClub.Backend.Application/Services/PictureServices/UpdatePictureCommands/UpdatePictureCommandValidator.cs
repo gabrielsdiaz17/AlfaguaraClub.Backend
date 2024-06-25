@@ -11,6 +11,8 @@ namespace AlfaguaraClub.Backend.Application.Services.PictureServices.UpdatePictu
     {
         public UpdatePictureCommandValidator()
         {
+            RuleFor(x => x.PictureName)
+               .NotEmpty().WithMessage("{PropertyName} es requerido.");
             RuleFor(x => x.PictureData)
                .NotEmpty().WithMessage("{PropertyName} es requerido.");
             RuleFor(x => x.PictureType)
