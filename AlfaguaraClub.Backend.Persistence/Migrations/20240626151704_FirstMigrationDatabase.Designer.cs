@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlfaguaraClub.Backend.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240612053117_FirstMigrationDatabase")]
+    [Migration("20240626151704_FirstMigrationDatabase")]
     partial class FirstMigrationDatabase
     {
         /// <inheritdoc />
@@ -597,6 +597,11 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.Property<string>("PictureData")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("PictureName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("PictureType")
                         .HasColumnType("int");
