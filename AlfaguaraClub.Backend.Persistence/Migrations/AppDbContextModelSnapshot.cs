@@ -595,6 +595,11 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("PictureName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
                     b.Property<int>("PictureType")
                         .HasColumnType("int");
 
