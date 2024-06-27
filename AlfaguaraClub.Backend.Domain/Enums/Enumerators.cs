@@ -22,4 +22,9 @@ namespace AlfaguaraClub.Backend.Domain.Enums
         Space =1,
         Story = 2,
     }
+    public enum ActivityVisibility
+    {
+        PrivateMembresy=1,
+        Public = 2,
+    }
 }

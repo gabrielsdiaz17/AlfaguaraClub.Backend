@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Services.CostcenterServices.QueryCostCenterCommands;
+using AlfaguaraClub.Backend.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Query
         public int AvailableQuorum { get; set; }
         public int? TypeActivityId { get; set; }
         public TypeActivityDto TypeActivity { get; set; }
+        public ActivityVisibility Visibility { get; set; }
         public long SpaceId { get; set; }
         public SpaceDto Space { get; set; }
         public DateTimeOffset ActivityDate { get; set; }

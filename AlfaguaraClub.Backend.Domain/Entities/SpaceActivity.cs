@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AlfaguaraClub.Backend.Domain.Enums;
 
 namespace AlfaguaraClub.Backend.Domain.Entities
 {
@@ -20,6 +21,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("TypeActivity")]
         public int? TypeActivityId { get; set; }
         public TypeActivity TypeActivity { get; set; }
+        public ActivityVisibility Visibility { get; set; }
 
         [ForeignKey("Space")]
         public long SpaceId { get; set; }
