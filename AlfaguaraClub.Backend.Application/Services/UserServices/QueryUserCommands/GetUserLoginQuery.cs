@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.UserServices.QueryUserCommands
 {
-    public class GetUserLoginQuery:IRequest<UserListVm>
+    public class GetUserLoginQuery:IRequest<GetUserLoginQueryCommandResponse>
     {
         public string? UniqueIdentifier { get; set; }
         public string? Email { get; set; }

@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.UserServices.QueryUserCommands;
 using AlfaguaraClub.Backend.Application.Services.UserServices.UpdateUserCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,9 +33,11 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         }
 
         [HttpPost("/GetUserLogin/", Name = "GetUserLogin")]
-        public async Task<ActionResult<UserListVm>> GetUserLogin([FromBody] GetUserLoginQuery query)
+        [Authorize]
+        public async Task<ActionResult<GetUserLoginQueryCommandResponse>> GetUserLogin([FromBody] GetUserLoginQuery query)
         {
             var userLogin = await _mediator.Send(query);
+            if (!userLogin.Success) { }
             return Ok(userLogin);
         }
         [HttpPost(Name = "AddUser")]

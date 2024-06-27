@@ -1,4 +1,8 @@
+using AlfaguaraClub.Backend.Api.OptionsSetup;
 using AlfaguaraClub.Backend.Application;
+using AlfaguaraClub.Backend.Infraestructure;
+using AlfaguaraClub.Backend.Infraestructure.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCustomaizedDataStore(builder.Configuration);
 builder.Services.AddCustomizedRepository();
 builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer();
+builder.Services.ConfigureOptions<JwtOptionsSetup>();
+builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
 
 
 var app = builder.Build();
@@ -26,6 +36,7 @@ if (app.Environment.IsDevelopment())
 app.UseCustomizedCors();
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
