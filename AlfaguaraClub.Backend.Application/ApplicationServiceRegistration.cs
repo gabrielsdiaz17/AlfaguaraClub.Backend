@@ -13,6 +13,7 @@ namespace AlfaguaraClub.Backend.Application
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMediatR(config=> config.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+
             return services;
         }
     }
