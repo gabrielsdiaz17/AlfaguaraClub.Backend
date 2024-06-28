@@ -1,6 +1,7 @@
 ﻿using AlfaguaraClub.Backend.Application.Services.NotificationServices.UpdateNotificationCommands;
 using AlfaguaraClub.Backend.Application.Services.NotificationTypeServices.CreateNotificationTypeCommands;
 using AlfaguaraClub.Backend.Application.Services.NotificationTypeServices.QueryNotificationTypeCommands;
+using AlfaguaraClub.Backend.Application.Services.NotificationTypeServices.UpdateNotificationTypeCommands;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +35,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task <ActionResult> Update([FromBody] UpdateNotificationCommand command)
+        public async Task <ActionResult> Update([FromBody] UpdateNotificationTypeCommand command)
         {
             await _mediator.Send(command);
             return NoContent();

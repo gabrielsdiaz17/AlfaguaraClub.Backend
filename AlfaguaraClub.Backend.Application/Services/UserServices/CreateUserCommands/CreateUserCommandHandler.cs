@@ -37,6 +37,8 @@ namespace AlfaguaraClub.Backend.Application.Services.UserServices.CreateUserComm
             }
             if (createUserCommandResponse.Success)
             {
+                byte[] bytesToEncode = System.Text.Encoding.UTF8.GetBytes(user.Password);
+                string base64String = Convert.ToBase64String(bytesToEncode);
                 user = await _userRepository.AddAsync(user);
                 createUserCommandResponse.UserId = user.UserId;
             }

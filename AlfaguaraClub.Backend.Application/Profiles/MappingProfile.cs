@@ -28,6 +28,9 @@ using AlfaguaraClub.Backend.Application.Services.MembershipServices.UpdateMember
 using AlfaguaraClub.Backend.Application.Services.NotificationServices.CreateNotificationCommands;
 using AlfaguaraClub.Backend.Application.Services.NotificationServices.QueryNotificationCommands;
 using AlfaguaraClub.Backend.Application.Services.NotificationServices.UpdateNotificationCommands;
+using AlfaguaraClub.Backend.Application.Services.NotificationTypeServices.CreateNotificationTypeCommands;
+using AlfaguaraClub.Backend.Application.Services.NotificationTypeServices.QueryNotificationTypeCommands;
+using AlfaguaraClub.Backend.Application.Services.NotificationTypeServices.UpdateNotificationTypeCommands;
 using AlfaguaraClub.Backend.Application.Services.ParameterServices.CreateParameterCommands;
 using AlfaguaraClub.Backend.Application.Services.ParameterServices.QueryParameterCommands;
 using AlfaguaraClub.Backend.Application.Services.ParameterServices.UpdateParameterCommands;
@@ -130,6 +133,11 @@ namespace AlfaguaraClub.Backend.Application.Profiles
             CreateMap<Notification, NotificationListVm>().ReverseMap();
             CreateMap<Notification, UpdateNotificationCommand>().ReverseMap();
             CreateMap<NotificationType, NotificationTypeDto>().ReverseMap();
+
+            CreateMap<NotificationType,CreateNotificationTypeCommand>().ReverseMap();
+            CreateMap<NotificationType, UpdateNotificationTypeCommand>().ReverseMap();
+            CreateMap<NotificationType, NotificationTypeListVm>().ReverseMap();
+
 
             CreateMap<Parameter, CreateParameterCommand>().ReverseMap();
             CreateMap<Parameter, ParameterListVm>().ReverseMap();

@@ -22,7 +22,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         public async Task<ActionResult<List<BillingStatusListVm>>> GetBillingStatus()
         {
             var listBillingStatus = new GetBillingStatusListQuery();
-            return Ok(_mediator.Send(listBillingStatus));
+            return Ok(await _mediator.Send(listBillingStatus));
         }
         [HttpPost(Name = "AddBillingStatus")]
         public async Task<ActionResult<CreateBillingStatusCommandResponse>> Create([FromBody] CreateBillingStatusCommand createBillingStatusCommand)
