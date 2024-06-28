@@ -14,7 +14,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         private readonly IMediator _mediator;
         public MembershipController(IMediator mediator)
         {
-            
+            _mediator = mediator;
         }
         [HttpGet(Name = "GetMemberships")]
         [ProducesResponseType(StatusCodes.Status200OK)]

@@ -14,7 +14,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         private readonly IMediator _mediator;
         public CategoryController(IMediator mediator)
         {
-            
+            _mediator = mediator;
         }
         [HttpGet(Name = "GetAllCategories")]
         [ProducesResponseType(StatusCodes.Status200OK)]

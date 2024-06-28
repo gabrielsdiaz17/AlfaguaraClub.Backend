@@ -31,7 +31,7 @@ namespace AlfaguaraClub.Backend.Application.Services.TypeActivityServices.Update
             if (validationResult.Errors.Count > 0)
                 throw new ValidationException(validationResult);
             _mapper.Map(request, typeActivityToUpdate, typeof(UpdateTypeActivityCommand), typeof(TypeActivity));
-            _typeActivityRepository.UpdateAsync(typeActivityToUpdate);
+            await _typeActivityRepository.UpdateAsync(typeActivityToUpdate);
         }
     }
 }

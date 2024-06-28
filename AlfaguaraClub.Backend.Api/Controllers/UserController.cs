@@ -32,8 +32,8 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(await _mediator.Send(user));
         }
 
-        [HttpPost("/GetUserLogin/", Name = "GetUserLogin")]
-        [Authorize]
+        [HttpPost("/api/User/GetUserLogin", Name = "GetUserLogin")]
+        //[Authorize]
         public async Task<ActionResult<GetUserLoginQueryCommandResponse>> GetUserLogin([FromBody] GetUserLoginQuery query)
         {
             var userLogin = await _mediator.Send(query);

@@ -28,7 +28,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         [HttpPost(Name = "AddPaymentMethod")]
         public async Task<ActionResult<CreatePaymentMethodCommandResponse>> Create([FromBody] CreatePaymentMethodCommand createPaymentMethodCommand)
         {
-            var newPaymentMethod = await _mediator.Send(new CreatePaymentMethodCommand());
+            var newPaymentMethod = await _mediator.Send(createPaymentMethodCommand);
             return Ok(newPaymentMethod);
         }
 
