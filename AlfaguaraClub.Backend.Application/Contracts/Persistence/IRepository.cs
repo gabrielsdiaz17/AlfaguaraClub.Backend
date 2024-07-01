@@ -22,5 +22,6 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
         IQueryable<T> Query();
 
         IQueryable<T> QueryNoTracking();
+        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
     }
 }
