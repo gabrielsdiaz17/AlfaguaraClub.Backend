@@ -60,5 +60,11 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         public IQueryable<T> Query() => _dbContext.Set<T>();
 
         public IQueryable<T> QueryNoTracking() => _dbContext.Set<T>().AsNoTracking();
+        public async Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities)
+        {
+            await _dbContext.AddRangeAsync(entities);
+            await _dbContext.SaveChangesAsync();
+            return entities;
+        }
     }
 }

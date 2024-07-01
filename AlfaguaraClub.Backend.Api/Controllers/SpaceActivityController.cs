@@ -49,6 +49,13 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(response);
         }
 
+        [HttpPost("AddMassiveSpaceActivity", Name = "AddMassiveSpaceActivity")]
+        public async Task<ActionResult<CreateSpaceActivityCommandResponse>> AddMassiveSpaceActivity([FromBody] CreateMassiveSpaceActivityCommand createMassiveSpaceActivityCommand)
+        {
+            var response = await _mediator.Send(createMassiveSpaceActivityCommand);
+            return Ok(response);
+        }
+
         [HttpPut(Name = "UpdateSpaceActivity")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
