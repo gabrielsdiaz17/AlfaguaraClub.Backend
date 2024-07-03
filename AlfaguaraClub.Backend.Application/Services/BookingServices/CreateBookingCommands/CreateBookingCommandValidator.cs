@@ -20,9 +20,6 @@ namespace AlfaguaraClub.Backend.Application.Services.BookingServices.CreateBooki
                 .NotEmpty().WithMessage("{PropertyName} es requerido.")
                 .NotNull().GreaterThan(0);
 
-            RuleFor(x => x.StatusBookingId)
-                .NotEmpty().WithMessage("{PropertyName} es requerido.")
-                .NotNull().GreaterThan(0);
         }
     }
 }

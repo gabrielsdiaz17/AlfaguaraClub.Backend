@@ -26,7 +26,7 @@ namespace AlfaguaraClub.Backend.Application.Services.CategoryServices.CreateCate
             var newCategory = _mapper.Map<Category>(request);
             var validator = new CreateCategoryCommandValidator();
             var validationResult = await validator.ValidateAsync(request);
-            if(validationResult.Errors.Count >= 0)
+            if(validationResult.Errors.Count > 0)
             {
                 createCategoryCommandResponse.Success = false;
                 createCategoryCommandResponse.ValidationErrors = new List<string>();
