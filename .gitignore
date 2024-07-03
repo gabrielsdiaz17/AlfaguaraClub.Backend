@@ -19,3 +19,13 @@
 /AlfaguaraClub.Persistence.IntegrationTest/bin/Debug/net8.0
 /AlfaguaraClub.Persistence.IntegrationTest/obj/Debug/net8.0
 /AlfaguaraClub.Persistence.IntegrationTest/obj
+/AlfaguaraClub.Backend.Api/bin/Release/net8.0
+/AlfaguaraClub.Backend.Api/.config
+/AlfaguaraClub.Backend.Api/Properties/PublishProfiles
+/AlfaguaraClub.Backend.Api/AlfaguaraClub.Backend.Api.csproj.user
+/AlfaguaraClub.Backend.Application/bin/Release/net8.0
+/AlfaguaraClub.Backend.Domain/bin/Release/net8.0
+/AlfaguaraClub.Application.UnitTest/bin/Release/net8.0
+/AlfaguaraClub.Backend.Infraestructure/bin/Release/net8.0
+/AlfaguaraClub.Backend.Persistence/bin/Release/net8.0
+/AlfaguaraClub.Persistence.IntegrationTest/bin/Release/net8.0
