@@ -9,8 +9,8 @@
                 builder.AllowAnyHeader();
                 builder.AllowAnyMethod();
                 builder.AllowAnyOrigin();
-                builder.SetIsOriginAllowed(pol=>true);
-                builder.AllowCredentials();
+                builder.SetIsOriginAllowed(pol => true);
+
             });
             return app;
         }
