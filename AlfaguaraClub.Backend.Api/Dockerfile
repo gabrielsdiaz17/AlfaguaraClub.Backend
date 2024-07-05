@@ -10,6 +10,11 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["AlfaguaraClub.Backend.Api/AlfaguaraClub.Backend.Api.csproj", "AlfaguaraClub.Backend.Api/"]
+COPY ["AlfaguaraClub.Backend.Application/AlfaguaraClub.Backend.Application.csproj", "AlfaguaraClub.Backend.Application/"]
+COPY ["AlfaguaraClub.Backend.Infraestructure/AlfaguaraClub.Backend.Infraestructure.csproj", "AlfaguaraClub.Backend.Infraestructure/"]
+COPY ["AlfaguaraClub.Backend.Domain/AlfaguaraClub.Backend.Domain.csproj", "AlfaguaraClub.Backend.Domain/"]
+COPY ["AlfaguaraClub.Backend.Persistence/AlfaguaraClub.Backend.Persistence.csproj", "AlfaguaraClub.Backend.Persistence/"]
+
 RUN dotnet restore "./AlfaguaraClub.Backend.Api/AlfaguaraClub.Backend.Api.csproj"
 COPY . .
 WORKDIR "/src/AlfaguaraClub.Backend.Api"
