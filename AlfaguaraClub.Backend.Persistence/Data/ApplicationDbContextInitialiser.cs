@@ -14,30 +14,11 @@ namespace AlfaguaraClub.Backend.Persistence.Data
         {
             using var scope = app.Services.CreateScope();
 
-            var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
-
-            await initialiser.InitialiseAsync();
-        }
-    }
-    public class ApplicationDbContextInitialiser
-    {
-        private readonly ILogger<ApplicationDbContextInitialiser> _logger;
-        private readonly AppDbContext _context;
-        public ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitialiser> logger, AppDbContext context)
-        {
-            _logger = logger;
-            _context = context;
-        }
-        public async Task InitialiseAsync()
-        {
-            try
+            var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            if (context != null)
             {
-                await _context.Database.MigrateAsync();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while initialising the database.");
-                throw;
+                await context.Database.EnsureDeletedAsync();
+                await context.Database.MigrateAsync();
             }
         }
     }
