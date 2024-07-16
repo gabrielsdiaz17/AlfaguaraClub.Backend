@@ -19,7 +19,7 @@ namespace AlfaguaraClub.Backend.Application.Services.ContactRequestServices.Crea
         public StatusRequest StatusRequest { get; set; }
         [ForeignKey("SpaceId")]
         public long? SpaceId { get; set; }
-        public Space Space { get; set; }
+        public DateTime DateRequest { get; set; }
         public bool IsActive { get; set; }
     }
 }
