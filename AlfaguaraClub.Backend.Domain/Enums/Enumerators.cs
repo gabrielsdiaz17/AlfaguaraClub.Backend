@@ -27,4 +27,9 @@ namespace AlfaguaraClub.Backend.Domain.Enums
         PrivateMembresy=1,
         Public = 2,
     }
+    public enum StatusRequest
+    {
+        Opened=1,
+        Closed=2,
+    }
 }

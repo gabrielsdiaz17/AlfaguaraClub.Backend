@@ -35,6 +35,7 @@ namespace AlfaguaraClub.Backend.Api
             services.AddTransient<IBookingRepository, BookingRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<IContactRequestRepository, ContactRequestRepository>();
             services.AddTransient<ICostCenterRepository, CostCenterRepository>();
             services.AddTransient<IIdentificationTypeRepository, IdentificationTypeRepository>();
             services.AddTransient<IMembershipRepository, MembershipRepository>();
