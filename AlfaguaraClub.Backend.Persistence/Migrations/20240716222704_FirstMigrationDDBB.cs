@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AlfaguaraClub.Backend.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigrationDatabase : Migration
+    public partial class FirstMigrationDDBB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -496,6 +496,40 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "ContactRequest",
+                columns: table => new
+                {
+                    ContactRequestId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PhoneNumber = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Message = table.Column<string>(type: "text", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    StatusRequest = table.Column<int>(type: "int", nullable: false),
+                    SpaceId = table.Column<long>(type: "bigint", nullable: true),
+                    DateRequest = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
+                    UpdatedDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    UpdatedById = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContactRequest", x => x.ContactRequestId);
+                    table.ForeignKey(
+                        name: "FK_ContactRequest_Space_SpaceId",
+                        column: x => x.SpaceId,
+                        principalTable: "Space",
+                        principalColumn: "SpaceId");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "SpaceActivity",
                 columns: table => new
                 {
@@ -795,6 +829,11 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                 column: "IdentificationTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ContactRequest_SpaceId",
+                table: "ContactRequest",
+                column: "SpaceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CostCenter_SiteId",
                 table: "CostCenter",
                 column: "SiteId");
@@ -875,6 +914,9 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "BillingDetail");
+
+            migrationBuilder.DropTable(
+                name: "ContactRequest");
 
             migrationBuilder.DropTable(
                 name: "Notification");

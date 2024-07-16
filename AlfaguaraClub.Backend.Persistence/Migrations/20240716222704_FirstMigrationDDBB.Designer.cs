@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlfaguaraClub.Backend.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240627174852_FirstMigrationDatabase")]
-    partial class FirstMigrationDatabase
+    [Migration("20240716222704_FirstMigrationDDBB")]
+    partial class FirstMigrationDDBB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -297,6 +297,64 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                     b.HasIndex("IdentificationTypeId");
 
                     b.ToTable("Company");
+                });
+
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.ContactRequest", b =>
+                {
+                    b.Property<long>("ContactRequestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("ContactRequestId"));
+
+                    b.Property<long>("CreatedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DateRequest")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<long?>("SpaceId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("StatusRequest")
+                        .HasColumnType("int");
+
+                    b.Property<long>("UpdatedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("UpdatedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("ContactRequestId");
+
+                    b.HasIndex("SpaceId");
+
+                    b.ToTable("ContactRequest");
                 });
 
             modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.CostCenter", b =>
@@ -1208,6 +1266,15 @@ namespace AlfaguaraClub.Backend.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("IdentificationType");
+                });
+
+            modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.ContactRequest", b =>
+                {
+                    b.HasOne("AlfaguaraClub.Backend.Domain.Entities.Space", "Space")
+                        .WithMany()
+                        .HasForeignKey("SpaceId");
+
+                    b.Navigation("Space");
                 });
 
             modelBuilder.Entity("AlfaguaraClub.Backend.Domain.Entities.CostCenter", b =>
