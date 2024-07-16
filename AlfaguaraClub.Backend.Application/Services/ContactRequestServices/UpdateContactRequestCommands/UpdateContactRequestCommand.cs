@@ -20,7 +20,7 @@ namespace AlfaguaraClub.Backend.Application.Services.ContactRequestServices.Upda
         public string Message { get; set; }
         public StatusRequest StatusRequest { get; set; }
         public long? SpaceId { get; set; }
-        public Space Space { get; set; }
+        public DateTime DateRequest { get; set; }
         public bool IsActive { get; set; }
     }
 }

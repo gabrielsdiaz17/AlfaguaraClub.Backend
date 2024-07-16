@@ -24,6 +24,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("SpaceId")]
         public long? SpaceId { get; set; }
         public Space Space { get; set; }
+        public DateTime DateRequest { get; set; }
         public bool IsActive { get; set; }
     }
 }
