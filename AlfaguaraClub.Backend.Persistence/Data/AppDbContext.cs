@@ -22,6 +22,7 @@ namespace AlfaguaraClub.Backend.Persistence.Data
         public DbSet<Booking> Booking { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Company> Company { get; set; }
+        public DbSet<ContactRequest> ContactRequest { get; set; }
         public DbSet<CostCenter> CostCenter { get; set; }
         public DbSet<IdentificationType> IdentificationType { get; set; }
         public DbSet<Membership> Membership { get; set; }
@@ -40,6 +41,7 @@ namespace AlfaguaraClub.Backend.Persistence.Data
         public DbSet<Tax> Tax { get; set; }
         public DbSet<TypeActivity> TypeActivity { get; set; }
         public DbSet<User> User { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

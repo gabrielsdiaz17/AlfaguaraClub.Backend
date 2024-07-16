@@ -16,6 +16,9 @@ using AlfaguaraClub.Backend.Application.Services.CategoryServices.UpdateCategory
 using AlfaguaraClub.Backend.Application.Services.CompanyServices;
 using AlfaguaraClub.Backend.Application.Services.CompanyServices.CreateCompanyCommands;
 using AlfaguaraClub.Backend.Application.Services.CompanyServices.UpdateCompanyCommands;
+using AlfaguaraClub.Backend.Application.Services.ContactRequestServices.CreateContactRequestCommands;
+using AlfaguaraClub.Backend.Application.Services.ContactRequestServices.QueryContactRequestCommands;
+using AlfaguaraClub.Backend.Application.Services.ContactRequestServices.UpdateContactRequestCommands;
 using AlfaguaraClub.Backend.Application.Services.CostcenterServices.CreateCostCenterCommands;
 using AlfaguaraClub.Backend.Application.Services.CostcenterServices.QueryCostCenterCommands;
 using AlfaguaraClub.Backend.Application.Services.CostcenterServices.UpdateCostCenterCommands;
@@ -200,6 +203,10 @@ namespace AlfaguaraClub.Backend.Application.Profiles
             CreateMap<User, UpdateUserCommand>().ReverseMap();
             CreateMap<IdentificationType, IdentificationTypeDto>().ReverseMap();
             CreateMap<Role, RoleDto>().ReverseMap();
+
+            CreateMap<ContactRequest,ContactRequestListVm>().ReverseMap();
+            CreateMap<ContactRequest,CreateContactRequestCommand>().ReverseMap();
+            CreateMap<ContactRequest,UpdateContactRequestCommand>().ReverseMap();
 
 
         }
