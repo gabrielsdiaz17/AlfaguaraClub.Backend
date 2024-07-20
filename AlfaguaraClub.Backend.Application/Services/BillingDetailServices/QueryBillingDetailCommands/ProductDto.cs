@@ -10,9 +10,10 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingDetailServices.Query
     {
         public long ProductId { get; set; }
         public string ProductCode { get; set; }
+        public string ProductName { get; set; }
         public string ProductDescription { get; set; }
         public decimal UnitPrice { get; set; }
-        public int TaxId { get; set; }
+        public int? TaxId { get; set; }
         public bool IsActive { get; set; }
 
     }

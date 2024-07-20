@@ -186,6 +186,7 @@ namespace AlfaguaraClub.Backend.Application.Profiles
             CreateMap<Story, CreateStoryCommand>().ReverseMap();
             CreateMap<Story, StoryListVm>().ReverseMap();
             CreateMap<Story, UpdateStoryCommand>().ReverseMap();
+            CreateMap<Story, StoryDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
 
             CreateMap<Tax, CreateTaxCommand>().ReverseMap();
