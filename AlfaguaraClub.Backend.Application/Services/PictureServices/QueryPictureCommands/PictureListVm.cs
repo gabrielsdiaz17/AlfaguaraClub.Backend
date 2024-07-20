@@ -1,4 +1,5 @@
-﻿using AlfaguaraClub.Backend.Application.Services.CostcenterServices.QueryCostCenterCommands;
+﻿using AlfaguaraClub.Backend.Application.Services.BillingDetailServices.QueryBillingDetailCommands;
+using AlfaguaraClub.Backend.Application.Services.CostcenterServices.QueryCostCenterCommands;
 using AlfaguaraClub.Backend.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,11 @@ namespace AlfaguaraClub.Backend.Application.Services.PictureServices.QueryPictur
         public string PictureData { get; set; }
         public PictureType PictureType { get; set; }
         public long? StoryId { get; set; }
+        public StoryDto Story { get; set; }
         public long? SpaceId { get; set; }
+        public SpaceDto Space { get; set; }
+        public long? ProductId { get; set; }
+        public ProductDto Product { get; set; }
         public bool IsActive { get; set; }
 
     }

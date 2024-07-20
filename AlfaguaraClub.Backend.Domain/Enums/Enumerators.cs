@@ -21,6 +21,7 @@ namespace AlfaguaraClub.Backend.Domain.Enums
     {
         Space =1,
         Story = 2,
+        Product = 3,
     }
     public enum ActivityVisibility
     {

@@ -18,6 +18,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
             var product = await QueryNoTracking().Where(product=>product.ProductCode == code)
                                                  .Include(product=>product.Tax)
+                                                 .Include(product=> product.Pictures)
                                                  .FirstOrDefaultAsync();
             return product;
         }
@@ -26,6 +27,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
             var product = await QueryNoTracking().Where(product=>product.ProductId == id)
                                                  .Include(product => product.Tax)
+                                                 .Include(product => product.Pictures)
                                                  .FirstOrDefaultAsync();
             return product;
         }
@@ -34,6 +36,8 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
             var products = await QueryNoTracking().Where(product=> product.IsActive)
                                                   .Include(product => product.Tax)
+                                                  .Include(product => product.Pictures)
+                                                  .OrderByDescending(product => product.ProductId)
                                                   .ToListAsync();
             return products;
         }
