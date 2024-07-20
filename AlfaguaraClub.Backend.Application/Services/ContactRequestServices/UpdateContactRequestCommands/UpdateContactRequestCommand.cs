@@ -18,6 +18,7 @@ namespace AlfaguaraClub.Backend.Application.Services.ContactRequestServices.Upda
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
+        public string? ObservationResponse { get; set; }
         public StatusRequest StatusRequest { get; set; }
         public long? SpaceId { get; set; }
         public DateTime DateRequest { get; set; }

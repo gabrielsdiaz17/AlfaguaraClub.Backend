@@ -20,6 +20,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public string Email { get; set; }
         [Column(TypeName = "text")]
         public string Message { get; set; }
+        public string? ObservationResponse { get; set; }
         public StatusRequest StatusRequest { get; set; }
         [ForeignKey("SpaceId")]
         public long? SpaceId { get; set; }
