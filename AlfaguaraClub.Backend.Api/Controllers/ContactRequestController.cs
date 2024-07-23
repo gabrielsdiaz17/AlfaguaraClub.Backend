@@ -26,13 +26,13 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var contactRequest = await _mediator.Send(new GetContactRequestQuery());
             return Ok(contactRequest);
         }
-        [HttpGet("/GetContactRequestBySpace/{id}", Name = "GetContactRequestBySpace")]
+        [HttpGet("GetContactRequestBySpace/{id}", Name = "GetContactRequestBySpace")]
         public async Task<ActionResult<List<ContactRequestListVm>>> GetContactRequestBySpace(long id)
         {
             var contactRequest = new GetContactRequestBySpace() { SpaceId = id };
             return Ok(await _mediator.Send(contactRequest));
         }
-        [HttpGet("/GetContactRequestByStatus/{status}", Name = "GetContactRequestByStatus")]
+        [HttpGet("GetContactRequestByStatus/{status}", Name = "GetContactRequestByStatus")]
         public async Task<ActionResult<List<ContactRequestListVm>>> GetContactRequestByStatus(StatusRequest status)
         {
             var contactRequest =  new GetContactRequestByStatus() { Status = status };
