@@ -28,7 +28,8 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
             var allSpaces = await QueryNoTracking().Where(space => space.IsActive)
                                                    .Include(space=>space.Pictures)
                                                    .Include(space=> space.SpaceActivities)
-                                                   //.Take(quantityRecords ?? 10)
+                                                   .Include(space=> space.CostCenter)
+                                                   .Take(quantityRecords ?? 10)
                                                    .OrderByDescending(space => space.SpaceId)
                                                    .ToListAsync();
                                                    

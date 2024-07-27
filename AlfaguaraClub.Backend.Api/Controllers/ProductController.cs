@@ -24,14 +24,14 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var products = await _mediator.Send(new GetProductListQuery());
             return Ok(products);
         }
-        [HttpGet("/GetProductById/{id}", Name = "GetProductById")]
+        [HttpGet("GetProductById/{id}", Name = "GetProductById")]
         public async Task<ActionResult<ProductListVm>> GetProductById(long id)
         {
             var product = new GetProductQuery() { ProductId = id };
             return Ok(await _mediator.Send(product));
         }
 
-        [HttpGet("/GetProductByCode/{code}", Name = "GetProductByCode")]
+        [HttpGet("GetProductByCode/{code}", Name = "GetProductByCode")]
         public async Task<ActionResult<ProductListVm>> GetProductByCode(string code)
         {
             var product = new GetProductCodeQuery() { Code = code };
