@@ -24,14 +24,14 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var taxes = await _mediator.Send(new GetListTaxQuery());
             return Ok(taxes);
         }
-        [HttpGet("/GetTaxById/{id}", Name = "GetTaxById")]
+        [HttpGet("GetTaxById/{id}", Name = "GetTaxById")]
         public async Task<ActionResult<TaxListVm>> GetTaxById(int id)
         {
             var tax = new GetTaxQuery() { TaxId = id };
             return Ok(await _mediator.Send(tax));
         }
 
-        [HttpGet("/GetTaxByName/{name}", Name = "GetTaxByName")]
+        [HttpGet("GetTaxByName/{name}", Name = "GetTaxByName")]
         public async Task<ActionResult<TaxListVm>> GetTaxByName(string name)
         {
             var tax = new GetTaxByNameQuery() { TaxName = name };

@@ -14,12 +14,14 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.UpdateProdu
             RuleFor(x => x.ProductCode)
                 .NotEmpty().WithMessage("{PropertyName} es requerido.")
                 .MaximumLength(20).WithMessage("{PropertyName} no debe exceder 20 carácteres.");
+            RuleFor(x => x.ProductName)
+                .NotEmpty().WithMessage("{PropertyName} es requerido.")
+                .MaximumLength(200).WithMessage("{PropertyName} no debe exceder 200 carácteres.");
             RuleFor(x => x.ProductDescription)
-                .NotEmpty().WithMessage("{PropertyName} es requerido.")
-                .MaximumLength(20).WithMessage("{PropertyName} no debe exceder 20 carácteres.");
+               .NotEmpty().WithMessage("{PropertyName} es requerido.")
+               .MaximumLength(500).WithMessage("{PropertyName} no debe exceder 500 carácteres.");
             RuleFor(x => x.UnitPrice)
-                .NotEmpty().WithMessage("{PropertyName} es requerido.")
-                .GreaterThan(0).WithMessage("{PropertyName} debe tener un valor mayor de Cero.");
+                .NotEmpty().WithMessage("{PropertyName} es requerido.");
         }
     }
 }
