@@ -25,21 +25,21 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(bookings);
         }
 
-        [HttpGet("/GetBookingById/{id}", Name = "GetBookingById")]
+        [HttpGet("GetBookingById/{id}", Name = "GetBookingById")]
         public async Task<ActionResult<BookingListVm>> GetBookingById(long id)
         {
             var booking = new GetBookingByBookingQuery() { BookingId = id };
             return Ok(await _mediator.Send(booking));
         }
 
-        [HttpGet("/GetBookingByMembership/{id}", Name = "GetBookingByMembership")]
+        [HttpGet("GetBookingByMembership/{id}", Name = "GetBookingByMembership")]
         public async Task<ActionResult<List<BookingListVm>>> GetBookingByMembership(long id)
         {
             var bookingsByMembership = new GetBookingsByMembershipQuery() { MembershipId = id };
             return Ok( await _mediator.Send(bookingsByMembership));
         }
 
-        [HttpGet("/GetBookingBySpaceActivity/{id}", Name = "GetBookingBySpaceActivity")]
+        [HttpGet("GetBookingBySpaceActivity/{id}", Name = "GetBookingBySpaceActivity")]
         public async Task<ActionResult<List<BookingListVm>>> GetBookingBySpaceActivity(long id)
         {
             var bookingsBySpaceActivity = new GetBookingsBySpaceActivityQuery() { SpaceActivityId = id };

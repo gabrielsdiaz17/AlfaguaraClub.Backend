@@ -39,7 +39,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
 
         public async Task<List<Booking>> GetBookingsByMembership(long membershipId)
         {
-            var bookingsByMembership = await QueryNoTracking().Where(book=>book.MembershipId == membershipId)
+            var bookingsByMembership = await QueryNoTracking().Where(book=>book.MembershipId == membershipId && book.IsActive)
                                              .Include(book => book.User)
                                              .Include(book => book.SpaceActivity)
                                              .Include(book => book.Membership)
@@ -51,7 +51,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
 
         public async Task<List<Booking>> GetBookingsBySpaceActivityId(long spaceActivityId)
         {
-            var bookingsBySpaceActivity = await QueryNoTracking().Where(book => book.SpaceActivityId == spaceActivityId)
+            var bookingsBySpaceActivity = await QueryNoTracking().Where(book => book.SpaceActivityId == spaceActivityId && book.IsActive)
                                              .Include(book => book.User)
                                              .Include(book => book.SpaceActivity)
                                              .Include(book => book.Membership)

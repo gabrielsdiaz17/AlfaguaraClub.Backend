@@ -31,7 +31,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
 
         public async Task<List<SpaceActivity>> GetSpaceActivityBySpace(long spaceId)
         {
-            var spaceActivity = await QueryNoTracking().Where(sp=> sp.SpaceId == spaceId)
+            var spaceActivity = await QueryNoTracking().Where(sp=> sp.SpaceId == spaceId && sp.IsActive)
                                                        .Include(sp=> sp.Bookings)
                                                        .OrderByDescending(ac => ac.SpaceActivityId)
                                                        .ToListAsync();
