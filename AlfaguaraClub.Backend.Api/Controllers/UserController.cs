@@ -17,7 +17,8 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet(Name = "GetAllUsers")]
+        
+        [HttpGet(Name = "GetAllUsers"), Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult<List<UserListVm>>> GetAllUsers()
@@ -25,15 +26,14 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var users = await _mediator.Send(new GetUserListQuery());
             return Ok(users);
         }
-        [HttpGet("/GetUserById/{id}", Name = "GetUserById")]
+        [HttpGet("GetUserById/{id}", Name = "GetUserById")]
         public async Task<ActionResult<UserListVm>> GetUserById(long id)
         {
             var user = new GetUserQuery() { UserId = id };
             return Ok(await _mediator.Send(user));
         }
 
-        [HttpPost("/api/User/GetUserLogin", Name = "GetUserLogin")]
-        //[Authorize]
+        [HttpPost("GetUserLogin", Name = "GetUserLogin")]
         public async Task<ActionResult<GetUserLoginQueryCommandResponse>> GetUserLogin([FromBody] GetUserLoginQuery query)
         {
             var userLogin = await _mediator.Send(query);
@@ -51,6 +51,16 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Update([FromBody] UpdateUserCommand updateUserCommand)
+        {
+            await _mediator.Send(updateUserCommand);
+            return NoContent();
+        }
+
+        [HttpPut("UpdateUserPassword", Name = "UpdateUserPassword")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> UpdateUserPassword([FromBody] UpdateUserPasswordCommand updateUserCommand)
         {
             await _mediator.Send(updateUserCommand);
             return NoContent();
