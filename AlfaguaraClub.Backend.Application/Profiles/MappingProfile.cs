@@ -202,6 +202,7 @@ namespace AlfaguaraClub.Backend.Application.Profiles
             CreateMap<User, UserListVm>().ReverseMap();
             CreateMap<User, CreateUserCommand>().ReverseMap();
             CreateMap<User, UpdateUserCommand>().ReverseMap();
+            CreateMap<User, UpdateUserPasswordCommand>().ReverseMap();
             CreateMap<IdentificationType, IdentificationTypeDto>().ReverseMap();
             CreateMap<Role, RoleDto>().ReverseMap();
 

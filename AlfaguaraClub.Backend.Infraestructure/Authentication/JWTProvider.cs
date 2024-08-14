@@ -24,7 +24,7 @@ namespace AlfaguaraClub.Backend.Infraestructure.Authentication
             var claims = new Claim[] 
             {
                 new Claim(JwtRegisteredClaimNames.Sub,user.UserId.ToString()),
-                new Claim(JwtRegisteredClaimNames.Name,user.Email)
+                new Claim(JwtRegisteredClaimNames.Name,user.Name + user.LastName)
             };
             var signinCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)), SecurityAlgorithms.HmacSha256);
@@ -32,9 +32,9 @@ namespace AlfaguaraClub.Backend.Infraestructure.Authentication
             var token = new JwtSecurityToken(
                 _options.Issuer,
                 _options.Audience,
-                null,
-                null,
-                DateTime.UtcNow.AddHours(1),
+                claims,
+                notBefore:DateTime.Now,
+                expires:DateTime.Now.AddHours(1),
                 signinCredentials);
             string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
             return tokenValue;
