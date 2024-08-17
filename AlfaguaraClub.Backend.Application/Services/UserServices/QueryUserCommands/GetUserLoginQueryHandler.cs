@@ -43,7 +43,8 @@ namespace AlfaguaraClub.Backend.Application.Services.UserServices.QueryUserComma
             }
             //Generate JWT
             response.User = userLogin;
-            response.token = _jwtProvider.Generate(userLogin);
+            if(response.User != null) 
+                response.token = _jwtProvider.Generate(userLogin);
             return response;
         }
     }

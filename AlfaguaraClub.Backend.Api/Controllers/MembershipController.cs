@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.MembershipServices.QueryMembershipCommands;
 using AlfaguaraClub.Backend.Application.Services.MembershipServices.UpdateMembershipCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet(Name = "GetMemberships")]
+        [HttpGet(Name = "GetMemberships"), Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult<List<MembershipListVm>>> GetMemberships()
@@ -24,7 +25,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var memberships = await _mediator.Send(new GetMembershipListQuery());
             return memberships;
         }
-        [HttpGet("/GetMembershipById/{id}", Name = "GetMembershipById")]
+        [HttpGet("/GetMembershipById/{id}", Name = "GetMembershipById"), Authorize]
         public async Task<ActionResult<MembershipListVm>> GetMembershipById(long id) 
         {
             var membership = new GetMemberShipQuery() { MembershipId = id };
@@ -38,13 +39,13 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return await _mediator.Send(membership);
         }
 
-        [HttpPost(Name = "AddMembership")]
+        [HttpPost(Name = "AddMembership"), Authorize]
         public async Task<ActionResult<CreateMembershipCommandResponse>> Create([FromBody] CreateMembershipCommand createMembershipCommand)
         {
             var response = await _mediator.Send(createMembershipCommand);
             return response;
         }
-        [HttpPut(Name = "UpdateMembership")]
+        [HttpPut(Name = "UpdateMembership"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

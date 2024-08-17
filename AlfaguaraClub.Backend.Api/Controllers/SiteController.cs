@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.SiteServices.QuerySiteCommands;
 using AlfaguaraClub.Backend.Application.Services.SiteServices.UpdateCompanyCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,13 +25,13 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var sites = await _mediator.Send(new GetSiteListQuery());
             return Ok(sites);
         }
-        [HttpPost(Name = "AddSite")]
+        [HttpPost(Name = "AddSite"), Authorize]
         public async Task<ActionResult<CreateSiteCommandResponse>> AddSite([FromBody] CreateSiteCommand createSiteCommand)
         {
             var newSite = await _mediator.Send(createSiteCommand);
             return Ok(newSite);
         }
-        [HttpPut(Name = "UpdateSite")]
+        [HttpPut(Name = "UpdateSite"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

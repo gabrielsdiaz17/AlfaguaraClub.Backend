@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.ProductServices.QueryProductCommands;
 using AlfaguaraClub.Backend.Application.Services.ProductServices.UpdateProductCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,14 +39,14 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(await _mediator.Send(product));
         }
 
-        [HttpPost(Name = "AddProduct")]
+        [HttpPost(Name = "AddProduct"), Authorize]
         public async Task<ActionResult<CreateProductCommandResponse>> Create([FromBody] CreateProductCommand createProductCommand)
         {
             var newProduct = await _mediator.Send(createProductCommand);
             return Ok(newProduct);
         }
 
-        [HttpPut(Name = "UpdateProduct")]
+        [HttpPut(Name = "UpdateProduct"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

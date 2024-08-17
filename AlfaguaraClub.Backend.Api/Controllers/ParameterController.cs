@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.ParameterServices.QueryParameterCommands;
 using AlfaguaraClub.Backend.Application.Services.ParameterServices.UpdateParameterCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,14 +31,14 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var parameter = new GetParameterQuery() { ParameterName = name };
             return Ok(await _mediator.Send(parameter));
         }
-        [HttpPost(Name = "AddParameter")]
+        [HttpPost(Name = "AddParameter"), Authorize]
         public async Task<ActionResult<CreateParameterCommandResponse>> Create([FromBody] CreateParameterCommand createParameterCommand)
         {
             var newParameter = await _mediator.Send(createParameterCommand);
             return Ok(newParameter);
         }
 
-        [HttpPut(Name = "UpdateParameter")]
+        [HttpPut(Name = "UpdateParameter"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

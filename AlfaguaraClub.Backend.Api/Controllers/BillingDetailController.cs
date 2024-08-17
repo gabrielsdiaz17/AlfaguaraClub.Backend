@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.BillingDetailServices.QueryBillingDetailCommands;
 using AlfaguaraClub.Backend.Application.Services.BillingDetailServices.UpdateBillingDetailCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet(Name = "GetBillingDetails")]
+        [HttpGet(Name = "GetBillingDetails"), Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult<List<BillingDetailListVm>>> GetBillingDetails(long billingId)
@@ -25,7 +26,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(await _mediator.Send(billingDetails));
         }
 
-        [HttpPost(Name = "AddBillingDetail")]
+        [HttpPost(Name = "AddBillingDetail"), Authorize]
         public async Task<ActionResult<CreateBillingDetailCommandResponse>> Create([FromBody] CreateBillingDetailCommand createBillingDetailCommand)
         {
             var response = await _mediator.Send(createBillingDetailCommand);

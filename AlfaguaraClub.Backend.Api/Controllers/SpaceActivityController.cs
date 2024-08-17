@@ -4,6 +4,7 @@ using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.UpdateSpa
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.CreateSpaceCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.UpdateSpaceCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,21 +43,21 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(await _mediator.Send(getSpaceActivityBySpace));
         }
 
-        [HttpPost(Name = "AddSpaceActivity")]
+        [HttpPost(Name = "AddSpaceActivity"), Authorize]
         public async Task<ActionResult<CreateSpaceActivityCommandResponse>> Create([FromBody] CreateSpaceActivityCommand createSpaceActivityCommand)
         {
             var response = await _mediator.Send(createSpaceActivityCommand);
             return Ok(response);
         }
 
-        [HttpPost("AddMassiveSpaceActivity", Name = "AddMassiveSpaceActivity")]
+        [HttpPost("AddMassiveSpaceActivity", Name = "AddMassiveSpaceActivity"), Authorize]
         public async Task<ActionResult<CreateSpaceActivityCommandResponse>> AddMassiveSpaceActivity([FromBody] CreateMassiveSpaceActivityCommand createMassiveSpaceActivityCommand)
         {
             var response = await _mediator.Send(createMassiveSpaceActivityCommand);
             return Ok(response);
         }
 
-        [HttpPut(Name = "UpdateSpaceActivity")]
+        [HttpPut(Name = "UpdateSpaceActivity"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

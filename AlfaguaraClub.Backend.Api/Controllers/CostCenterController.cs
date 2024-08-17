@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.CostcenterServices.QueryCostCenterCommands;
 using AlfaguaraClub.Backend.Application.Services.CostcenterServices.UpdateCostCenterCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,13 +31,13 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var costCenter = new GetCostCenterQuery() { CostCenterId = id };
             return Ok(await _mediator.Send(costCenter));
         }
-        [HttpPost(Name ="AddCostCenter")]
+        [HttpPost(Name = "AddCostCenter"), Authorize]
         public async Task<ActionResult<CreateCostCenterCommandResponse>> Create([FromBody]CreateCostCenterCommand createCostCenterCommand)
         {
             var response = await _mediator.Send(createCostCenterCommand);
             return Ok(response);
         }
-        [HttpPut(Name ="UpdateCostCenter")]
+        [HttpPut(Name ="UpdateCostCenter"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

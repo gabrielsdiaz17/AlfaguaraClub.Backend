@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.NotificationServices.QueryNotificationCommands;
 using AlfaguaraClub.Backend.Application.Services.NotificationServices.UpdateNotificationCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         {
             
         }
-        [HttpGet(Name = "GetAllNotifications")]
+        [HttpGet(Name = "GetAllNotifications"), Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult<NotificationListVm>> GetAllNotifications()
