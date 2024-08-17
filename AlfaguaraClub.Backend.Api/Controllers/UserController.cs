@@ -40,13 +40,13 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             if (!userLogin.Success) { }
             return Ok(userLogin);
         }
-        [HttpPost(Name = "AddUser")]
+        [HttpPost(Name = "AddUser"), Authorize]
         public async Task<ActionResult<CreateUserCommandResponse>> Create([FromBody] CreateUserCommand createUserCommand)
         {
             var newUser = await _mediator.Send(createUserCommand);
             return Ok(newUser);
         }
-        [HttpPut(Name = "UpdateUser")]
+        [HttpPut(Name = "UpdateUser"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
@@ -56,7 +56,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return NoContent();
         }
 
-        [HttpPut("UpdateUserPassword", Name = "UpdateUserPassword")]
+        [HttpPut("UpdateUserPassword", Name = "UpdateUserPassword"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.RoleServices.QueryRoleCommands;
 using AlfaguaraClub.Backend.Application.Services.RoleServices.UpdateRoleCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,13 +31,13 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var role = new GetRoleQuery() { RoleId = roleId };
             return Ok(await _mediator.Send(role));
         }
-        [HttpPost(Name = "AddRole")]
+        [HttpPost(Name = "AddRole"), Authorize]
         public async Task<ActionResult<CreateRoleCommandResponse>> Create([FromBody] CreateRoleCommand createRoleCommand)
         {
             var newRole = await _mediator.Send(createRoleCommand);
             return Ok(newRole);
         }
-        [HttpPut(Name = "UpdateRole")]
+        [HttpPut(Name = "UpdateRole"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

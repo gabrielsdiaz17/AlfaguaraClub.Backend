@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.CompanyServices.CreateCompanyCommands;
 using AlfaguaraClub.Backend.Application.Services.CompanyServices.UpdateCompanyCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,7 +32,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var response = await _mediator.Send(createCompanyCommand);
             return Ok(response);
         }
-        [HttpPut(Name = "UpdateCompany")]
+        [HttpPut(Name = "UpdateCompany"), Authorize ]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

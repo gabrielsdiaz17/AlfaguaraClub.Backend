@@ -3,6 +3,7 @@ using AlfaguaraClub.Backend.Application.Services.ContactRequestServices.QueryCon
 using AlfaguaraClub.Backend.Application.Services.ContactRequestServices.UpdateContactRequestCommands;
 using AlfaguaraClub.Backend.Domain.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet(Name = "GetAllContactRequest")]
+        [HttpGet(Name = "GetAllContactRequest"), Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult<List<ContactRequestListVm>>> GetAllContactRequest()
@@ -26,25 +27,25 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var contactRequest = await _mediator.Send(new GetContactRequestQuery());
             return Ok(contactRequest);
         }
-        [HttpGet("GetContactRequestBySpace/{id}", Name = "GetContactRequestBySpace")]
+        [HttpGet("GetContactRequestBySpace/{id}", Name = "GetContactRequestBySpace"), Authorize]
         public async Task<ActionResult<List<ContactRequestListVm>>> GetContactRequestBySpace(long id)
         {
             var contactRequest = new GetContactRequestBySpace() { SpaceId = id };
             return Ok(await _mediator.Send(contactRequest));
         }
-        [HttpGet("GetContactRequestByStatus/{status}", Name = "GetContactRequestByStatus")]
+        [HttpGet("GetContactRequestByStatus/{status}", Name = "GetContactRequestByStatus"), Authorize]
         public async Task<ActionResult<List<ContactRequestListVm>>> GetContactRequestByStatus(StatusRequest status)
         {
             var contactRequest =  new GetContactRequestByStatus() { Status = status };
             return Ok(await _mediator.Send(contactRequest));
         }
-        [HttpPost(Name ="AddContactRequest")]
+        [HttpPost(Name = "AddContactRequest"), Authorize]
         public async Task<ActionResult<CreateContactRequestCommandResponse>> Create([FromBody] CreateContactRequestCommand createContactRequestCommand)
         {
             var response = await _mediator.Send(createContactRequestCommand);
             return Ok(response);
         }
-        [HttpPut(Name = "UpdateContactRequest")]
+        [HttpPut(Name = "UpdateContactRequest"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

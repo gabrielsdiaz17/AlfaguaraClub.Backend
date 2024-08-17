@@ -3,6 +3,7 @@ using AlfaguaraClub.Backend.Application.Services.StoryServices.CreateStoryComman
 using AlfaguaraClub.Backend.Application.Services.StoryServices.QueryStoryCommands;
 using AlfaguaraClub.Backend.Application.Services.StoryServices.UpdateStoryCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,14 +50,14 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(await _mediator.Send(getStoriesByCategory));
         }
 
-        [HttpPost(Name = "AddStory")]
+        [HttpPost(Name = "AddStory"), Authorize]
         public async Task<ActionResult<CreateStoryCommandResponse>> Create([FromBody] CreateStoryCommand createStoryCommand)
         {
             var response = await _mediator.Send(createStoryCommand);
             return Ok(response);
         }
 
-        [HttpPut(Name = "UpdateStory")]
+        [HttpPut(Name = "UpdateStory"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

@@ -2,6 +2,7 @@
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.UpdateSpaceCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,14 +32,14 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(await _mediator.Send(getSpaceQuery));
         }
 
-        [HttpPost(Name = "AddSpace")]
+        [HttpPost(Name = "AddSpace"), Authorize]
         public async Task<ActionResult<CreateSpaceCommandResponse>> Create([FromBody] CreateSpaceCommand createSpaceCommand)
         {
             var response = await _mediator.Send(createSpaceCommand);
             return Ok(response);
         }
 
-        [HttpPut(Name = "UpdateSpace")]
+        [HttpPut(Name = "UpdateSpace"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
