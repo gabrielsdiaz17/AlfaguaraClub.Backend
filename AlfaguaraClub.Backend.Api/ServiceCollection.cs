@@ -14,7 +14,7 @@ namespace AlfaguaraClub.Backend.Api
 
             services.AddDbContext<AppDbContext>(options =>
             options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
-                new MySqlServerVersion(new Version(8, 0, 37)),
+                new MySqlServerVersion(new Version(8, 0, 39)),
                 mySqlOptions=> mySqlOptions.EnableRetryOnFailure(
                     maxRetryCount: 3,
                     maxRetryDelay: TimeSpan.FromSeconds(30),
