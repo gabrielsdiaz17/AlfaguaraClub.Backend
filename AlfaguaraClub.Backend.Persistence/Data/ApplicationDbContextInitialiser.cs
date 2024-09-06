@@ -17,7 +17,7 @@ namespace AlfaguaraClub.Backend.Persistence.Data
             var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
             if (context != null)
             {
-                await context.Database.EnsureDeletedAsync();
+                //await context.Database.EnsureDeletedAsync();
                 await context.Database.MigrateAsync();
             }
         }
