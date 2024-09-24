@@ -31,6 +31,7 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.UpdateProdu
             if (validationResult.Errors.Count > 0)
                 throw new ValidationException(validationResult);
             _mapper.Map(request, productToUpdate, typeof(UpdateProductCommand), typeof(Product));
+            await _productRepository.UpdateAsync(productToUpdate);
         }
     }
 }
