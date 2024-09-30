@@ -41,6 +41,8 @@ namespace AlfaguaraClub.Backend.Persistence.Data
         public DbSet<Tax> Tax { get; set; }
         public DbSet<TypeActivity> TypeActivity { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<UserInfo> UserInfo { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

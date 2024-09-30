@@ -70,6 +70,9 @@ using AlfaguaraClub.Backend.Application.Services.TaxServices.UpdateTaxCommands;
 using AlfaguaraClub.Backend.Application.Services.TypeActivityServices.CreateTypeActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.TypeActivityServices.QueryTypeActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.TypeActivityServices.UpdateTypeActivityCommands;
+using AlfaguaraClub.Backend.Application.Services.UserInfoServices.CreateUserInfoCommands;
+using AlfaguaraClub.Backend.Application.Services.UserInfoServices.QueryUserInfoCommands;
+using AlfaguaraClub.Backend.Application.Services.UserInfoServices.UpdateUserInfoCommands;
 using AlfaguaraClub.Backend.Application.Services.UserServices.CreateUserCommands;
 using AlfaguaraClub.Backend.Application.Services.UserServices.QueryUserCommands;
 using AlfaguaraClub.Backend.Application.Services.UserServices.UpdateUserCommands;
@@ -210,6 +213,9 @@ namespace AlfaguaraClub.Backend.Application.Profiles
             CreateMap<ContactRequest,CreateContactRequestCommand>().ReverseMap();
             CreateMap<ContactRequest,UpdateContactRequestCommand>().ReverseMap();
 
+            CreateMap<UserInfo, CreateUserInfoCommand>().ReverseMap();
+            CreateMap<UserInfo, UpdateUserInfoCommand>().ReverseMap();
+            CreateMap<UserInfo, UserInfoVm>().ReverseMap();
 
         }
     }
