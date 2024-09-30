@@ -2,9 +2,13 @@
 using AlfaguaraClub.Backend.Application.Services.ProductServices.QueryProductCommands;
 using AlfaguaraClub.Backend.Application.Services.ProductServices.UpdateProductCommands;
 using MediatR;
+using MercadoPago.Config;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MercadoPago.Config;
+using MercadoPago.Client.Preference;
+using MercadoPago.Resource.Preference;
 
 namespace AlfaguaraClub.Backend.Api.Controllers
 {
@@ -44,6 +48,23 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         {
             var newProduct = await _mediator.Send(createProductCommand);
             return Ok(newProduct);
+        }
+
+        [HttpPost("AddItemToBuy", Name = "AddItemToBuy")]
+        public async Task<ActionResult> AddItemToBuy([FromBody] List<PreferenceItemRequest> requestBody)
+        {
+            // SDK de Mercado Pago
+
+            // Agrega credenciales
+            MercadoPagoConfig.AccessToken = "APP_USR-1496588329103205-082919-ce0818dd4aaae049745a7dbb24c00c80-1957771295";
+            var request = new PreferenceRequest
+            {
+                Items = requestBody, 
+            };
+            // Crea la preferencia usando el client
+            var client = new PreferenceClient();
+            Preference preference = await client.CreateAsync(request);
+            return Ok(preference);
         }
 
         [HttpPut(Name = "UpdateProduct"), Authorize]
