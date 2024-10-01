@@ -13,5 +13,7 @@ namespace AlfaguaraClub.Backend.Application.Services.UserInfoServices.QueryUserI
         public string IdentificationNumber { get; set; }
         public DateTime RecordDateTime { get; set; }
         public bool IsActive { get; set; }
+        public bool IsLoged { get; set; }
+
     }
 }
