@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using MercadoPago.Config;
 using MercadoPago.Client.Preference;
 using MercadoPago.Resource.Preference;
+using AlfaguaraClub.Backend.Application.Services.ProductServices.ShoppingCardCommands;
+using AlfaguaraClub.Backend.Application.Services.UserInfoServices.CreateUserInfoCommands;
 
 namespace AlfaguaraClub.Backend.Api.Controllers
 {
@@ -51,17 +53,30 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         }
 
         [HttpPost("AddItemToBuy", Name = "AddItemToBuy")]
-        public async Task<ActionResult> AddItemToBuy([FromBody] List<PreferenceItemRequest> requestBody)
+        public async Task<ActionResult> AddItemToBuy([FromBody] ShoppingCardCommand shoppingCardCommand)
         {
             // SDK de Mercado Pago
 
             // Agrega credenciales
             MercadoPagoConfig.AccessToken = "APP_USR-1496588329103205-082919-ce0818dd4aaae049745a7dbb24c00c80-1957771295";
+            //Configura url de retorno 
+            var successUrl = string.Format("https://espaciosalfaguara.com/payment/failurepayment/{0}", shoppingCardCommand.CreateUserInfoCommand.IdentificationNumber);
+            var pendingUrl = string.Format("https://espaciosalfaguara.com/payment/pendingpayment/{0}", shoppingCardCommand.CreateUserInfoCommand.IdentificationNumber);
+            var failureUrl = string.Format("https://espaciosalfaguara.com/payment/successpayment/{0}", shoppingCardCommand.CreateUserInfoCommand.IdentificationNumber);
+            var backUrls = new PreferenceBackUrlsRequest
+            {
+                Success = successUrl,
+                Pending = pendingUrl,
+                Failure = failureUrl
+            };
             var request = new PreferenceRequest
             {
-                Items = requestBody, 
+                Items = shoppingCardCommand.PreferenceRequest, 
+                BackUrls = backUrls
             };
             // Crea la preferencia usando el client
+            var newUserInfo = await _mediator.Send(shoppingCardCommand.CreateUserInfoCommand);
+
             var client = new PreferenceClient();
             Preference preference = await client.CreateAsync(request);
             return Ok(preference);
