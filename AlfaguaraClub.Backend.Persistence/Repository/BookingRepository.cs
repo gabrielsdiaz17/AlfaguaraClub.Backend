@@ -18,7 +18,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
             var booking = await QueryNoTracking().Where(book => book.BookingId == bookingId)
                                  .Include(book => book.User)
-                                 .Include(book => book.SpaceActivity)
+                                 .Include(book => book.SpaceActivity).ThenInclude(spaceactivity=> spaceactivity.Space)
                                  .Include(book => book.Membership)
                                  .Include(book => book.StatusBooking)
                                  .FirstOrDefaultAsync();
