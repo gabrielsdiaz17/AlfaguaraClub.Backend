@@ -21,6 +21,9 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("Tax")]
         public int? TaxId { get; set; }
         public Tax Tax { get; set; }
+        [ForeignKey("CostCenter")]
+        public long? CostCenterId { get; set; }
+        public CostCenter CostCenter { get; set; }
         public bool IsActive { get; set; }
         public ICollection<Picture> Pictures { get; set; }
 

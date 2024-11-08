@@ -21,5 +21,6 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public Site Site { get; set; }
         public bool IsActive { get; set; }
         public ICollection<Space> Spaces { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }
