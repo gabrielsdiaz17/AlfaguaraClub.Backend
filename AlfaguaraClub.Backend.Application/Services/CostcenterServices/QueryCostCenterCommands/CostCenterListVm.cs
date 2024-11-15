@@ -1,4 +1,5 @@
-﻿using AlfaguaraClub.Backend.Domain.Entities;
+﻿using AlfaguaraClub.Backend.Application.Services.BillingDetailServices.QueryBillingDetailCommands;
+using AlfaguaraClub.Backend.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace AlfaguaraClub.Backend.Application.Services.CostcenterServices.QueryCos
         public bool IsActive { get; set; }
 
         public ICollection<SpaceDto> Spaces { get; set; }
+        public ICollection<ProductDto> Products { get; set; }
 
     }
 }

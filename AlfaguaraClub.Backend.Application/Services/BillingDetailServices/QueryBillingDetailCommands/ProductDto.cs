@@ -14,6 +14,8 @@ namespace AlfaguaraClub.Backend.Application.Services.BillingDetailServices.Query
         public string ProductDescription { get; set; }
         public decimal UnitPrice { get; set; }
         public int? TaxId { get; set; }
+        public long? CostCenterId { get; set; }
+
         public bool IsActive { get; set; }
 
     }

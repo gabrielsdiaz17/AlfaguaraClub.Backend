@@ -1,4 +1,5 @@
-﻿using AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCommands;
+﻿using AlfaguaraClub.Backend.Application.Services.SiteServices.QuerySiteCommands;
+using AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.QueryProduc
         public decimal UnitPrice { get; set; }
         public int? TaxId { get; set; }
         public TaxDto Tax { get; set; }
+        public long? CostCenterId { get; set; }
+        public CostCenterDto CostCenter { get; set; }
         public bool IsActive { get; set; }
         public ICollection<PictureDto> Pictures { get; set; }
 

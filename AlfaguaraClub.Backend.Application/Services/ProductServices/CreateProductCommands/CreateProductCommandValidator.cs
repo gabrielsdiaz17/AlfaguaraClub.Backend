@@ -20,8 +20,6 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.CreateProdu
             RuleFor(x => x.ProductDescription)
                .NotEmpty().WithMessage("{PropertyName} es requerido.")
                .MaximumLength(500).WithMessage("{PropertyName} no debe exceder 500 carácteres.");
-            RuleFor(x => x.UnitPrice)
-                .NotEmpty().WithMessage("{PropertyName} es requerido.");
         }
     }
 }
