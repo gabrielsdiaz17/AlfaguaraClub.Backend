@@ -5,6 +5,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,21 +39,32 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Creat
                 DateTimeOffset dateToSave = request.FromDate;
                 while(dateToSave <=request.ToDate)
                 {
-                    var newActivity = new SpaceActivity()
+                    var differenceHours = (request.EndActivityHour - request.StartActivityHour).TotalHours;
+                    if (differenceHours > 0)
                     {
-                        ActivityName = request.ActivityName,
-                        ActivityDescription = request.ActivityDescription,
-                        AvailableQuorum = request.AvailableQuorum,
-                        TypeActivityId = request.TypeActivityId,
-                        Visibility = request.Visibility,
-                        SpaceId = request.SpaceId,
-                        ActivityDate = dateToSave,
-                        StartActivityHour = request.StartActivityHour,
-                        EndActivityHour = request.EndActivityHour,
-                        IsActive = request.IsActive,
-                    };
-                    listActivities.Add(newActivity);
-                    dateToSave= dateToSave.AddDays(1);
+                        var pivotHour = request.StartActivityHour;
+
+                        while (pivotHour < request.EndActivityHour)
+                        {
+                            var newActivity = new SpaceActivity()
+                            {
+                                ActivityName = request.ActivityName,
+                                ActivityDescription = request.ActivityDescription,
+                                AvailableQuorum = request.AvailableQuorum,
+                                TypeActivityId = request.TypeActivityId,
+                                Visibility = request.Visibility,
+                                SpaceId = request.SpaceId,
+                                ActivityDate = dateToSave,
+                                StartActivityHour = pivotHour,
+                                EndActivityHour = pivotHour + TimeSpan.FromHours(request.Periodicity),
+                                IsActive = request.IsActive,
+                            };
+                            pivotHour = pivotHour + TimeSpan.FromHours(request.Periodicity);
+                            listActivities.Add(newActivity);
+                        }
+                        dateToSave = dateToSave.AddDays(1);
+                    }
+                    
                 }
                 listActivities = (List<SpaceActivity>)await _spaceActivityRepository.AddRangeAsync(listActivities);
                 response.SavedRecords = true;
