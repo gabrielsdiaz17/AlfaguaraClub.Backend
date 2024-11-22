@@ -26,5 +26,8 @@ RUN dotnet publish "./AlfaguaraClub.Backend.Api.csproj" -c $BUILD_CONFIGURATION 
 
 FROM base AS final
 WORKDIR /app
+# Create uploads folder inside wwwroot
+RUN mkdir -p /app/wwwroot/uploads/images
+
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "AlfaguaraClub.Backend.Api.dll"]

@@ -45,7 +45,8 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(await _mediator.Send(picturesStory));
         }
         [HttpPost(Name = "AddPicture")]
-        public async Task<ActionResult<CreatePictureCommandResponse>> Create([FromBody] CreatePictureCommand createPictureCommand)
+        [DisableRequestSizeLimit]
+        public async Task<ActionResult<CreatePictureCommandResponse>> Create([FromForm] CreatePictureCommand createPictureCommand)
         {
             var newPicture = await _mediator.Send(createPictureCommand);
             return Ok(newPicture);
