@@ -35,8 +35,28 @@ namespace AlfaguaraClub.Backend.Application.Services.PictureServices.CreatePictu
                     response.ValidationErrors.Add(error.ErrorMessage);
                 }
             }
-            if(response.Success)
+            
+            if (response.Success)
             {
+                string filePath = string.Empty;
+                if (request.PictureFile != null && request.PictureFile.Length > 0)
+                {
+                    string uploadDir = Path.Combine("wwwroot", "uploads", "images");
+                    if (!Directory.Exists(uploadDir))
+                        Directory.CreateDirectory(uploadDir);
+
+                    string fileName = $"{Guid.NewGuid()}_{request.PictureFile.FileName}";
+                    filePath = Path.Combine(uploadDir, fileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await request.PictureFile.CopyToAsync(fileStream);
+                    }
+
+                    filePath = $"/uploads/images/{fileName}"; // Relative path for serving through the API
+                }
+                newPicture.PictureData = filePath; // Save the relative path
+
                 newPicture = await _pictureRepository.AddAsync(newPicture);
                 response.PictureId = newPicture.PictureId;
             }

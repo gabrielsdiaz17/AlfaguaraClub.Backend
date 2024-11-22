@@ -1,5 +1,6 @@
 ﻿using AlfaguaraClub.Backend.Domain.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace AlfaguaraClub.Backend.Application.Services.PictureServices.CreatePictu
     public class CreatePictureCommand:IRequest<CreatePictureCommandResponse>
     {
         public string PictureName { get; set; }
+        public IFormFile PictureFile { get; set; }
         public string PictureData { get; set; }
         public PictureType PictureType { get; set; }
         public long? StoryId { get; set; }
