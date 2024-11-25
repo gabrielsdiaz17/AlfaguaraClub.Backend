@@ -13,7 +13,7 @@ namespace AlfaguaraClub.Backend.Application.Services.PictureServices.CreatePictu
     {
         public string PictureName { get; set; }
         public IFormFile PictureFile { get; set; }
-        public string PictureData { get; set; }
+        public string? PictureData { get; set; }
         public PictureType PictureType { get; set; }
         public long? StoryId { get; set; }
         public long? SpaceId { get; set; }
