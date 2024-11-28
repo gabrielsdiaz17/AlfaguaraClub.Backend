@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.CreateSpaceActivityCommands;
+using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.DeleteSpaceActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.QuerySpaceActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.UpdateSpaceActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.CreateSpaceCommands;
@@ -64,6 +65,15 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         public async Task<ActionResult> Update([FromBody] UpdateSpaceActivityCommand updateSpaceActivityCommand)
         {
             await _mediator.Send(updateSpaceActivityCommand);
+            return NoContent();
+        }
+        [HttpPut("DeleteActivitiesByDate", Name = "DeleteActivitiesByDate"), Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> DeleteActivitiesByDate([FromBody] DeleteSpaceActivityCommand command)
+        {
+            await _mediator.Send(command);
             return NoContent();
         }
     }
