@@ -21,6 +21,12 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
             return spaceActivity;
         }
 
+        public async Task<List<SpaceActivity>> GetSpaceActivitiesByDate(DateTime date)
+        {
+            var activitiesDate = await QueryNoTracking().Where(ac=> ac.IsActive && ac.ActivityDate.Date == date.Date).ToListAsync();
+            return activitiesDate;
+        }
+
         public async Task<List<SpaceActivity>> GetSpaceActivitiesWithBooking()
         {
             var activities = await QueryNoTracking().Where(ac=> ac.IsActive)

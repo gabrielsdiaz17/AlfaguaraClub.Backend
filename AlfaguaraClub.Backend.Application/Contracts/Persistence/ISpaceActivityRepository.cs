@@ -12,5 +12,6 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
         Task<List<SpaceActivity>> GetSpaceActivitiesWithBooking();
         Task<List<SpaceActivity>> GetSpaceActivityBySpace(long spaceId);
         Task<SpaceActivity> GetSingleSpaceActivity(long spaceActivityId);
+        Task<List<SpaceActivity>> GetSpaceActivitiesByDate(DateTime date);
     }
 }
