@@ -67,11 +67,11 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             await _mediator.Send(updateSpaceActivityCommand);
             return NoContent();
         }
-        [HttpPut("DeleteActivitiesByDate", Name = "DeleteActivitiesByDate"), Authorize]
+        [HttpPost("UpdateActivitiesByDate", Name = "UpdateActivitiesByDate"), Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> DeleteActivitiesByDate([FromBody] DeleteSpaceActivityCommand command)
+        public async Task<ActionResult> UpdateActivitiesByDate([FromBody] DeleteSpaceActivityCommand command)
         {
             await _mediator.Send(command);
             return NoContent();
