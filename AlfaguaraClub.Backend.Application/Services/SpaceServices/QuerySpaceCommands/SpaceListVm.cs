@@ -18,7 +18,6 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCom
         public string? VideoLink { get; set; }
         public bool IsActive { get; set; }
         public ICollection<PictureDto> Pictures { get; set; }
-        public ICollection<SpaceActivityDto> SpaceActivities { get; set; }
 
 
     }
