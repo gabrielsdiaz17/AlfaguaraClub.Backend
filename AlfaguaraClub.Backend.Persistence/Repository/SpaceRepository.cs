@@ -25,13 +25,14 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
 
         public async Task<List<Space>> GetSpacesWithImagesIncludeActivities(int? quantityRecords)
         {
-            var quantity = quantityRecords == 0 ? 10 : quantityRecords;
+            var quantity = quantityRecords;
             var allSpaces = await QueryNoTracking().Where(space => space.IsActive)
                                                    .Include(space => space.Pictures)
-                                                   .Include(space => space.CostCenter)
-                                                   .Take((int)quantity)
+                                                   .Include(space => space.CostCenter)                                                   
                                                    .OrderByDescending(space => space.SpaceId)
                                                    .ToListAsync();
+            if(quantity != 0)
+                allSpaces = (List<Space>)allSpaces.Take((int)quantity);
                                                    
             return allSpaces;
         }
