@@ -54,6 +54,7 @@ using AlfaguaraClub.Backend.Application.Services.SiteServices.QuerySiteCommands;
 using AlfaguaraClub.Backend.Application.Services.SiteServices.UpdateCompanyCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.CreateSpaceActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.QuerySpaceActivityCommands;
+using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.SpaceActivitySlotsCommands.QuerySlotCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.UpdateSpaceActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.CreateSpaceCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCommands;
@@ -216,6 +217,7 @@ namespace AlfaguaraClub.Backend.Application.Profiles
             CreateMap<UserInfo, CreateUserInfoCommand>().ReverseMap();
             CreateMap<UserInfo, UpdateUserInfoCommand>().ReverseMap();
             CreateMap<UserInfo, UserInfoVm>().ReverseMap();
+            CreateMap<SpaceActivitySlot, SpaceActivitySlotVm>().ReverseMap();
 
         }
     }

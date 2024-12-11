@@ -14,6 +14,8 @@ namespace AlfaguaraClub.Backend.Application.Services.BookingServices.UpdateBooki
         public long SpaceActivityId { get; set; }
         public long? MembershipId { get; set; }
         public int StatusBookingId { get; set; }
+        public long? SpaceActivitySlotId { get; set; }
+
         public bool IsActive { get; set; }
 
     }
