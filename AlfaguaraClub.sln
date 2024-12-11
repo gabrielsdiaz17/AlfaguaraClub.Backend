@@ -22,6 +22,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlfaguaraClub.Backend.Persistence", "AlfaguaraClub.Backend.Persistence\AlfaguaraClub.Backend.Persistence.csproj", "{10D0C518-254A-4FC2-8165-127C1AF7734D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D1D15EBC-3FAC-4EEE-8F88-C370D57D3FB4}"
+	ProjectSection(SolutionItems) = preProject
+		AlfaguaraClub.Backend.Persistence\Migrations\AppDbContextModelSnapshot.cs = AlfaguaraClub.Backend.Persistence\Migrations\AppDbContextModelSnapshot.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlfaguaraClub.Application.UnitTest", "AlfaguaraClub.Application.UnitTest\AlfaguaraClub.Application.UnitTest.csproj", "{56C32981-4BD6-403A-99CC-235CE0149C0A}"
 EndProject
