@@ -30,6 +30,10 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("StatusBooking")]
         public int StatusBookingId { get; set; }
         public StatusBooking StatusBooking { get; set; }
+
+        [ForeignKey("SpaceActivitySlot")]
+        public long? SpaceActivitySlotId { get; set; }
+        public SpaceActivitySlot SpaceActivitySlot { get; set; }
         public bool IsActive { get; set; }
         public Billing Billing { get; set; }
 
