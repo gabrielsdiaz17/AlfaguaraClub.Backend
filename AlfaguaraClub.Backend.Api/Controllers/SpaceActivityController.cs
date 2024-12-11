@@ -21,7 +21,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             _mediator = mediator;
         }
         
-        [HttpGet(Name = "GetAllSpacesActivities")]
+        [HttpGet(Name = "GetAllSpacesActivities"), Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult<List<SpaceActivityListVm>>> GetAllSpacesActivities()
@@ -30,14 +30,14 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return Ok(spaceActivities);
         }
        
-        [HttpGet("{id}", Name = "GetSpaceActivityById")]
+        [HttpGet("{id}", Name = "GetSpaceActivityById"), Authorize]
         public async Task<ActionResult<SpaceActivityListVm>> GetSpaceActivityById(long id)
         {
             var getSpaceActivity = new GetSpaceActivityQuery() { SpaceActivityId = id };
             return Ok(await _mediator.Send(getSpaceActivity));
         }
         
-        [HttpGet("{spaceId}", Name = "GetSpaceActivityBySpaceId")]
+        [HttpGet("{spaceId}", Name = "GetSpaceActivityBySpaceId"),Authorize]
         public async Task<ActionResult<SpaceActivityListVm>> GetSpaceActivityBySpaceId(long spaceId)
         {
             var getSpaceActivityBySpace = new GetSpaceActivityBySpaceQuery() { SpaceId = spaceId };
