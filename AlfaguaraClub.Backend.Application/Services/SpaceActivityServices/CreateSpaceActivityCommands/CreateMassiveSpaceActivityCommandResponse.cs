@@ -14,6 +14,7 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Creat
             
         }
         public bool SavedRecords { get; set; }
+        public List<long> SpaceActivityIds { get; set; }
 
     }
 }
