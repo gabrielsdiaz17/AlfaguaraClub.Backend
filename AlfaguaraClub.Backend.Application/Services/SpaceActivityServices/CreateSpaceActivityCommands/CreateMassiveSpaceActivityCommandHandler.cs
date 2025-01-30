@@ -67,6 +67,7 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Creat
                     
                 }
                 listActivities = (List<SpaceActivity>)await _spaceActivityRepository.AddRangeAsync(listActivities);
+                response.SpaceActivityIds = listActivities.Select(a => a.SpaceActivityId).ToList();
                 response.SavedRecords = true;
 
             }
