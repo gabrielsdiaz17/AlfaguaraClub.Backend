@@ -1,6 +1,7 @@
 ﻿using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.SpaceActivitySlotsCommands.CreateSlotCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.SpaceActivitySlotsCommands.QuerySlotCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.SpaceActivitySlotsCommands.UpdateSlotCommands;
+using AlfaguaraClub.Backend.Application.Services.SpaceActivitySlotServices.CreateSlotsCommands;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -25,7 +26,7 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             return await _mediator.Send(slotActivity);
         }
         [HttpPost(Name ="AddSpaceActivitySlot"), Authorize]
-        public async Task<ActionResult<CreateSlotForSwimmingPoolResponse>> AddSpaceActivitySlot([FromBody] CreateSlotForSwimmingPool request)
+        public async Task<ActionResult<CreateSpaceActivitySlotCommandResponse>> AddSpaceActivitySlot([FromBody] CreateSpaceActivitySlotCommand request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
