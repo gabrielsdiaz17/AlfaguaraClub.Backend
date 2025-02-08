@@ -9,6 +9,6 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface ISpaceActivitySlotRepository: IRepository<SpaceActivitySlot>
     {
-        Task<SpaceActivitySlot> GetSlotsForSpaceActivity(long spaceActivityId);
+        Task<List<SpaceActivitySlot>> GetSlotsForSpaceActivity(long spaceActivityId);
     }
 }

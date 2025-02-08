@@ -33,46 +33,49 @@ namespace AlfaguaraClub.Backend.Application.Services.BookingServices.CreateBooki
             var booking = _mapper.Map<Booking>(request);
             var validator = new CreateBookingCommandValidator();
             var validationResult = await validator.ValidateAsync(request);
-            if (validationResult.Errors.Count >0 )
+            if (validationResult.Errors.Count > 0)
             {
                 createBookingCommandResponse.Success = false;
                 createBookingCommandResponse.ValidationErrors = new List<string>();
-                foreach( var error in validationResult.Errors )
+                foreach (var error in validationResult.Errors)
                 {
                     createBookingCommandResponse.ValidationErrors.Add(error.ErrorMessage);
                 }
             }
             if (createBookingCommandResponse.Success)
             {
-                try
-                {
-                    booking = await _bookingRepository.AddAsync(booking);
-                    createBookingCommandResponse.BookingId = booking.BookingId;
-                    var parameterUser = await _parameterRepository.GetParameterByName("useremailadmin");
-                    var parameterPassword = await _parameterRepository.GetParameterByName("passwordemailadmin");
-                    var adminReceiver = await _parameterRepository.GetParameterByName("adminreceiver");
-                    var bookingDetail = await _bookingRepository.GetBookingDetailByBookingId(booking.BookingId);
-
-                    var adminSubject = "Nueva reserva en Espacio Alfaguara";
-                    var adminBody = string.Format("Una nueva reserva ha sido realizada para la membresia {0}. " +
-                        "El usuario {1} ha realizado una reserva para la actividad {2}, para el dia {3}",
-                        bookingDetail.Membership.UniqueIdentifier, bookingDetail.User.Name + " " +
-                        bookingDetail.User.LastName, bookingDetail.SpaceActivity.ActivityName,
-                        bookingDetail.SpaceActivity.ActivityDate.ToString("yyyy-mm-dd"));
-
-                    await _emailService.SendEmailAsync(adminReceiver.ParameterValue, adminSubject, adminBody, parameterUser.ParameterValue, parameterPassword.ParameterValue);
-
-                    var userSubject = "Confirmación Reserva en Club Alfaguara";
-                    var userBody = string.Format("Cordial Saludo {0}. \n Espacios Alfaguara se complace en confirmar su reserva para el evento {1} que se llevara a cabo el dia {2} en  {3}. \n Le esperamos a usted y a sus afiliados", bookingDetail.User.Name + " " +
-                        bookingDetail.User.LastName, bookingDetail.SpaceActivity.ActivityName, bookingDetail.SpaceActivity.ActivityDate.ToString("yyyy-mm-dd"), bookingDetail.SpaceActivity.Space.SpaceName);
-
-                    await _emailService.SendEmailAsync(bookingDetail.User.Email,userSubject,userBody, parameterUser.ParameterValue,parameterPassword.ParameterValue);
-                }
-                catch (Exception ex) 
-                {
-                    createBookingCommandResponse.ValidationErrors = new List<string> { ex.Message };
-                }
+                booking = await _bookingRepository.AddAsync(booking);
+                createBookingCommandResponse.BookingId = booking.BookingId;
             }
+            //if (createBookingCommandResponse.Success)
+            //{
+            //    try
+            //    {
+            //        var parameterUser = await _parameterRepository.GetParameterByName("useremailadmin");
+            //        var parameterPassword = await _parameterRepository.GetParameterByName("passwordemailadmin");
+            //        var adminReceiver = await _parameterRepository.GetParameterByName("adminreceiver");
+            //        var bookingDetail = await _bookingRepository.GetBookingDetailByBookingId(booking.BookingId);
+
+            //        var adminSubject = "Nueva reserva en Espacio Alfaguara";
+            //        var adminBody = string.Format("Una nueva reserva ha sido realizada para la membresia {0}. " +
+            //            "El usuario {1} ha realizado una reserva para la actividad {2}, para el dia {3}",
+            //            bookingDetail.Membership.UniqueIdentifier, bookingDetail.User.Name + " " +
+            //            bookingDetail.User.LastName, bookingDetail.SpaceActivity.ActivityName,
+            //            bookingDetail.SpaceActivity.ActivityDate.ToString("yyyy-mm-dd"));
+
+            //        await _emailService.SendEmailAsync(adminReceiver.ParameterValue, adminSubject, adminBody, parameterUser.ParameterValue, parameterPassword.ParameterValue);
+
+            //        var userSubject = "Confirmación Reserva en Club Alfaguara";
+            //        var userBody = string.Format("Cordial Saludo {0}. \n Espacios Alfaguara se complace en confirmar su reserva para el evento {1} que se llevara a cabo el dia {2} en  {3}. \n Le esperamos a usted y a sus afiliados", bookingDetail.User.Name + " " +
+            //            bookingDetail.User.LastName, bookingDetail.SpaceActivity.ActivityName, bookingDetail.SpaceActivity.ActivityDate.ToString("yyyy-mm-dd"), bookingDetail.SpaceActivity.Space.SpaceName);
+
+            //        await _emailService.SendEmailAsync(bookingDetail.User.Email,userSubject,userBody, parameterUser.ParameterValue,parameterPassword.ParameterValue);
+            //    }
+            //    catch (Exception ex) 
+            //    {
+            //        createBookingCommandResponse.ValidationErrors = new List<string> { ex.Message };
+            //    }
+            //}
             return createBookingCommandResponse;
         }
     }

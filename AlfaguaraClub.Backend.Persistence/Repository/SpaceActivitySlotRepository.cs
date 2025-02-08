@@ -14,9 +14,9 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
         }
 
-        public async Task<SpaceActivitySlot> GetSlotsForSpaceActivity(long spaceActivityId)
+        public async Task<List<SpaceActivitySlot>> GetSlotsForSpaceActivity(long spaceActivityId)
         {
-            var slot = await QueryNoTracking().Where(s => s.IsActive && s.SpaceActivityId == spaceActivityId).FirstOrDefaultAsync();
+            var slot = await QueryNoTracking().Where(s => s.IsActive && s.SpaceActivityId == spaceActivityId).ToListAsync();
             return slot;
         }
     }
