@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.SpaceActivitySlotsCommands.QuerySlotCommands
 {
-    public class QuerySpaceActivitySlotCommandHandler : IRequestHandler<QuerySpaceActivitySlotCommand, SpaceActivitySlotVm>
+    public class QuerySpaceActivitySlotCommandHandler : IRequestHandler<QuerySpaceActivitySlotCommand,List<SpaceActivitySlotVm>>
     {
         private readonly ISpaceActivitySlotRepository _spaceActivitySlotRepository;
         private readonly IMapper _mapper;
@@ -19,10 +19,10 @@ namespace AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.Space
             _mapper = mapper;
         }
 
-        public async Task<SpaceActivitySlotVm> Handle(QuerySpaceActivitySlotCommand request, CancellationToken cancellationToken)
+        public async Task<List<SpaceActivitySlotVm>> Handle(QuerySpaceActivitySlotCommand request, CancellationToken cancellationToken)
         {
-            var slot = await _spaceActivitySlotRepository.GetSlotsForSpaceActivity(request.SpaceActivityId);
-            return _mapper.Map<SpaceActivitySlotVm>(slot);
+            var slots = await _spaceActivitySlotRepository.GetSlotsForSpaceActivity(request.SpaceActivityId);
+            return _mapper.Map<List<SpaceActivitySlotVm>>(slots);
         }
     }
 }

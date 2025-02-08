@@ -46,7 +46,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
                                              .Include(book => book.SpaceActivity).Where(book => book.SpaceActivity.IsActive)
                                              .Include(book => book.Membership).Where(book => book.Membership.IsActive)
                                              .Include(book => book.StatusBooking)
-                                             .Include(book => book.SpaceActivitySlot).Where(book => book.SpaceActivitySlot.IsActive)
+                                             .Include(book => book.SpaceActivitySlot)
                                              .OrderByDescending(book => book.BookingId)
                                              .ToListAsync();
             return bookingsByMembership;

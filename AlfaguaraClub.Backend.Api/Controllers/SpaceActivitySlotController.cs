@@ -19,8 +19,8 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet("/GetSpaceActivitySlotBySpaceActivityId/{id}", Name = "GetSpaceActivitySlotBySpaceActivityId"), Authorize]
-        public async Task<ActionResult<SpaceActivitySlotVm>> GetSpaceActivitySlotBySpaceActivityId(long id)
+        [HttpGet("GetSpaceActivitySlotBySpaceActivityId/{id}", Name = "GetSpaceActivitySlotBySpaceActivityId"), Authorize]
+        public async Task<ActionResult<List<SpaceActivitySlotVm>>> GetSpaceActivitySlotBySpaceActivityId(long id)
         {
             var slotActivity = new QuerySpaceActivitySlotCommand() { SpaceActivityId = id };
             return await _mediator.Send(slotActivity);
