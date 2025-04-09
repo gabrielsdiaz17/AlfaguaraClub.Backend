@@ -36,6 +36,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public SpaceActivitySlot SpaceActivitySlot { get; set; }
         public bool IsActive { get; set; }
         public Billing Billing { get; set; }
+        public ICollection<BookingQuota> BookingQuotas { get; set; }
 
     }
 }
