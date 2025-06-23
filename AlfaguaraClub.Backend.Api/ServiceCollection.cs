@@ -56,6 +56,7 @@ namespace AlfaguaraClub.Backend.Api
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserInfoRepository,UserInfoRepository>();
             services.AddTransient<ISpaceActivitySlotRepository, SpaceActivitySlotRepository>();
+            services.AddTransient<IBookingQuotaRepository, BookingQuotaRepository>();
             return services;
         }
     }

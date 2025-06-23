@@ -25,14 +25,14 @@ namespace AlfaguaraClub.Backend.Api.Controllers
             var memberships = await _mediator.Send(new GetMembershipListQuery());
             return memberships;
         }
-        [HttpGet("/GetMembershipById/{id}", Name = "GetMembershipById"), Authorize]
+        [HttpGet("GetMembershipById/{id}", Name = "GetMembershipById"), Authorize]
         public async Task<ActionResult<MembershipListVm>> GetMembershipById(long id) 
         {
             var membership = new GetMemberShipQuery() { MembershipId = id };
             return await _mediator.Send(membership);
         }
 
-        [HttpGet("/GetMembershipByUniqueIdentifier/{identifier}", Name = "GetMembershipByUniqueIdentifier")]
+        [HttpGet("GetMembershipByUniqueIdentifier/{identifier}", Name = "GetMembershipByUniqueIdentifier")]
         public async Task<ActionResult<MembershipListVm>> GetMembershipByUniqueIdentifier(string identifier)
         {
             var membership = new GetMembershipByIdentifierQuery() { Identifier = identifier };
