@@ -15,7 +15,8 @@ namespace AlfaguaraClub.Backend.Domain.Enums
     public enum TypeUser
     {
         Principal = 1,
-        Associated = 2
+        Associated = 2,
+        Guest
     }
     public enum PictureType
     {
