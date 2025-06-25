@@ -59,6 +59,7 @@ using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.UpdateSpa
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.CreateSpaceCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.UpdateSpaceCommands;
+using AlfaguaraClub.Backend.Application.Services.SquashFieldActivityServices.QuerySquashFieldActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.StatusBookingServices.CreateStatusBookingCommands;
 using AlfaguaraClub.Backend.Application.Services.StatusBookingServices.QueryStatusBookingCommands;
 using AlfaguaraClub.Backend.Application.Services.StatusBookingServices.UpdateStatusBookingCommands;
@@ -68,6 +69,7 @@ using AlfaguaraClub.Backend.Application.Services.StoryServices.UpdateStoryComman
 using AlfaguaraClub.Backend.Application.Services.TaxServices.CreateTaxCommands;
 using AlfaguaraClub.Backend.Application.Services.TaxServices.QueryTaxCommands;
 using AlfaguaraClub.Backend.Application.Services.TaxServices.UpdateTaxCommands;
+using AlfaguaraClub.Backend.Application.Services.TennisFieldActivityServices.QueryTennisFieldActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.TypeActivityServices.CreateTypeActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.TypeActivityServices.QueryTypeActivityCommands;
 using AlfaguaraClub.Backend.Application.Services.TypeActivityServices.UpdateTypeActivityCommands;
@@ -218,7 +220,8 @@ namespace AlfaguaraClub.Backend.Application.Profiles
             CreateMap<UserInfo, UpdateUserInfoCommand>().ReverseMap();
             CreateMap<UserInfo, UserInfoVm>().ReverseMap();
             CreateMap<SpaceActivitySlot, SpaceActivitySlotVm>().ReverseMap();
-
+            CreateMap<TennisFieldActivitySlot, TennisFieldActivitySlotVm>().ReverseMap();
+            CreateMap<SquashFieldActivitySlot, SquashFieldActivitySlotVm>().ReverseMap();
         }
     }
 }

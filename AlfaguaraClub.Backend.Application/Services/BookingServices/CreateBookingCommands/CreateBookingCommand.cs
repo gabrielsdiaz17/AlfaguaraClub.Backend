@@ -14,7 +14,8 @@ namespace AlfaguaraClub.Backend.Application.Services.BookingServices.CreateBooki
         public long? MembershipId { get; set; }
         public int StatusBookingId { get; set; }
         public long? SpaceActivitySlotId { get; set; }
-
+        public long? TennisFieldActivitySlotId { get; set; }
+        public long? SquashFieldActivitySlotId { get; set; }
         public bool IsActive { get; set; }
 
         public override string ToString()
