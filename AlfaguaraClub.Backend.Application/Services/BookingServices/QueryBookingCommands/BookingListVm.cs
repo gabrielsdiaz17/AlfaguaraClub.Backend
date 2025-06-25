@@ -1,6 +1,8 @@
 ﻿using AlfaguaraClub.Backend.Application.Services.MembershipServices.QueryMembershipCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceActivityServices.SpaceActivitySlotsCommands.QuerySlotCommands;
 using AlfaguaraClub.Backend.Application.Services.SpaceServices.QuerySpaceCommands;
+using AlfaguaraClub.Backend.Application.Services.SquashFieldActivityServices.QuerySquashFieldActivityCommands;
+using AlfaguaraClub.Backend.Application.Services.TennisFieldActivityServices.QueryTennisFieldActivityCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,10 @@ namespace AlfaguaraClub.Backend.Application.Services.BookingServices.QueryBookin
         public StatusBookingDto StatusBooking { get; set; }
         public long? SpaceActivitySlotId { get; set; }
         public SpaceActivitySlotVm SpaceActivitySlot { get; set; }
+        public long? TennisFieldActivitySlotId { get; set; }
+        public TennisFieldActivitySlotVm TennisFieldActivitySlot { get; set; }
+        public long? SquashFieldActivitySlotId { get; set; }
+        public SquashFieldActivitySlotVm SquashFieldActivitySlot { get; set; }
         public bool IsActive { get; set; }
         public BillingDto Billing { get; set; }
     }
