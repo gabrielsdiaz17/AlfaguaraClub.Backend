@@ -34,6 +34,14 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         [ForeignKey("SpaceActivitySlot")]
         public long? SpaceActivitySlotId { get; set; }
         public SpaceActivitySlot SpaceActivitySlot { get; set; }
+
+        [ForeignKey("TennisFieldActivitySlot")]
+        public long? TennisFieldActivitySlotId { get; set; }
+        public TennisFieldActivitySlot TennisFieldActivitySlot { get; set; }
+        
+        [ForeignKey("SquashFieldActivitySlot")]
+        public long? SquashFieldActivitySlotId { get; set; }
+        public SquashFieldActivitySlot SquashFieldActivitySlot { get; set; }
         public bool IsActive { get; set; }
         public Billing Billing { get; set; }
         public ICollection<BookingQuota> BookingQuotas { get; set; }

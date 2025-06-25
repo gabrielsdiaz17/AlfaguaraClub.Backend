@@ -43,7 +43,9 @@ namespace AlfaguaraClub.Backend.Persistence.Data
         public DbSet<User> User { get; set; }
         public DbSet<UserInfo> UserInfo { get; set; }
         public DbSet<BookingQuota> BookingQuota { get; set; }
-
+        public DbSet<SpaceActivitySlot> SpaceActivitySlot { get; set; }
+        public DbSet<TennisFieldActivitySlot> TennisFieldActivitySlot { get; set; }
+        public DbSet<SquashFieldActivitySlot> SquashFieldActivitySlot { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
