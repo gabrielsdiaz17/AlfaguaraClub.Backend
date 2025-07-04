@@ -1,4 +1,5 @@
 ﻿using AlfaguaraClub.Backend.Application.Services.PictureServices.CreatePictureCommands;
+using AlfaguaraClub.Backend.Application.Services.PictureServices.DeletePictureCommands;
 using AlfaguaraClub.Backend.Application.Services.PictureServices.QueryPictureCommands;
 using AlfaguaraClub.Backend.Application.Services.PictureServices.UpdatePictureCommands;
 using MediatR;
@@ -59,6 +60,14 @@ namespace AlfaguaraClub.Backend.Api.Controllers
         public async Task<ActionResult> Update([FromBody] UpdatePictureCommand updatePictureCommand)
         {
             await _mediator.Send(updatePictureCommand);
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> Delete(long id)
+        {
+            await _mediator.Send(new DeletePictureCommand { PictureId = id });
             return NoContent();
         }
     }

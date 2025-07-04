@@ -38,7 +38,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
 
         public async Task<List<Picture>> GetPicturesByStory(long storyId)
         {
-            var picturesStory = await QueryNoTracking().Where(picture =>picture.StoryId == storyId)
+            var picturesStory = await QueryNoTracking().Where(picture =>picture.StoryId == storyId && picture.IsActive)
                                                        .OrderByDescending(picture => picture.PictureId)
                                                        .ToListAsync();
             return picturesStory;
