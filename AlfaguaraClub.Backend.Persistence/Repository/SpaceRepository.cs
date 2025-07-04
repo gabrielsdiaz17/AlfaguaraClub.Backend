@@ -17,7 +17,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         public async Task<Space> GetSpace(long spaceId)
         {
             var space = await QueryNoTracking().Where(space => space.SpaceId == spaceId)
-                                                .Include(space => space.Pictures)
+                                                .Include(space => space.Pictures.Where(p => p.IsActive))
                                                 .Include(space => space.SpaceActivities)
                                                 .FirstOrDefaultAsync();
             return space;
@@ -27,7 +27,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         {
             var quantity = quantityRecords;
             var allSpaces = await QueryNoTracking().Where(space => space.IsActive)
-                                                   .Include(space => space.Pictures)
+                                                   .Include(space => space.Pictures.Where(p => p.IsActive))
                                                    .Include(space => space.CostCenter)                                                   
                                                    .OrderByDescending(space => space.SpaceId)
                                                    .ToListAsync();
