@@ -17,6 +17,8 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.UpdateProdu
         public int? TaxId { get; set; }
         public long? CostCenterId { get; set; }
         public bool IsActive { get; set; }
+        public bool PublicVisibility { get; set; }
+
 
     }
 }

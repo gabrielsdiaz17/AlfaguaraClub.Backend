@@ -20,6 +20,8 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.QueryProduc
         public long? CostCenterId { get; set; }
         public CostCenterDto CostCenter { get; set; }
         public bool IsActive { get; set; }
+        public bool PublicVisibility { get; set; }
+
         public ICollection<PictureDto> Pictures { get; set; }
 
     }
