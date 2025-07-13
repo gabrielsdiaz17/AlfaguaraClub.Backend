@@ -59,6 +59,8 @@ namespace AlfaguaraClub.Backend.Api
             services.AddTransient<IBookingQuotaRepository, BookingQuotaRepository>();
             services.AddTransient<ITennisFieldActivitySlotRepository, TennisFieldActivitySlotRepository>();
             services.AddTransient<ISquashFieldActivitySlotRepository, SquashFieldActivitySlotRepository>();
+            services.AddTransient<IMonthlyCouponBookRepository, MonthlyCouponBookRepository>();
+            services.AddTransient<ICouponPurchaseRepository,CouponPurchaseRepository>();
             return services;
         }
     }

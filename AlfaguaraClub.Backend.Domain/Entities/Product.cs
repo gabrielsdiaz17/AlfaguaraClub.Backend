@@ -25,6 +25,7 @@ namespace AlfaguaraClub.Backend.Domain.Entities
         public long? CostCenterId { get; set; }
         public CostCenter CostCenter { get; set; }
         public bool IsActive { get; set; }
+        public bool PublicVisibility { get; set; }
         public ICollection<Picture> Pictures { get; set; }
 
     }

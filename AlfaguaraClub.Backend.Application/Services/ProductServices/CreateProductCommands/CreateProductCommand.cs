@@ -16,6 +16,8 @@ namespace AlfaguaraClub.Backend.Application.Services.ProductServices.CreateProdu
         public int? TaxId { get; set; }
         public long? CostCenterId { get; set; }
         public bool IsActive { get; set; }
+        public bool PublicVisibility { get; set; }
+
         public override string ToString()
         {
             return $"Product Code: {ProductCode}; Description: {ProductDescription}; Unit Price: {UnitPrice}";
