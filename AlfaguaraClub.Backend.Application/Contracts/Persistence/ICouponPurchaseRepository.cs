@@ -9,5 +9,7 @@ namespace AlfaguaraClub.Backend.Application.Contracts.Persistence
 {
     public interface ICouponPurchaseRepository: IRepository<CouponPurchase>
     {
+        Task<List<CouponPurchase>> GetByCouponBookIdWithDetails(long couponBookId);
+        Task<List<CouponPurchase>> GetByMembershipAndMonth(long membershipId, DateTime month);
     }
 }

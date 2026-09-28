@@ -30,7 +30,7 @@ namespace AlfaguaraClub.Backend.Application.Services.CouponServices.CreateCoupon
             var book = await _couponBookRepository.GetByIdAsync(request.MonthlyCouponBookId);
             if (book == null || !book.IsActive) throw new Exception("Coupon book not available or inactive");
 
-            decimal totalCost = 0;
+            
 
             foreach (var item in request.Purchases)
             {
@@ -40,7 +40,7 @@ namespace AlfaguaraClub.Backend.Application.Services.CouponServices.CreateCoupon
 
             }
 
-            if (totalCost > book.CurrentBalance)
+            if (request.TotalAmount > book.CurrentBalance)
                 throw new Exception("Insufficient coupon book balance.");
 
             foreach (var item in request.Purchases)
@@ -60,7 +60,7 @@ namespace AlfaguaraClub.Backend.Application.Services.CouponServices.CreateCoupon
                 await _purchaseRepository.AddAsync(purchase);
             }
 
-            book.CurrentBalance -= totalCost;
+            book.CurrentBalance -= request.TotalAmount;
             await _couponBookRepository.UpdateAsync(book);
 
             return new AddCouponPurchaseResponse

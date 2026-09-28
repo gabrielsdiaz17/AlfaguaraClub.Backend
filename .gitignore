@@ -2,6 +2,9 @@
 # Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
 ################################################################################
 
+# Uploaded media files — created at runtime, not source
+AlfaguaraClub.Backend.Api/wwwroot/uploads/
+
 /.vs/AlfaguaraClub
 /AlfaguaraClub.Backend.Api/obj
 /AlfaguaraClub.Backend.Application/obj

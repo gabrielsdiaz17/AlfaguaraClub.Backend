@@ -17,7 +17,7 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         public async Task<List<Membership>> GetAllMemberships()
         {
             var memberships = await QueryNoTracking().Where(member=> member.IsActive)
-                                    .Include(member=> member.Users)
+                                    .Include(member=> member.Users.Where(u=>u.IsActive))
                                     .OrderByDescending(member=>member.MembershipId)
                                     .ToListAsync();
             return memberships;

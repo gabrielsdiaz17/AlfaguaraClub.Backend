@@ -30,6 +30,9 @@ namespace AlfaguaraClub.Backend.Application.Services.UserServices.UpdateUserComm
             var validationResult = await validator.ValidateAsync(request);
             if (validationResult.Errors.Count() > 0)
                 throw new ValidationException(validationResult);
+            byte[] bytesToEncode = System.Text.Encoding.UTF8.GetBytes(request.Password);
+            string base64String = Convert.ToBase64String(bytesToEncode);
+            request.Password = base64String;
             _mapper.Map(request, userToUpdate, typeof(UpdateUserCommand), typeof(User));
             await _userRepository.UpdateAsync(userToUpdate);
         }

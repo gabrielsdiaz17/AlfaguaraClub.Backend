@@ -12,5 +12,6 @@ namespace AlfaguaraClub.Backend.Application.Services.CouponServices.CreateCoupon
         public long MonthlyCouponBookId { get; set; }
 
         public List<ProductPurchaseDto> Purchases { get; set; } = new();
+        public decimal TotalAmount { get; set; }
     }
 }

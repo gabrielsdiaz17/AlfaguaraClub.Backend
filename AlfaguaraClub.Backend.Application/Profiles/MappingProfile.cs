@@ -22,6 +22,8 @@ using AlfaguaraClub.Backend.Application.Services.ContactRequestServices.UpdateCo
 using AlfaguaraClub.Backend.Application.Services.CostcenterServices.CreateCostCenterCommands;
 using AlfaguaraClub.Backend.Application.Services.CostcenterServices.QueryCostCenterCommands;
 using AlfaguaraClub.Backend.Application.Services.CostcenterServices.UpdateCostCenterCommands;
+using AlfaguaraClub.Backend.Application.Services.CouponServices.CouponBookQueryCommands;
+using AlfaguaraClub.Backend.Application.Services.CouponServices.CouponPurchasesQueryCommands;
 using AlfaguaraClub.Backend.Application.Services.IdentificationTypeServices.CreateIdentificationTypeCommands;
 using AlfaguaraClub.Backend.Application.Services.IdentificationTypeServices.QueryIdentificationTypeCommands;
 using AlfaguaraClub.Backend.Application.Services.IdentificationTypeServices.UpdateIdentificationTypeCommands;
@@ -222,6 +224,8 @@ namespace AlfaguaraClub.Backend.Application.Profiles
             CreateMap<SpaceActivitySlot, SpaceActivitySlotVm>().ReverseMap();
             CreateMap<TennisFieldActivitySlot, TennisFieldActivitySlotVm>().ReverseMap();
             CreateMap<SquashFieldActivitySlot, SquashFieldActivitySlotVm>().ReverseMap();
+            CreateMap<MonthlyCouponBook,CouponBookVm>().ReverseMap();
+            CreateMap<CouponPurchase,CouponPurchaseVm>().ReverseMap();
         }
     }
 }

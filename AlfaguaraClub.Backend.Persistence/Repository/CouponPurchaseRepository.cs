@@ -13,5 +13,28 @@ namespace AlfaguaraClub.Backend.Persistence.Repository
         public CouponPurchaseRepository(IRepository<CouponPurchase> repository) : base(repository)
         {
         }
+
+        public async Task<List<CouponPurchase>> GetByCouponBookIdWithDetails(long couponBookId)
+        {
+            return await QueryNoTracking().Include(cp => cp.Product)
+                                            .Include(cp => cp.CostCenter)
+                                            .Include(cp => cp.User)
+                                            .Where(cp => cp.MonthlyCouponBookId == couponBookId)
+                                            .ToListAsync();
+            
+        }
+
+        public async Task<List<CouponPurchase>> GetByMembershipAndMonth(long membershipId, DateTime month)
+        {
+            return await QueryNoTracking().Include(cp => cp.Product)
+                                    .Include(cp => cp.CostCenter)
+                                    .Include(cp => cp.User)
+                                    .Include(cp => cp.MonthlyCouponBook)
+                                    .Where(cp =>
+                                        cp.MonthlyCouponBook.MembershipId == membershipId &&
+                                        cp.MonthlyCouponBook.Month.Year == month.Year &&
+                                        cp.MonthlyCouponBook.Month.Month == month.Month)
+                                    .ToListAsync();
+        }
     }
 }
